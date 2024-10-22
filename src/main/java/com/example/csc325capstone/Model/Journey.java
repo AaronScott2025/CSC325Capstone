@@ -1,6 +1,6 @@
-package com.example.csc325capstone;
+package com.example.csc325capstone.Model;
 
-public class Journey {
+public class Journey{
     private Locations location;
     private String starttime;
     private String endtime;

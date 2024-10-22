@@ -1,4 +1,6 @@
-package com.example.csc325capstone;
+package com.example.csc325capstone.Model;
+
+import com.example.csc325capstone.Model.Locations;
 
 public class Person {
     private String userID; //Friend Username

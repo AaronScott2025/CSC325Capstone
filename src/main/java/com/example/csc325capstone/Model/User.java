@@ -1,5 +1,9 @@
-package com.example.csc325capstone;
+package com.example.csc325capstone.Model;
 
+
+import com.example.csc325capstone.Model.Journey;
+import com.example.csc325capstone.Model.Locations;
+import com.example.csc325capstone.Model.Person;
 
 public class User extends Person {
 

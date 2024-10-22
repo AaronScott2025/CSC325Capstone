@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.Login">
+   <children>
+      <ImageView fitHeight="557.0" fitWidth="995.0">
+         <image>
+            <Image url="@../../../sunsetGradient.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="100.0" layoutY="14.0" prefHeight="126.0" prefWidth="750.0" text="Welcome To TrailQuest" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Gill Sans Ultra Bold" size="52.0" />
+         </font>
+      </Label>
+      <Button fx:id="LoginButton" blendMode="MULTIPLY" layoutX="447.0" layoutY="405.0" mnemonicParsing="false" onAction="#loginPressed" text="Login &gt;" />
+      <PasswordField fx:id="PassField" layoutX="401.0" layoutY="365.0" promptText="Password" />
+      <TextField fx:id="UserField" layoutX="401.0" layoutY="313.0" promptText="Username" />
+      <Button fx:id="CreateAccount" blendMode="MULTIPLY" layoutX="791.0" layoutY="500.0" mnemonicParsing="false" onAction="#createPressed" text="Create An Account!" />
+      <Label alignment="CENTER" layoutX="797.0" layoutY="468.0" prefHeight="25.0" prefWidth="106.0" text="New User?" textAlignment="CENTER" textFill="#76fcf9">
+         <font>
+            <Font name="Gill Sans Ultra Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="FAQ" blendMode="MULTIPLY" layoutX="46.0" layoutY="500.0" mnemonicParsing="false" onAction="#FAQPressed" text="FAQ" />
+      <Label alignment="CENTER" layoutX="326.0" layoutY="113.0" prefHeight="126.0" prefWidth="299.0" text=" Discover Your Path, Embrace your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="27.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
