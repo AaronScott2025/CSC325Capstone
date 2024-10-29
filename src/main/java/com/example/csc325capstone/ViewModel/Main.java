@@ -10,9 +10,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.lang.reflect.AccessFlag;
-import java.util.Objects;
 
 public class Main extends Application {
     private static Stage primaryStage;
@@ -54,7 +51,6 @@ public class Main extends Application {
     }
 
     public static Stage getPrimaryStage() {
-
         return primaryStage;
     }
 }

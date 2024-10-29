@@ -11,23 +11,18 @@ public class User extends Person {
     private String password; //User's Encrypted Password (SEE LOGIN)
     private String record; //Best travel
     private Person[] friendsList; //List of Friends
-    private Locations[] favorites; //List of Favorite Locations
+    private Locations[] favorites; //List of Favorite Locations  |  MAX 5
     private String located; //Current Location (IP BASED)
-    private Locations[] nearby; //Nearby Locations
     private Journey[] journies; //Last 10 hikes
     private boolean favoritevisibility;
-    private String[] securityQuestions;
-    private String[] securityAnswers;
+    private String securityAnswers;
 
-    public User(String userID, String record, Locations[] favorites, boolean favoritevisibility, String password, String record1, Person[] friendsList, String located, Locations[] nearby, Journey[] journies,String[] securityQuestions,String[] securityAnswers) {
+    public User(String userID, String record, Locations[] favorites, boolean favoritevisibility, String password, Person[] friendsList, String located, Journey[] journies,String securityAnswers) {
         super(userID, record, favorites, favoritevisibility);
         this.password = password;
-        this.record = record1;
         this.friendsList = friendsList;
         this.located = located;
-        this.nearby = nearby;
         this.journies = journies;
-        this.securityQuestions = securityQuestions;
         this.securityAnswers = securityAnswers;
     }
 
@@ -84,14 +79,6 @@ public class User extends Person {
         this.located = located;
     }
 
-    public Locations[] getNearby() {
-        return nearby;
-    }
-
-    public void setNearby(Locations[] nearby) {
-        this.nearby = nearby;
-    }
-
     public Journey[] getJournies() {
         return journies;
     }
@@ -109,19 +96,12 @@ public class User extends Person {
     public void setFavoritevisibility(boolean favoritevisibility) {
         this.favoritevisibility = favoritevisibility;
     }
-    public String[] getSecurityQuestions() {
-        return securityQuestions;
-    }
 
-    public void setSecurityQuestions(String[] securityQuestions) {
-        this.securityQuestions = securityQuestions;
-    }
-
-    public String[] getSecurityAnswers() {
+    public String getSecurityAnswers() {
         return securityAnswers;
     }
 
-    public void setSecurityAnswers(String[] securityAnswers) {
+    public void setSecurityAnswers(String securityAnswers) {
         this.securityAnswers = securityAnswers;
     }
 }

@@ -6,10 +6,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+
 /**
- /REFERENCES:
- /https://rapidapi.com/trailapi/api/trailapi
- /https://developer.android.com/reference/org/json/JSONObject
+ *REFERENCES:
+ *https://rapidapi.com/trailapi/api/trailapi
+ *https://developer.android.com/reference/org/json/JSONObject
  */
 
 public class CurrentLocation {
@@ -37,8 +38,8 @@ public class CurrentLocation {
     public void setCity(String city) {
         this.city = city;
     }
-    public void getNearbyLocations(){
-        String structure = "?lat=34.1&limit=25&lon=-105.2"; //NEEDS TO BE AS FOLLOWS: "?lat=(LATITUDE HERE)&limit=25&lon=(LONGITUDE HERE) | EG: ?lat=34.1&limit=25&lon=-105.2
+    public void getNearbyLocations(String structure){
+        structure = "?lat=34.1&limit=25&lon=-105.2"; //NEEDS TO BE AS FOLLOWS: "?lat=(LATITUDE HERE)&limit=25&lon=(LONGITUDE HERE) | EG: ?lat=34.1&limit=25&lon=-105.2
         String link = "https://trailapi-trailapi.p.rapidapi.com/activity/" + structure + "&radius=25&q-activities_activity_type_name_eq=hiking";
         try {
             HttpRequest request = HttpRequest.newBuilder() //Build API Request
@@ -53,24 +54,24 @@ public class CurrentLocation {
 
             JSONObject jsonObject = new JSONObject(responseBody); //Pass to json reader (For interaction)
 
-            for (String key : jsonObject.keySet()) {
+            for (String key : jsonObject.keySet()) { //String traversing json
                 try {
-                    JSONObject trail = jsonObject.getJSONObject(key);
-                    String trailName = trail.getString("name");
-                    String city = trail.getString("city");
-                    String state = trail.getString("state");
-                    String description = trail.getString("description") + " " + trail.getString("directions");
+                    JSONObject trail = jsonObject.getJSONObject(key); //Full json section
+                    String trailName = trail.getString("name"); //Get name of trail
+                    String city = trail.getString("city"); //Get city of trail
+                    String state = trail.getString("state"); //Get state of trail
+                    String description = trail.getString("description") + " " + trail.getString("directions"); //Get Description + Directions of trail
 
-
+                    //Comment out after testing. Pre-GUI Integration test for API (Ctrl + /) -Aaron
                     System.out.println("=================================");
                     System.out.println("Trail Name: " + trailName);
                     System.out.println("City: " + city);
                     System.out.println("State: " + state);
                     System.out.println("Description: " + description);
                     System.out.println("=================================");
+
                 } catch (JSONException e) {
-                    // Handle the case where the key does not correspond to a trail
-                    System.out.println("Key " + key + " does not correspond to a trail.");
+                    System.out.println("Key " + key + " does not correspond to a trail.");// Key does not correspond to a trail
                 }
             }
 
