@@ -1,6 +1,4 @@
 package com.example.csc325capstone.View;
-
-import com.example.csc325capstone.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -52,6 +49,8 @@ public class LoginController {
 
     @FXML
     void loginPressed(ActionEvent event) {
+        String pass = passEncrypt(PassField.getText());
+        //Get user pass from DB and Compare
         System.out.println("Testing: Login Button Pressed");
 
     }
@@ -76,7 +75,20 @@ public class LoginController {
 
     @FXML
     void CAPressed(ActionEvent event) {
+        //Check if username is unique
+        String pass = passEncrypt(CreatePass.getText()); //Put into user's data
         //Put into DB
     }
 
+    private String passEncrypt(String password) {
+        StringBuilder encryptedPassword = new StringBuilder();
+        for (char ch: password.toCharArray()) {
+            int value = ch - 'a' + 1;
+            value = value + 13 % 26;
+            char letter = (char)('a' + value - 1);
+            encryptedPassword.append(letter);
+        }
+        String encryptedPasswordString = encryptedPassword.toString();
+        return encryptedPasswordString;
+    }
 }
