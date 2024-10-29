@@ -81,14 +81,13 @@ public class LoginController {
     }
 
     private String passEncrypt(String password) {
-        StringBuilder encryptedPassword = new StringBuilder();
+        StringBuilder encrypted = new StringBuilder();
         for (char ch: password.toCharArray()) {
             int value = ch - 'a' + 1;
             value = value + 13 % 26;
             char letter = (char)('a' + value - 1);
-            encryptedPassword.append(letter);
+            encrypted.append(letter);
         }
-        String encryptedPasswordString = encryptedPassword.toString();
-        return encryptedPasswordString;
+        return encrypted.toString();
     }
 }
