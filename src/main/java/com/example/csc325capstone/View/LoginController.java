@@ -60,23 +60,26 @@ public class LoginController {
     }
 
     @FXML
-    void loginPressed(ActionEvent event) throws InterruptedException {
+    void loginPressed(ActionEvent event) throws IOException {
         String pass = passEncrypt(PassField.getText());
         //Get user pass from DB and Compare
         System.out.println("Testing: Login Button Pressed");
-        CurrentLocation cl = new CurrentLocation(null);
-        cl.setLocation(cl.getcurrentLocation());
-        cl.getNearbyLocations(cl.getLocation());
         try {
             fstore = contxtFirebase.firebase();
             fauth = FirebaseAuth.getInstance();
         } catch (Exception e) {
             errorlbl.setText("Error: Could not connect to backend. Please try again.");
         }
+        CurrentLocation cl = new CurrentLocation(null);
+        cl.setLocation(cl.getcurrentLocation());
         Stage stage = Main.getPrimaryStage();
         stage.setTitle("TrailQuest");
         FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
-        Scene s = new Scene(
+        Scene s = new Scene(fx.load());
+        stage.setScene(s);
+        MainController mainController = fx.getController();
+        mainController.initTextArea(cl);
+        stage.show();
 
 
     }

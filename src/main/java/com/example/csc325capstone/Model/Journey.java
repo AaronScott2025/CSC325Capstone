@@ -1,13 +1,13 @@
 package com.example.csc325capstone.Model;
 
 public class Journey{
-    private Locations location;
+    private Hikes location;
     private String starttime;
     private String endtime;
     private boolean personalbest;
     private double miles;
 
-    public Journey(Locations location, String starttime, String endtime, boolean personalbest, double miles) {
+    public Journey(Hikes location, String starttime, String endtime, boolean personalbest, double miles) {
         this.location = location;
         this.starttime = starttime;
         this.endtime = endtime;
@@ -15,11 +15,11 @@ public class Journey{
         this.miles = miles;
     }
 
-    public Locations getLocation() {
+    public Hikes getLocation() {
         return location;
     }
 
-    public void setLocation(Locations location) {
+    public void setLocation(Hikes location) {
         this.location = location;
     }
 

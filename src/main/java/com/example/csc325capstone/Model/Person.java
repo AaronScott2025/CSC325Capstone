@@ -1,14 +1,12 @@
 package com.example.csc325capstone.Model;
 
-import com.example.csc325capstone.Model.Locations;
-
 public class Person {
     private String userID; //Friend Username
     private String record; //Friend Record
-    private Locations[] favorites; //Favorite Location
+    private Hikes[] favorites; //Favorite Location
     private boolean favoritevisibility; //Can user's friends see favorite?
 
-    public Person(String userID, String record, Locations[] favorites, boolean favoritevisibility) {
+    public Person(String userID, String record, Hikes[] favorites, boolean favoritevisibility) {
         this.userID = userID;
         this.record = record;
         this.favorites = favorites;
@@ -31,11 +29,11 @@ public class Person {
         this.record = record;
     }
 
-    public Locations[] getFavorites() {
+    public Hikes[] getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(Locations[] favorites) {
+    public void setFavorites(Hikes[] favorites) {
         this.favorites = favorites;
     }
 

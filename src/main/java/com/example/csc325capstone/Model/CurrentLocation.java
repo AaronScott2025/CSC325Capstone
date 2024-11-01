@@ -71,18 +71,23 @@ public class CurrentLocation {
             double longitude = obj.getDouble("lon"); //Get Longitude
             String region = obj.getString("region"); //Get Region
             String city = obj.getString("city"); //Get City
+            System.out.println( region + "," + city + "," + latitude + "," + longitude);
             return region + "," + city + "," + latitude + "," + longitude; //EG: New York,Farmingdale,40.4,73.2
 
         } catch (Exception e) { //Error occured somewhere
+            System.out.println("error");
             return "California,Los Angeles,34.0,118.1"; //DEFAULT TO LOS ANGELES CALIFORNIA ON ERROR
         }
     }
-    public void getNearbyLocations(String location){
+    public Hikes[] getNearbyLocations(String location){
+        Hikes[] locations = new Hikes[25];
+        int i = 0;
         String[] getter = location.split(",");
         double lat = Double.parseDouble(getter[2]);
         double lon = Double.parseDouble(getter[3]);
-        lat = Math.round(lat * 10);
-        lon = Math.round(lon * 10);
+        lat = Math.round(lat * 1);
+        lon = Math.round(lon * 1);
+        System.out.println( lat + "," + lon);
         String format = "?lat=" + lat + "&limit=25&lon=" + lon; //NEEDS TO BE AS FOLLOWS: "?lat=(LATITUDE HERE)&limit=25&lon=(LONGITUDE HERE) | EG: ?lat=34.1&limit=25&lon=-105.2
         String link = "https://trailapi-trailapi.p.rapidapi.com/activity/" + format + "&radius=25&q-activities_activity_type_name_eq=hiking";
         try {
@@ -114,6 +119,10 @@ public class CurrentLocation {
                     System.out.println("Description: " + description);
                     System.out.println("=================================");
 
+                    Hikes l = new Hikes(trailName, city, state, description);
+                    locations[i] = l;
+                    i++;
+
                 } catch (JSONException e) {
                     System.out.println("Key " + key + " does not correspond to a trail.");// Key does not correspond to a trail
                 }
@@ -122,5 +131,6 @@ public class CurrentLocation {
         } catch (Exception e) { //Error occured somewhere
             e.printStackTrace();
         }
+        return locations;
     }
 }

@@ -1,9 +1,6 @@
 package com.example.csc325capstone.Model;
 
 
-import com.example.csc325capstone.Model.Journey;
-import com.example.csc325capstone.Model.Locations;
-import com.example.csc325capstone.Model.Person;
 import java.util.ArrayList;
 
 public class User extends Person {
@@ -12,14 +9,14 @@ public class User extends Person {
     private String password; //User's Encrypted Password (SEE LOGIN)
     private String record; //Best travel
     private ArrayList<Person> friendsList; //List of Friends
-    private Locations[] favorites; //List of Favorite Locations  |  MAX 5
+    private Hikes[] favorites; //List of Favorite Locations  |  MAX 5
     private String located; //Current Location (IP BASED)
     private Journey[] journies; //Last 10 hikes
     private boolean favoritevisibility;
     private String securityAnswer1;
     private String securityAnswer2;
 
-    public User(String userID, String password, String record, ArrayList<Person> friendsList, Locations[] favorites, String located, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
+    public User(String userID, String password, String record, ArrayList<Person> friendsList, Hikes[] favorites, String located, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
         super(userID, record, favorites, favoritevisibility);
         this.userID = userID;
         this.password = password;
@@ -70,12 +67,12 @@ public class User extends Person {
     }
 
     @Override
-    public Locations[] getFavorites() {
+    public Hikes[] getFavorites() {
         return favorites;
     }
 
     @Override
-    public void setFavorites(Locations[] favorites) {
+    public void setFavorites(Hikes[] favorites) {
         this.favorites = favorites;
     }
 
