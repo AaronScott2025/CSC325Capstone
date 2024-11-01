@@ -6,6 +6,8 @@ module com.example.csc325capstone {
     requires com.google.auth.oauth2;
     requires google.cloud.firestore;
     requires firebase.admin;
+    requires com.google.auth;
+    requires com.google.api.apicommon;
 
 
     opens com.example.csc325capstone to javafx.fxml;

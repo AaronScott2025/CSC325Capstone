@@ -1,18 +1,26 @@
 package com.example.csc325capstone.View;
+import com.example.csc325capstone.Model.CurrentLocation;
+import com.example.csc325capstone.Model.FirestoreContext;
+import com.example.csc325capstone.ViewModel.Main;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.auth.FirebaseAuth;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.lang.reflect.AccessFlag;
+import java.util.concurrent.TimeUnit;
 
 public class LoginController {
 
+    private int counter = 3;
     @FXML
     private Stage stage;
     @FXML
@@ -23,9 +31,13 @@ public class LoginController {
 
     @FXML
     private PasswordField PassField;
-
+    @FXML
+    private Label errorlbl;
     @FXML
     private TextField UserField;
+    public static Firestore fstore;
+    public static FirebaseAuth fauth;
+    private final FirestoreContext contxtFirebase = new FirestoreContext();
 
 
     /**
@@ -48,10 +60,27 @@ public class LoginController {
     }
 
     @FXML
-    void loginPressed(ActionEvent event) {
+    void loginPressed(ActionEvent event) throws IOException {
         String pass = passEncrypt(PassField.getText());
         //Get user pass from DB and Compare
         System.out.println("Testing: Login Button Pressed");
+        try {
+            fstore = contxtFirebase.firebase();
+            fauth = FirebaseAuth.getInstance();
+        } catch (Exception e) {
+            errorlbl.setText("Error: Could not connect to backend. Please try again.");
+        }
+        CurrentLocation cl = new CurrentLocation(null);
+        cl.setLocation(cl.getcurrentLocation());
+        Stage stage = Main.getPrimaryStage();
+        stage.setTitle("TrailQuest");
+        FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
+        Scene s = new Scene(fx.load());
+        stage.setScene(s);
+        MainController mainController = fx.getController();
+        mainController.initTextArea(cl);
+        stage.show();
+
 
     }
 /**========================================================================================================================================================*/

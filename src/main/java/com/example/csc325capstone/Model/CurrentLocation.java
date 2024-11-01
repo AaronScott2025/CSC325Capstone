@@ -2,45 +2,94 @@ package com.example.csc325capstone.Model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 /**
+ * Current Location Class:
+ * State | State of which the user is in
+ * City  | City of which the user is in
+ * getNearbyLocations() | Uses Latitude and Longitude with trailapi to get nearby trail information
+ * getLocation() | Returns the current user location, based on their IP Address. "State,City,Latitude,Longitude"
+ * 
  *REFERENCES:
- *https://rapidapi.com/trailapi/api/trailapi
- *https://developer.android.com/reference/org/json/JSONObject
+ *https://rapidapi.com/trailapi/api/trailapi | getNearbyLocations()
+ *https://developer.android.com/reference/org/json/JSONObject | getNearbyLocations()
+ *https://api.ipify.org?format=text | getLocation()
+ *https://www.ipify.org/ | getLocation()
  */
 
 public class CurrentLocation {
 
-    private String state; //State
-    private String city; //City
+    private String location; //EG: New York,Farmingdale,40.4,73.2
 
-    public CurrentLocation(String state, String city) {
-        this.state = state;
-        this.city = city;
+    public CurrentLocation(String location) {
+        this.location = location;
     }
 
-    public String getState() {
-        return state;
+    public String getLocation() {
+        return location;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getCity() {
-        return city;
-    }
+    public String getcurrentLocation() {
+        try {
+            //Connection 1
+            URL url = new URL("https://api.ipify.org?format=text"); //Get user IP
+            HttpURLConnection con = (HttpURLConnection) url.openConnection(); //Connects
+            con.setRequestMethod("GET"); //Connection Type
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String ip = in.readLine(); //Read line
 
-    public void setCity(String city) {
-        this.city = city;
+            //Connection 2
+            URL url2 = new URL("http://ip-api.com/json/" + ip); //Get Location (Based on IP)
+            HttpURLConnection con2 = (HttpURLConnection) url2.openConnection(); //Connects
+            con2.setRequestMethod("GET"); //Connection Type
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(con2.getInputStream()));
+            String inputline; //For looping
+            StringBuilder sb = new StringBuilder(); //To build JSON
+            while ((inputline = in2.readLine()) != null) { //Get JSON contents.
+                sb.append(inputline);
+            }
+
+            //Close connections (No need to keep them open past this point)
+            in.close();
+            in2.close();
+
+            //JSONObject Handling
+            JSONObject obj = new JSONObject(sb.toString()); //Turns String builder to string
+            double latitude = obj.getDouble("lat"); //Get Latitude
+            double longitude = obj.getDouble("lon"); //Get Longitude
+            String region = obj.getString("region"); //Get Region
+            String city = obj.getString("city"); //Get City
+            System.out.println( region + "," + city + "," + latitude + "," + longitude);
+            return region + "," + city + "," + latitude + "," + longitude; //EG: New York,Farmingdale,40.4,73.2
+
+        } catch (Exception e) { //Error occured somewhere
+            System.out.println("error");
+            return "California,Los Angeles,34.0,118.1"; //DEFAULT TO LOS ANGELES CALIFORNIA ON ERROR
+        }
     }
-    public void getNearbyLocations(String structure){
-        structure = "?lat=34.1&limit=25&lon=-105.2"; //NEEDS TO BE AS FOLLOWS: "?lat=(LATITUDE HERE)&limit=25&lon=(LONGITUDE HERE) | EG: ?lat=34.1&limit=25&lon=-105.2
-        String link = "https://trailapi-trailapi.p.rapidapi.com/activity/" + structure + "&radius=25&q-activities_activity_type_name_eq=hiking";
+    public Hikes[] getNearbyLocations(String location){
+        Hikes[] locations = new Hikes[25];
+        int i = 0;
+        String[] getter = location.split(",");
+        double lat = Double.parseDouble(getter[2]);
+        double lon = Double.parseDouble(getter[3]);
+        lat = Math.round(lat * 1);
+        lon = Math.round(lon * 1);
+        System.out.println( lat + "," + lon);
+        String format = "?lat=" + lat + "&limit=25&lon=" + lon; //NEEDS TO BE AS FOLLOWS: "?lat=(LATITUDE HERE)&limit=25&lon=(LONGITUDE HERE) | EG: ?lat=34.1&limit=25&lon=-105.2
+        String link = "https://trailapi-trailapi.p.rapidapi.com/activity/" + format + "&radius=25&q-activities_activity_type_name_eq=hiking";
         try {
             HttpRequest request = HttpRequest.newBuilder() //Build API Request
                     .uri(URI.create(link))
@@ -70,13 +119,18 @@ public class CurrentLocation {
                     System.out.println("Description: " + description);
                     System.out.println("=================================");
 
+                    Hikes l = new Hikes(trailName, city, state, description);
+                    locations[i] = l;
+                    i++;
+
                 } catch (JSONException e) {
                     System.out.println("Key " + key + " does not correspond to a trail.");// Key does not correspond to a trail
                 }
             }
 
-        } catch (Exception e) {
+        } catch (Exception e) { //Error occured somewhere
             e.printStackTrace();
         }
+        return locations;
     }
 }

@@ -1,26 +1,17 @@
 package com.example.csc325capstone.Model;
 
 
-public class Locations extends CurrentLocation {
-    private String state; //State
-    private String city; //City
+public class Hikes {
+    private String city;
+    private String state;
     private String name; //Name of hike
     private String description; //Description of hike
 
-    public Locations(String state, String city, String state1, String city1, String name, String description) {
-        super(state, city);
-        this.state = state1;
-        this.city = city1;
+    public Hikes(String city, String state, String name, String description) {
+        this.city = city;
+        this.state = state;
         this.name = name;
         this.description = description;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public String getCity() {
@@ -29,6 +20,14 @@ public class Locations extends CurrentLocation {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getName() {
@@ -46,6 +45,5 @@ public class Locations extends CurrentLocation {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }
 

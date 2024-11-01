@@ -13,7 +13,7 @@ public class FirestoreContext {
     public Firestore firebase() {
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("/files/key.json")))
+                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("/com/example/csc325capstone/files/key.json")))
                     .build();
             FirebaseApp.initializeApp(options);
             System.out.println("Firebase is initialized");

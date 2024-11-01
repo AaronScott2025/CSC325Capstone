@@ -1,29 +1,33 @@
 package com.example.csc325capstone.Model;
 
 
-import com.example.csc325capstone.Model.Journey;
-import com.example.csc325capstone.Model.Locations;
-import com.example.csc325capstone.Model.Person;
+import java.util.ArrayList;
 
 public class User extends Person {
 
     private String userID; //Username
     private String password; //User's Encrypted Password (SEE LOGIN)
     private String record; //Best travel
-    private Person[] friendsList; //List of Friends
-    private Locations[] favorites; //List of Favorite Locations  |  MAX 5
+    private ArrayList<Person> friendsList; //List of Friends
+    private Hikes[] favorites; //List of Favorite Locations  |  MAX 5
     private String located; //Current Location (IP BASED)
     private Journey[] journies; //Last 10 hikes
     private boolean favoritevisibility;
-    private String securityAnswers;
+    private String securityAnswer1;
+    private String securityAnswer2;
 
-    public User(String userID, String record, Locations[] favorites, boolean favoritevisibility, String password, Person[] friendsList, String located, Journey[] journies,String securityAnswers) {
+    public User(String userID, String password, String record, ArrayList<Person> friendsList, Hikes[] favorites, String located, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
         super(userID, record, favorites, favoritevisibility);
+        this.userID = userID;
         this.password = password;
+        this.record = record;
         this.friendsList = friendsList;
+        this.favorites = favorites;
         this.located = located;
         this.journies = journies;
-        this.securityAnswers = securityAnswers;
+        this.favoritevisibility = favoritevisibility;
+        this.securityAnswer1 = securityAnswer1;
+        this.securityAnswer2 = securityAnswer2;
     }
 
     @Override
@@ -54,20 +58,21 @@ public class User extends Person {
         this.record = record;
     }
 
-    public Person[] getFriendsList() {
+    public ArrayList<Person> getFriendsList() {
         return friendsList;
     }
 
-    public void setFriendsList(Person[] friendsList) {
+    public void setFriendsList(ArrayList<Person> friendsList) {
         this.friendsList = friendsList;
     }
 
     @Override
-    public Locations[] getFavorites() {
+    public Hikes[] getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(Locations[] favorites) {
+    @Override
+    public void setFavorites(Hikes[] favorites) {
         this.favorites = favorites;
     }
 
@@ -97,11 +102,19 @@ public class User extends Person {
         this.favoritevisibility = favoritevisibility;
     }
 
-    public String getSecurityAnswers() {
-        return securityAnswers;
+    public String getSecurityAnswer1() {
+        return securityAnswer1;
     }
 
-    public void setSecurityAnswers(String securityAnswers) {
-        this.securityAnswers = securityAnswers;
+    public void setSecurityAnswer1(String securityAnswer1) {
+        this.securityAnswer1 = securityAnswer1;
+    }
+
+    public String getSecurityAnswer2() {
+        return securityAnswer2;
+    }
+
+    public void setSecurityAnswer2(String securityAnswer2) {
+        this.securityAnswer2 = securityAnswer2;
     }
 }

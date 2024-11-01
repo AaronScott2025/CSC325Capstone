@@ -1,6 +1,9 @@
 package com.example.csc325capstone.ViewModel;
 
 import com.example.csc325capstone.Model.CurrentLocation;
+import com.example.csc325capstone.Model.FirestoreContext;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.auth.FirebaseAuth;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,9 @@ import javafx.util.Duration;
 
 public class Main extends Application {
     private static Stage primaryStage;
+    private final FirestoreContext contxtFirebase = new FirestoreContext();
+    public static Firestore fstore;
+    public static FirebaseAuth fauth;
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -39,8 +45,9 @@ public class Main extends Application {
                 Scene newScene = new Scene(newRoot);
                 login.setScene(newScene);
                 login.initStyle(StageStyle.DECORATED);
-                login.show();
                 primaryStage.close();
+                login.show();
+                primaryStage = login;
 
             });
 
