@@ -35,5 +35,10 @@
             <Font name="DejaVu Sans ExtraLight" size="27.0" />
          </font>
       </Label>
+      <Label fx:id="errorlbl" alignment="CENTER" layoutX="313.0" layoutY="456.0" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+         <font>
+            <Font name="Arial" size="11.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
