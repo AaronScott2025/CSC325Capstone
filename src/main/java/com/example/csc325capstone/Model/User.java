@@ -10,20 +10,18 @@ public class User extends Person {
     private String record; //Best travel
     private ArrayList<Person> friendsList; //List of Friends
     private Hikes[] favorites; //List of Favorite Locations  |  MAX 5
-    private String located; //Current Location (IP BASED)
     private Journey[] journies; //Last 10 hikes
     private boolean favoritevisibility;
     private String securityAnswer1;
     private String securityAnswer2;
 
-    public User(String userID, String password, String record, ArrayList<Person> friendsList, Hikes[] favorites, String located, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
+    public User(String userID, String password, String record, ArrayList<Person> friendsList, Hikes[] favorites, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
         super(userID, record, favorites, favoritevisibility);
         this.userID = userID;
         this.password = password;
         this.record = record;
         this.friendsList = friendsList;
         this.favorites = favorites;
-        this.located = located;
         this.journies = journies;
         this.favoritevisibility = favoritevisibility;
         this.securityAnswer1 = securityAnswer1;
@@ -74,14 +72,6 @@ public class User extends Person {
     @Override
     public void setFavorites(Hikes[] favorites) {
         this.favorites = favorites;
-    }
-
-    public String getLocated() {
-        return located;
-    }
-
-    public void setLocated(String located) {
-        this.located = located;
     }
 
     public Journey[] getJournies() {

@@ -45,7 +45,7 @@ public class MainController {
 
     @FXML
     void exit(ActionEvent event) {
-
+        System.exit(0);
     }
 
     @FXML
