@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
@@ -36,8 +35,7 @@
       </Label>
       <Pane layoutX="1.0" layoutY="419.0" prefHeight="329.0" prefWidth="1173.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="329.0" stroke="TRANSPARENT" strokeType="INSIDE" width="1173.0" />
-            <TextArea fx:id="locations" editable="false" layoutX="-2.0" prefHeight="329.0" prefWidth="1173.0" text="Local Hikes Near &lt;LOCATION&gt;&#10;&#10;&lt;Hike Name&gt;&#10;&lt;City&gt;&#10;&lt;State&gt;&#10;&lt;Description&gt;">
+            <TextArea fx:id="locations" editable="false" layoutX="-2.0" prefHeight="329.0" prefWidth="1174.0" text="Local Hikes Near &lt;LOCATION&gt;&#10;&#10;&lt;Hike Name&gt;&#10;&lt;City&gt;&#10;&lt;State&gt;&#10;&lt;Description&gt;" wrapText="true">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
