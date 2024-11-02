@@ -1,6 +1,5 @@
 package com.example.csc325capstone.ViewModel;
 
-import com.example.csc325capstone.Model.CurrentLocation;
 import com.example.csc325capstone.Model.FirestoreContext;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,0 +1,12 @@
+.button {
+    -fx-background-color: #00A313;
+    -fx-font-weight: BOLD;
+    -fx-border-color: #00CF18;
+    -fx-font-size: 19px;
+}
+#favoritesBTN {
+    -fx-background-color: #FFFB8F;
+    -fx-font-weight: BOLD;
+    -fx-border-color: #CCC500;
+    -fx-font-size: 19px;
+}
