@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -13,28 +14,31 @@
    <children>
       <ImageView fitHeight="557.0" fitWidth="707.0">
          <image>
-            <Image url="@../../../sunsetGradient.jpg" />
+            <Image url="@../../../greenhills.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="CreateAnAccount" blendMode="MULTIPLY" layoutX="507.0" layoutY="266.0" mnemonicParsing="false" onAction="#CAPressed" text="Create Account&gt;" />
-      <PasswordField fx:id="CreatePass" layoutX="279.0" layoutY="279.0" promptText="Password" />
-      <TextField fx:id="CreateUser" layoutX="279.0" layoutY="230.0" promptText="Username" />
-      <Label alignment="CENTER" layoutX="192.0" layoutY="37.0" prefHeight="152.0" prefWidth="299.0" text="Create an account" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Button fx:id="CreateAnAccount" layoutX="271.0" layoutY="466.0" mnemonicParsing="false" onAction="#CAPressed" stylesheets="@../../../style.css" text="Create Account">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <PasswordField fx:id="CreatePass" layoutX="279.0" layoutY="210.0" promptText="Password" />
+      <TextField fx:id="CreateUser" layoutX="279.0" layoutY="164.0" promptText="Username" />
+      <Label alignment="CENTER" layoutX="174.0" layoutY="26.0" prefHeight="144.0" prefWidth="359.0" text="Create an account" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
-            <Font name="DejaVu Sans ExtraLight" size="27.0" />
+            <Font name="DejaVu Sans ExtraLight" size="37.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="43.0" layoutY="352.0" prefHeight="61.0" prefWidth="299.0" text="What was the name of your first pet?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="43.0" layoutY="415.0" prefHeight="61.0" prefWidth="299.0" text="What is the name of the street you grew up on?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Label alignment="CENTER" layoutX="204.0" layoutY="248.0" prefHeight="61.0" prefWidth="299.0" text="What was the name of your first pet?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="DejaVu Sans ExtraLight" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="Prompt1" layoutX="423.0" layoutY="370.0" promptText="Prompt1" />
-      <TextField fx:id="Prompt2" layoutX="423.0" layoutY="433.0" promptText="Prompt2" />
+      <Label alignment="CENTER" layoutX="204.0" layoutY="334.0" prefHeight="61.0" prefWidth="299.0" text="What is the name of the street you grew up on?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Prompt1" layoutX="279.0" layoutY="309.0" promptText="Prompt1" />
+      <TextField fx:id="Prompt2" layoutX="279.0" layoutY="395.0" promptText="Prompt2" />
    </children>
 </Pane>
