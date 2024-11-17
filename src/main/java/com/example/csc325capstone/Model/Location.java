@@ -2,11 +2,14 @@ package com.example.csc325capstone.Model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -25,11 +28,11 @@ import java.net.http.HttpResponse;
  *https://www.ipify.org/ | getLocation()
  */
 
-public class CurrentLocation {
+public class Location {
 
     private String location; //EG: New York,Farmingdale,40.4,73.2
 
-    public CurrentLocation(String location) {
+    public Location(String location) {
         this.location = location;
     }
 
@@ -78,6 +81,41 @@ public class CurrentLocation {
             System.out.println("error");
             return "California,Los Angeles,34.0,118.1"; //DEFAULT TO LOS ANGELES CALIFORNIA ON ERROR
         }
+    }
+    public String getLocationsQuery(String city, String state) throws UnsupportedEncodingException {
+        String encodeC = URLEncoder.encode(city,"UTF-8");
+        String encodeS = URLEncoder.encode(state,"UTF-8");
+        String urlString = String.format("https://nominatim.openstreetmap.org/search?city=%s&state=%s&format=json", encodeC, encodeS);
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            JSONArray jsonArray = new JSONArray(response.toString()); //Returns as list of arrays
+            if (jsonArray.length() > 0) { //Make sure actual coords got returned
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                double lat = jsonObject.getDouble("lat");
+                double lon = jsonObject.getDouble("lon");
+                System.out.println("Latitude: " + lat);
+                System.out.println("Longitude: " + lon);
+                return state + "," + city + "," + lat + "," + lon;
+            } else {
+                System.out.println("No results found.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public Hikes[] getNearbyLocations(String location){
         Hikes[] locations = new Hikes[25];

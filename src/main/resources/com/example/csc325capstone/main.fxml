@@ -56,7 +56,7 @@
             <Font name="Gill Sans Ultra Bold" size="34.0" />
          </font>
       </Label>
-      <TextField fx:id="queryField" layoutX="448.0" layoutY="214.0" prefHeight="41.0" prefWidth="259.0" promptText="Search by: City,State" />
+      <TextField fx:id="queryState" layoutX="448.0" layoutY="214.0" prefHeight="41.0" prefWidth="117.0" promptText="Enter State" />
       <Label alignment="CENTER" layoutX="415.0" layoutY="151.0" prefHeight="57.0" prefWidth="324.0" text="Search For Trails" textAlignment="CENTER" textFill="#bec626" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Baskerville Old Face" size="36.0" />
@@ -132,5 +132,7 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <TextField fx:id="queryCity" layoutX="579.0" layoutY="214.0" prefHeight="41.0" prefWidth="117.0" promptText="Enter City" />
+      <Label fx:id="errorlbl" alignment="CENTER" layoutX="395.0" layoutY="262.0" prefHeight="17.0" prefWidth="370.0" text="error" textAlignment="CENTER" textFill="RED" visible="false" />
    </children>
 </Pane>
