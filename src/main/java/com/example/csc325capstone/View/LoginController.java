@@ -1,7 +1,9 @@
 package com.example.csc325capstone.View;
 import com.example.csc325capstone.Model.CurrentLocation;
 import com.example.csc325capstone.Model.FirestoreContext;
+import com.example.csc325capstone.Model.User;
 import com.example.csc325capstone.ViewModel.Main;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import javafx.event.ActionEvent;
@@ -16,6 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.reflect.AccessFlag;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class LoginController {
@@ -108,6 +113,22 @@ public class LoginController {
         String pass = passEncrypt(CreatePass.getText()); //Put into user's data
         //Put into DB
     }
+    public void addUser(User user) {
+        DocumentReference docRef = Main.fstore.collection("User").document(UUID.randomUUID().toString());
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("userID",user.getUserID());
+        data.put("password",user.getPassword());
+        data.put("record",user.getRecord());
+        data.put("followers",user.getFollowers());
+        data.put("following",user.getFollowing());
+        data.put("favorites",user.getFavorites());
+        data.put("journies",user.getJournies());
+        data.put("favoritevisibility",user.isFavoritevisibility());
+        data.put("securityans1",user.getSecurityAnswer1());
+        data.put("securityans2",user.getSecurityAnswer2());
+    }
+
 
     private String passEncrypt(String password) {
         StringBuilder encrypted = new StringBuilder();
