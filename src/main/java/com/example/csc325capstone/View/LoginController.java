@@ -45,6 +45,7 @@ public class LoginController {
     public static Firestore fstore;
     public static FirebaseAuth fauth;
     private final FirestoreContext contxtFirebase = new FirestoreContext();
+    private int attempts = 3;
 
 
     /**
@@ -92,10 +93,22 @@ public class LoginController {
             mainController.initWelcome("Welcome back, " + UserField.getText());
             stage.setScene(s);
         } else {
+            errorHandler();
             System.out.println("Error: Incorrect Password");
         }
 
 
+    }
+
+    @FXML
+    public void errorHandler() {
+        errorlbl.setVisible(true);
+        attempts--;
+        if(attempts == 0) {
+            System.exit(0);
+        } else {
+            errorlbl.setText("Error: Incorrect Password {" + attempts + "}");
+        }
     }
 /**========================================================================================================================================================*/
     /**
@@ -115,6 +128,8 @@ public class LoginController {
 
     @FXML
     private TextField Prompt2;
+    @FXML
+    private Label createerrorlbl;
 
     @FXML
     void CAPressed(ActionEvent event) {
@@ -126,6 +141,9 @@ public class LoginController {
                 String pass = passEncrypt(CreatePass.getText());
                 User u = new User(CreateUser.getText(),pass,null,null,null,null,null,false,Prompt1.getText(),Prompt2.getText());
                 db.addUser(u);
+            } else {
+                createerrorlbl.setText("Error: Username already exists");
+                createerrorlbl.setVisible(true);
             }
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
