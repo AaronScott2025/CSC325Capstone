@@ -28,6 +28,7 @@ public class Main extends Application {
 
     private void showSplashtoLogin() {
         try {
+            fstore = contxtFirebase.firebase();
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/csc325capstone/splash_screen.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);

@@ -18,6 +18,9 @@ public class MainController {
     private Label errorlbl;
 
     @FXML
+    private Label welcomeLbl;
+
+    @FXML
     private Button exitBTN;
 
     @FXML
@@ -78,6 +81,9 @@ public class MainController {
             locations.appendText("\n");
         }
 
+    }
+    public void initWelcome(String u) {
+        welcomeLbl.setText(u);
     }
 
 }
