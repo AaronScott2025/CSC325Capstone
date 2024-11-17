@@ -26,6 +26,7 @@ import java.net.http.HttpResponse;
  *https://developer.android.com/reference/org/json/JSONObject | getNearbyLocations()
  *https://api.ipify.org?format=text | getLocation()
  *https://www.ipify.org/ | getLocation()
+ * https://nominatim.openstreetmap.org | getLocationsQuery()
  */
 
 public class Location {

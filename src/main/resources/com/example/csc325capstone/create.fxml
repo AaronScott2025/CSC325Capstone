@@ -40,10 +40,5 @@
       </Label>
       <TextField fx:id="Prompt1" layoutX="279.0" layoutY="309.0" promptText="Prompt1" />
       <TextField fx:id="Prompt2" layoutX="279.0" layoutY="395.0" promptText="Prompt2" />
-      <Label fx:id="createerrorlbl" alignment="CENTER" layoutX="204.0" layoutY="508.0" prefHeight="34.0" prefWidth="299.0" textAlignment="CENTER" textFill="RED" textOverrun="CLIP" visible="false" wrapText="true">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="15.0" />
-         </font>
-      </Label>
    </children>
 </Pane>
