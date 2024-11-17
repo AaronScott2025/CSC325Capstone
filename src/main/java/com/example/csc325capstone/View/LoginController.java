@@ -1,10 +1,9 @@
 package com.example.csc325capstone.View;
-import com.example.csc325capstone.Model.CurrentLocation;
+import com.example.csc325capstone.Model.Location;
 import com.example.csc325capstone.Model.Database;
 import com.example.csc325capstone.Model.FirestoreContext;
 import com.example.csc325capstone.Model.User;
 import com.example.csc325capstone.ViewModel.Main;
-import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import javafx.event.ActionEvent;
@@ -18,12 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.lang.reflect.AccessFlag;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 public class LoginController {
 
@@ -82,7 +76,7 @@ public class LoginController {
             } catch (Exception e) {
                 errorlbl.setText("Error: Could not connect to backend. Please try again.");
             }
-            CurrentLocation cl = new CurrentLocation(null);
+            Location cl = new Location(null);
             cl.setLocation(cl.getcurrentLocation());
             Stage stage = Main.getPrimaryStage();
             stage.setTitle("TrailQuest");

@@ -1,13 +1,15 @@
 package com.example.csc325capstone.View;
 
-import com.example.csc325capstone.Model.CurrentLocation;
 import com.example.csc325capstone.Model.Hikes;
+import com.example.csc325capstone.Model.Location;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+import java.io.UnsupportedEncodingException;
 
 public class MainController {
 
@@ -16,9 +18,6 @@ public class MainController {
 
     @FXML
     private Label errorlbl;
-
-    @FXML
-    private Label welcomeLbl;
 
     @FXML
     private Button exitBTN;
@@ -36,10 +35,16 @@ public class MainController {
     private Button logBTN;
 
     @FXML
-    private TextField queryField;
+    private TextField queryCity;
+
+    @FXML
+    private TextField queryState;
 
     @FXML
     private Button search;
+
+    @FXML
+    private Label welcomeLbl;
 
     @FXML
     void activityScreen(ActionEvent event) {
@@ -62,15 +67,38 @@ public class MainController {
     }
 
     @FXML
-    void queryLocations(ActionEvent event) {
-
+    void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
+        if(queryState.getText().equals("") || queryCity.getText().equals("")) {
+            errorlbl.setVisible(true);
+            errorlbl.setText("Please enter a valid city and/or state");
+        } else if(queryState.getText().length() != 2) {
+            errorlbl.setVisible(true);
+            errorlbl.setText("State must use the 2 letter format. EG: 'NY'");
+        } else {
+            Location l = new Location(queryState.getText() + "," + queryCity.getText());
+            System.out.println(queryState.getText() + "," + queryCity.getText());
+            try {
+                l.setLocation(l.getLocationsQuery(queryCity.getText(), queryState.getText()));
+            } catch (UnsupportedEncodingException e) {
+                errorlbl.setVisible(true);
+                errorlbl.setText("Please enter a valid city and/or state");
+            }
+            if(l.getLocation() == null) {
+                errorlbl.setVisible(true);
+                errorlbl.setText("Please enter a valid city and/or state");
+            } else {
+                System.out.println(l.getLocation());
+                initTextArea(l);
+                errorlbl.setVisible(false);
+            }
+        }
     }
 
     @FXML
     void showFavorites(ActionEvent event) {
 
     }
-    public void initTextArea(CurrentLocation cl) {
+    public void initTextArea(Location cl) {
         locations.setText("");
         Hikes[] h = cl.getNearbyLocations(cl.getLocation());
         String[] getter = cl.getLocation().split(",");
