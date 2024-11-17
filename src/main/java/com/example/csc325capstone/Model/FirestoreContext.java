@@ -6,20 +6,31 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 
 public class FirestoreContext {
 
+    private static Firestore fs;
+
     public Firestore firebase() {
         try {
+            InputStream serviceAccount = FirestoreContext.class.getResourceAsStream("/key.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("/com/example/csc325capstone/files/key.json")))
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                     .build();
-            FirebaseApp.initializeApp(options);
+            List<FirebaseApp> apps = FirebaseApp.getApps();
+            if (apps.isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            } else {
+                FirebaseApp existing = FirebaseApp.getInstance();
+            }
+            fs = FirestoreClient.getFirestore();
             System.out.println("Firebase is initialized");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return FirestoreClient.getFirestore();
+        return fs;
     }
 }

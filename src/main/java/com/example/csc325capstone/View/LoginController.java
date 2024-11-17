@@ -1,5 +1,6 @@
 package com.example.csc325capstone.View;
 import com.example.csc325capstone.Model.CurrentLocation;
+import com.example.csc325capstone.Model.Database;
 import com.example.csc325capstone.Model.FirestoreContext;
 import com.example.csc325capstone.Model.User;
 import com.example.csc325capstone.ViewModel.Main;
@@ -21,6 +22,7 @@ import java.lang.reflect.AccessFlag;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class LoginController {
@@ -65,26 +67,33 @@ public class LoginController {
     }
 
     @FXML
-    void loginPressed(ActionEvent event) throws IOException {
+    void loginPressed(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
         String pass = passEncrypt(PassField.getText());
-        //Get user pass from DB and Compare
-        System.out.println("Testing: Login Button Pressed");
-        try {
-            fstore = contxtFirebase.firebase();
-            fauth = FirebaseAuth.getInstance();
-        } catch (Exception e) {
-            errorlbl.setText("Error: Could not connect to backend. Please try again.");
+        Database db = new Database();
+        fstore = contxtFirebase.firebase();
+        fstore.collection("User");
+        if(db.verifyPassword(fstore,UserField.getText(),pass)) {
+            //Get user pass from DB and Compare
+            System.out.println("Testing: Login Button Pressed");
+            try {
+                fstore = contxtFirebase.firebase();
+                fauth = FirebaseAuth.getInstance();
+            } catch (Exception e) {
+                errorlbl.setText("Error: Could not connect to backend. Please try again.");
+            }
+            CurrentLocation cl = new CurrentLocation(null);
+            cl.setLocation(cl.getcurrentLocation());
+            Stage stage = Main.getPrimaryStage();
+            stage.setTitle("TrailQuest");
+            FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
+            Scene s = new Scene(fx.load());
+            MainController mainController = fx.getController();
+            mainController.initTextArea(cl);
+            mainController.initWelcome("Welcome back, " + UserField.getText());
+            stage.setScene(s);
+        } else {
+            System.out.println("Error: Incorrect Password");
         }
-        CurrentLocation cl = new CurrentLocation(null);
-        cl.setLocation(cl.getcurrentLocation());
-        Stage stage = Main.getPrimaryStage();
-        stage.setTitle("TrailQuest");
-        FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
-        Scene s = new Scene(fx.load());
-        stage.setScene(s);
-        MainController mainController = fx.getController();
-        mainController.initTextArea(cl);
-        stage.show();
 
 
     }
@@ -109,24 +118,20 @@ public class LoginController {
 
     @FXML
     void CAPressed(ActionEvent event) {
-        //Check if username is unique
-        String pass = passEncrypt(CreatePass.getText()); //Put into user's data
-        //Put into DB
-    }
-    public void addUser(User user) {
-        DocumentReference docRef = Main.fstore.collection("User").document(UUID.randomUUID().toString());
-
-        Map<String,Object> data = new HashMap<>();
-        data.put("userID",user.getUserID());
-        data.put("password",user.getPassword());
-        data.put("record",user.getRecord());
-        data.put("followers",user.getFollowers());
-        data.put("following",user.getFollowing());
-        data.put("favorites",user.getFavorites());
-        data.put("journies",user.getJournies());
-        data.put("favoritevisibility",user.isFavoritevisibility());
-        data.put("securityans1",user.getSecurityAnswer1());
-        data.put("securityans2",user.getSecurityAnswer2());
+        Database db = new Database();
+        fstore = contxtFirebase.firebase();
+        fstore.collection("User");
+        try {
+            if(db.isUnique(fstore,CreateUser.getText())) {
+                String pass = passEncrypt(CreatePass.getText());
+                User u = new User(CreateUser.getText(),pass,null,null,null,null,null,false,Prompt1.getText(),Prompt2.getText());
+                db.addUser(u);
+            }
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

@@ -3,10 +3,11 @@ module com.example.csc325capstone {
     requires javafx.fxml;
     requires java.net.http;
     requires org.json;
+    requires google.cloud.core;
+    requires com.google.auth;
     requires com.google.auth.oauth2;
     requires google.cloud.firestore;
     requires firebase.admin;
-    requires com.google.auth;
     requires com.google.api.apicommon;
 
 
