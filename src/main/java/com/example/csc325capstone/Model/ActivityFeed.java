@@ -27,7 +27,7 @@ public class ActivityFeed {
         this.posts = new ArrayList<>();
         for (Post post : allPosts) {
             if (post.getUser().equals(user) /* || user.isFriend(post.getUser()) */) {
-                                            // if the user is friends with the author of the post
+                // if the user is friends with the author of the post
                 this.posts.add(post);
             }
         }

@@ -5,9 +5,13 @@ import java.util.Date;
 public class Post {
     private String imageURL; // URL for the image, optional
     private String description; // Post's description added by user's, required
-    private User user;
+    private User user; // Author of the post
     private Journey hikerLog; // Hiker log, optional
-    private final Date postDate; //Date when the post was made
+    private Date postDate; //Date when the post was made
+    // User and HikerLog must be serializable
+
+    // No arg constructor, firestore requirement
+    public Post(){}
 
     // Constructor for Post with description
     public Post(User user, String description) {
@@ -41,8 +45,6 @@ public class Post {
         this.postDate = new Date();
     }
 
-    SimpleDateFormat fromatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     //Getters and Setters
     public Journey getHikerLog() { return hikerLog; }
     public void setHikerLog(Journey hikerLog) { this.hikerLog = hikerLog; }
@@ -57,10 +59,13 @@ public class Post {
     public void setUser(User user) { this.user = user; }
 
     public Date getPostDate() { return postDate; }
+    public void setPostDate(Date postDate) { this.postDate = postDate; }
 
     // Returns detail about the post
     public String toString() {
-        String postDetails = "Post by " + getUser() + " on " + fromatter.format(getPostDate()) + "\nDescription: " + getDescription();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String postDetails = "Post by " + getUser() + " on " + formatter.format(getPostDate()) +
+                "\nDescription: " + getDescription();
         if(imageURL != null){
             postDetails += "\nImage URL: " + imageURL;
         }
