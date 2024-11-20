@@ -23,9 +23,6 @@ public class MainController {
     private Button exitBTN;
 
     @FXML
-    private Button favoritesBTN;
-
-    @FXML
     private Button friendsBTN;
 
     @FXML

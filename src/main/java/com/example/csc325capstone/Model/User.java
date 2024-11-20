@@ -10,22 +10,18 @@ public class User extends Person {
     private String record; //Best travel
     private ArrayList<User> followersList;  //List of followers
     private ArrayList<User> followingList; //List of following
-    private Hikes[] favorites; //List of Favorite Locations  |  MAX 5
     private Journey[] journies; //Last 10 hikes
-    private boolean favoritevisibility;
     private String securityAnswer1;
     private String securityAnswer2;
 
-    public User(String userID, String password, String record, ArrayList<User> followersList, ArrayList<User> followingList, Hikes[] favorites, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
-        super(userID, record, favorites, favoritevisibility);
+    public User(String userID, String password, String record, ArrayList<User> followersList, ArrayList<User> followingList, Journey[] journies, String securityAnswer1, String securityAnswer2) {
+        super(userID, record);
         this.userID = userID;
         this.password = password;
         this.record = record;
         this.followersList = followersList;
         this.followingList = followingList;
-        this.favorites = favorites;
         this.journies = journies;
-        this.favoritevisibility = favoritevisibility;
         this.securityAnswer1 = securityAnswer1;
         this.securityAnswer2 = securityAnswer2;
     }
@@ -95,32 +91,12 @@ public class User extends Person {
         followersList.remove(user);
     }
 
-    @Override
-    public Hikes[] getFavorites() {
-        return favorites;
-    }
-
-    @Override
-    public void setFavorites(Hikes[] favorites) {
-        this.favorites = favorites;
-    }
-
     public Journey[] getJournies() {
         return journies;
     }
 
     public void setJournies(Journey[] journies) {
         this.journies = journies;
-    }
-
-    @Override
-    public boolean isFavoritevisibility() {
-        return favoritevisibility;
-    }
-
-    @Override
-    public void setFavoritevisibility(boolean favoritevisibility) {
-        this.favoritevisibility = favoritevisibility;
     }
 
     public String getSecurityAnswer1() {
