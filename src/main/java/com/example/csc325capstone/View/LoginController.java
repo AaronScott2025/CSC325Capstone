@@ -133,15 +133,13 @@ public class LoginController {
         try {
             if(db.isUnique(fstore,CreateUser.getText())) {
                 String pass = passEncrypt(CreatePass.getText());
-                User u = new User(CreateUser.getText(),pass,null,null,null,null,null,false,Prompt1.getText(),Prompt2.getText());
+                User u = new User(CreateUser.getText(),pass,null,null,null,null,Prompt1.getText(),Prompt2.getText());
                 db.addUser(u);
             } else {
                 createerrorlbl.setText("Error: Username already exists");
                 createerrorlbl.setVisible(true);
             }
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

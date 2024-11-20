@@ -109,14 +109,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="favoritesBTN" layoutX="1004.0" layoutY="109.0" mnemonicParsing="false" onAction="#showFavorites" prefHeight="41.0" prefWidth="147.0" stylesheets="@../../../style.css" text="Favorites" textAlignment="CENTER">
-         <font>
-            <Font size="19.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Label fx:id="welcomeLbl" alignment="CENTER" layoutX="1.0" layoutY="362.0" prefHeight="57.0" prefWidth="1173.0" text="Welcome back, &lt;USERNAME&gt;" textAlignment="CENTER" textFill="#bec626" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="33.0" />

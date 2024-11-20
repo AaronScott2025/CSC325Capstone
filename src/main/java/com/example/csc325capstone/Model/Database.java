@@ -40,9 +40,7 @@ public class Database {
         data.put("record",user.getRecord());
         data.put("followers",user.getFollowersList());
         data.put("following",user.getFollowingList());
-        data.put("favorites",user.getFavorites());
         data.put("journies",user.getJournies());
-        data.put("favoritevisibility",user.isFavoritevisibility());
         data.put("securityans1",user.getSecurityAnswer1());
         data.put("securityans2",user.getSecurityAnswer2());
         docRef.set(data);
