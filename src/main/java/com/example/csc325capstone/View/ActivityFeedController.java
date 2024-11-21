@@ -29,12 +29,8 @@ public class ActivityFeedController {
             // Get current stage
             Stage stage = (Stage) mainBTN.getScene().getWindow();
 
-            // Get the current dimensions of the stage
-            double width = stage.getWidth();
-            double height = stage.getHeight();
-
             // Set new scene with the same dimensions as current
-            Scene mainScene = new Scene(root, width, height);
+            Scene mainScene = new Scene(root);
             stage.setScene(mainScene);
             stage.show();
         } catch (IOException e){

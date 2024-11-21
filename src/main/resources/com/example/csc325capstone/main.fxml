@@ -23,7 +23,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Button fx:id="friendsBTN" layoutX="439.0" layoutY="28.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
+                  <Button fx:id="friendsBTN" layoutX="594.0" layoutY="28.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -31,7 +31,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="activityBTN" layoutX="574.0" layoutY="28.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
+                  <Button fx:id="activityBTN" layoutX="474.0" layoutY="28.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logBTN" layoutX="704.0" layoutY="28.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                  <Button fx:id="logBTN" layoutX="710.0" layoutY="28.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>

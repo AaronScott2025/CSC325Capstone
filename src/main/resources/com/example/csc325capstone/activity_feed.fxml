@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
+<AnchorPane prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
     <children>
         <ImageView fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../logo.png" />
             </image>
         </ImageView>
-        <ScrollPane layoutY="103.0" prefHeight="297.0" prefWidth="600.0" />
-        <Button fx:id="newBTN" onAction="#newPostScreen" layoutX="307.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="New">
+        <ScrollPane layoutY="128.0" prefHeight="422.0" prefWidth="950.0" />
+        <Button fx:id="newBTN" layoutX="600.0" layoutY="25.0" mnemonicParsing="false" onAction="#newPostScreen" prefHeight="31.0" prefWidth="63.0" text="New">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
@@ -26,22 +26,22 @@
                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
             </font>
         </Label>
-        <Label layoutX="216.0" layoutY="67.0" prefHeight="27.0" prefWidth="181.0" text="My Activity Feed" textAlignment="JUSTIFY">
+        <Label layoutX="361.0" layoutY="80.0" prefHeight="43.0" prefWidth="229.0" text="My Activity Feed" textAlignment="CENTER">
             <font>
-                <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
             </font>
         </Label>
-        <Button fx:id="mainBTN" onAction="#mainScreen" layoutX="523.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Main">
+        <Button fx:id="mainBTN" layoutX="856.0" layoutY="25.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="31.0" prefWidth="63.0" text="Main">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="logBTN" layoutX="452.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Log">
+        <Button fx:id="logBTN" layoutX="774.0" layoutY="25.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Log">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="381.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Friends">
+        <Button fx:id="friendsBTN" layoutX="685.0" layoutY="25.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Friends">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

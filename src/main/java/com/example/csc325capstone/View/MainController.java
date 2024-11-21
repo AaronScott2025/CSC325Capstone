@@ -67,12 +67,8 @@ public class MainController {
             // Gets current stage
             Stage stage = (Stage) activityBTN.getScene().getWindow();
 
-            // Get the current dimensions of the stage
-            double width = stage.getWidth();
-            double height = stage.getHeight();
-
             // Sets new scene with same dimensions as current
-            Scene activityScene = new Scene(root, width, height);
+            Scene activityScene = new Scene(root);
             stage.setScene(activityScene);
             stage.show();
         } catch (IOException e) {
