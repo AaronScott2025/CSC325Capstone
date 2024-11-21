@@ -9,30 +9,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LoginController">
    <children>
-      <ImageView fitHeight="557.0" fitWidth="995.0">
+      <ImageView fitHeight="557.0" fitWidth="995.0" layoutX="-7.0" layoutY="-3.0">
          <image>
-            <Image url="@../../../greenhills.jpg" />
+            <Image url="@../../../orangehike.jpg" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="100.0" layoutY="14.0" prefHeight="126.0" prefWidth="750.0" text="Welcome To TrailQuest" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="202.0" layoutY="14.0" prefHeight="126.0" prefWidth="592.0" text="Welcome To TrailQuest" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Gill Sans Ultra Bold" size="52.0" />
+            <Font name="Berlin Sans FB Bold" size="52.0" />
          </font>
       </Label>
-      <Button fx:id="LoginButton" blendMode="MULTIPLY" layoutX="447.0" layoutY="405.0" mnemonicParsing="false" onAction="#loginPressed" text="Login &gt;" />
-      <PasswordField fx:id="PassField" layoutX="401.0" layoutY="365.0" promptText="Password" />
-      <TextField fx:id="UserField" layoutX="401.0" layoutY="313.0" promptText="Username" />
-      <Button fx:id="CreateAccount" blendMode="MULTIPLY" layoutX="791.0" layoutY="500.0" mnemonicParsing="false" onAction="#createPressed" text="Create An Account!" />
-      <Label alignment="CENTER" layoutX="797.0" layoutY="468.0" prefHeight="25.0" prefWidth="106.0" text="New User?" textAlignment="CENTER" textFill="#76fcf9">
+      <Label alignment="CENTER" layoutX="336.0" layoutY="121.0" prefHeight="75.0" prefWidth="324.0" text=" Discover Your Path, Embrace your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
-            <Font name="Gill Sans Ultra Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="326.0" layoutY="113.0" prefHeight="126.0" prefWidth="299.0" text=" Discover Your Path, Embrace your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="27.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="27.0" />
          </font>
       </Label>
       <Label fx:id="errorlbl" alignment="CENTER" layoutX="313.0" layoutY="456.0" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
@@ -40,5 +31,27 @@
             <Font name="Arial" size="11.0" />
          </font>
       </Label>
+      <Pane fx:id="newPane" layoutX="781.0" layoutY="450.0" prefHeight="86.0" prefWidth="155.0" stylesheets="@../../../style.css">
+         <children>
+            <Label alignment="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="25.0" prefWidth="106.0" text="New User?" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="CreateAccount" layoutX="18.0" layoutY="43.0" mnemonicParsing="false" onAction="#createPressed" style="-fx-background-color: #3932FF;" text="Create An Account!" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane fx:id="loginPane" layoutX="391.0" layoutY="214.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../style.css">
+         <children>
+            <TextField fx:id="UserField" layoutX="26.0" layoutY="68.0" promptText="Username" />
+            <PasswordField fx:id="PassField" layoutX="26.0" layoutY="108.0" promptText="Password" />
+            <Button fx:id="LoginButton" layoutX="73.0" layoutY="150.0" mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: green;" text="Login" textFill="WHITE" />
+            <Label layoutX="25.0" layoutY="29.0" text="Login To Your Account" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

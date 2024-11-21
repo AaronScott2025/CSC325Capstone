@@ -1,12 +1,28 @@
-.button {
+/*.button {
     -fx-background-color: #00A313;
     -fx-font-weight: BOLD;
     -fx-border-color: #00CF18;
     -fx-font-size: 19px;
-}
+}*/
+
 #favoritesBTN {
     -fx-background-color: #FFFB8F;
     -fx-font-weight: BOLD;
     -fx-border-color: #CCC500;
     -fx-font-size: 19px;
+}
+
+#newPane{
+    -fx-background-color: rgba(128, 128, 128, 0.1);
+    -fx-background-radius: 10;
+}
+
+#loginPane{
+    -fx-background-color: rgba(128, 128, 128, 0.2);
+    -fx-background-radius: 10;
+}
+
+#createPane{
+    -fx-background-color: rgba(128, 128, 128, 0.6);
+    -fx-background-radius: 10;
 }

@@ -15,12 +15,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class LoginController {
-
+    @FXML
+    private Pane createPane;
+    @FXML
+    private Pane loginPane;
+    @FXML
+    private Pane newPane;
     private int counter = 3;
     @FXML
     private Stage stage;
