@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,20 +10,19 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
     <children>
-        <ImageView fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../logo.png" />
             </image>
         </ImageView>
-        <ScrollPane layoutY="128.0" prefHeight="422.0" prefWidth="950.0" />
-        <Button fx:id="newBTN" layoutX="600.0" layoutY="25.0" mnemonicParsing="false" onAction="#newPostScreen" prefHeight="31.0" prefWidth="63.0" text="New">
+        <Button fx:id="newBTN" layoutX="498.0" layoutY="30.0" mnemonicParsing="false" onAction="#newPostScreen" prefHeight="20.0" prefWidth="100.0" text="New">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Label layoutX="80.0" layoutY="23.0" prefHeight="17.0" prefWidth="173.0" text="TrailQuest" textFill="#150a2f">
+        <Label layoutX="100.0" layoutY="27.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textFill="#150a2f">
             <font>
-                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                <Font name="Berlin Sans FB Demi Bold" size="34.0" />
             </font>
         </Label>
         <Label layoutX="361.0" layoutY="80.0" prefHeight="43.0" prefWidth="229.0" text="My Activity Feed" textAlignment="CENTER">
@@ -31,20 +30,21 @@
                 <Font name="Berlin Sans FB Demi Bold" size="30.0" />
             </font>
         </Label>
-        <Button fx:id="mainBTN" layoutX="856.0" layoutY="25.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="31.0" prefWidth="63.0" text="Main">
+        <Button fx:id="mainBTN" layoutX="834.0" layoutY="30.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="20.0" prefWidth="100.0" text="Main">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="logBTN" layoutX="774.0" layoutY="25.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Log">
+        <Button fx:id="logBTN" layoutX="722.0" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Log">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="685.0" layoutY="25.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" text="Friends">
+        <Button fx:id="friendsBTN" layoutX="610.0" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Friends">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
+      <ListView layoutX="-1.0" layoutY="131.0" prefHeight="420.0" prefWidth="950.0" />
     </children>
 </AnchorPane>

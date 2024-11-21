@@ -33,3 +33,13 @@
     -fx-background-repeat: no-repeat;
     -fx-background-color: #0a2d28;
 }
+
+#postPane{
+    -fx-background-color: rgba(128, 128, 128, 0.1);
+    -fx-background-radius: 10;
+}
+
+#postAnchor{
+    -fx-background-image: url('greenhills.jpg');
+
+}

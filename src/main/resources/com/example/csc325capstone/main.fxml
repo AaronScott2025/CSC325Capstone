@@ -23,39 +23,39 @@
                         <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Button fx:id="friendsBTN" layoutX="594.0" layoutY="28.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
+                  <Button fx:id="friendsBTN" layoutX="610.0" layoutY="30.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
                      <font>
-                        <Font size="19.0" />
+                        <Font size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="activityBTN" layoutX="474.0" layoutY="28.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
+                  <Button fx:id="activityBTN" layoutX="498.0" layoutY="30.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
                      <font>
-                        <Font size="19.0" />
+                        <Font size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logBTN" layoutX="710.0" layoutY="28.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                  <Button fx:id="logBTN" layoutX="722.0" layoutY="30.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
                      <font>
-                        <Font size="19.0" />
+                        <Font size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="exitBTN" layoutX="829.0" layoutY="28.0" mnemonicParsing="false" onAction="#exit" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
+                  <Button fx:id="exitBTN" layoutX="834.0" layoutY="30.0" mnemonicParsing="false" onAction="#exit" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
                      <font>
-                        <Font size="19.0" />
+                        <Font size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="95.0" fitWidth="95.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../logo.png" />
                      </image>
@@ -72,7 +72,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="queryState" layoutX="432.0" layoutY="209.0" prefHeight="41.0" prefWidth="152.0" promptText="Enter State" />
-                  <Label alignment="CENTER" layoutX="95.0" layoutY="27.0" prefHeight="48.0" prefWidth="207.0" text="TrailQuest" textAlignment="CENTER" textFill="#eb9200">
+                  <Label alignment="CENTER" layoutX="100.0" layoutY="27.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textAlignment="CENTER" textFill="#eb9200">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="34.0" />
                      </font>
