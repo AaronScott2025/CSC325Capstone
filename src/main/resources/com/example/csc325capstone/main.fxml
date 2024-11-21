@@ -77,6 +77,12 @@
                         <Font name="Berlin Sans FB Bold" size="34.0" />
                      </font>
                   </Label>
+                  <Label fx:id="errorlbl" alignment="CENTER" layoutX="310.0" layoutY="250.0" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="errorlbl" alignment="CENTER" layoutX="285.0" layoutY="250.0" prefHeight="17.0" prefWidth="370.0" text="error" textAlignment="CENTER" textFill="RED" visible="false" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="bottomAnchor" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../../../style.css">
@@ -86,12 +92,6 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </TextArea>
-                  <Label fx:id="errorlbl" alignment="CENTER" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
-                     <font>
-                        <Font name="Arial" size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="errorlbl" alignment="CENTER" prefHeight="17.0" prefWidth="370.0" text="error" textAlignment="CENTER" textFill="RED" visible="false" />
                </children>
             </AnchorPane>
         </items>
