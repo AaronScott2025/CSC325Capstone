@@ -26,3 +26,10 @@
     -fx-background-color: rgba(128, 128, 128, 0.6);
     -fx-background-radius: 10;
 }
+
+#topAnchor{
+    -fx-background-image: url('bluemoutain.png');
+    -fx-background-size: 100% 400px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: #0a2d28;
+}

@@ -16,14 +16,14 @@
    <children>
       <SplitPane fx:id="splitPane" dividerPositions="0.5" orientation="VERTICAL" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
         <items>
-          <AnchorPane fx:id="topAnchor" layoutX="5.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="948.0" stylesheets="@../../../style.css">
+          <AnchorPane fx:id="topAnchor" layoutX="5.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="948.0" styleClass="topAnchor" stylesheets="@../../../style.css">
                <children>
-                  <Label fx:id="welcomeLbl" alignment="CENTER" layoutX="198.0" layoutY="107.0" prefHeight="57.0" prefWidth="496.0" text="Welcome back, &lt;USERNAME&gt;" textAlignment="CENTER" textFill="#bec626" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="welcomeLbl" alignment="CENTER" layoutX="-1.0" layoutY="107.0" prefHeight="57.0" prefWidth="950.0" text="Welcome back, &lt;USERNAME&gt;" textAlignment="CENTER" textFill="#eb9200" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Button fx:id="friendsBTN" layoutX="445.0" layoutY="20.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="57.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
+                  <Button fx:id="friendsBTN" layoutX="439.0" layoutY="28.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -31,7 +31,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="activityBTN" layoutX="574.0" layoutY="20.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="57.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
+                  <Button fx:id="activityBTN" layoutX="574.0" layoutY="28.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logBTN" layoutX="701.0" layoutY="20.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="57.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                  <Button fx:id="logBTN" layoutX="704.0" layoutY="28.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -47,7 +47,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="exitBTN" layoutX="829.0" layoutY="19.0" mnemonicParsing="false" onAction="#exit" prefHeight="57.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
+                  <Button fx:id="exitBTN" layoutX="829.0" layoutY="28.0" mnemonicParsing="false" onAction="#exit" prefHeight="41.0" prefWidth="105.0" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -60,26 +60,26 @@
                         <Image url="@../../../logo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="queryCity" layoutX="256.0" layoutY="209.0" prefHeight="41.0" prefWidth="117.0" promptText="Enter City" />
-                  <Button fx:id="search" blendMode="DARKEN" layoutX="532.0" layoutY="209.0" mnemonicParsing="false" onAction="#queryLocations" prefHeight="41.0" prefWidth="85.0" text="Search" textAlignment="CENTER">
+                  <TextField fx:id="queryCity" layoutX="264.0" layoutY="209.0" prefHeight="41.0" prefWidth="152.0" promptText="Enter City" />
+                  <Button fx:id="search" layoutX="602.0" layoutY="209.0" mnemonicParsing="false" onAction="#queryLocations" prefHeight="41.0" prefWidth="77.0" text="Search" textAlignment="CENTER">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="321.0" layoutY="149.0" prefHeight="57.0" prefWidth="278.0" text="Search For Trails" textAlignment="CENTER" textFill="#bec626" textOverrun="CLIP" wrapText="true">
+                  <Label alignment="CENTER" layoutX="306.0" layoutY="152.0" prefHeight="57.0" prefWidth="278.0" text="Search For Trails" textAlignment="CENTER" textFill="#ed9200" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Berlin Sans FB" size="36.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="queryState" layoutX="387.0" layoutY="209.0" prefHeight="41.0" prefWidth="117.0" promptText="Enter State" />
-                  <Label alignment="CENTER" layoutX="95.0" layoutY="27.0" prefHeight="48.0" prefWidth="207.0" text="TrailQuest" textAlignment="CENTER" textFill="#bec626">
+                  <TextField fx:id="queryState" layoutX="432.0" layoutY="209.0" prefHeight="41.0" prefWidth="152.0" promptText="Enter State" />
+                  <Label alignment="CENTER" layoutX="95.0" layoutY="27.0" prefHeight="48.0" prefWidth="207.0" text="TrailQuest" textAlignment="CENTER" textFill="#eb9200">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="34.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="bottomAnchor" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane fx:id="bottomAnchor" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../../../style.css">
                <children>
                   <TextArea fx:id="locations" editable="false" prefHeight="271.0" prefWidth="950.0" text="Local Hikes Near &lt;LOCATION&gt;&#10;&#10;&lt;Hike Name&gt;&#10;&lt;City&gt;&#10;&lt;State&gt;&#10;&lt;Description&gt;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
