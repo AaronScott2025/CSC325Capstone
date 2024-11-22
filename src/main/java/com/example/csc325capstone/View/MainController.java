@@ -59,7 +59,7 @@ public class MainController {
 
     @FXML
     void activityScreen(ActionEvent event) {
-        try{
+        try {
             // Load Activity Feed fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/activity_feed.fxml"));
             Parent root = loader.load();
@@ -94,10 +94,10 @@ public class MainController {
 
     @FXML
     void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
-        if(queryState.getText().equals("") || queryCity.getText().equals("")) {
+        if (queryState.getText().equals("") || queryCity.getText().equals("")) {
             errorlbl.setVisible(true);
             errorlbl.setText("Please enter a valid city and/or state");
-        } else if(queryState.getText().length() != 2) {
+        } else if (queryState.getText().length() != 2) {
             errorlbl.setVisible(true);
             errorlbl.setText("State must use the 2 letter format. EG: 'NY'");
         } else {
@@ -109,7 +109,7 @@ public class MainController {
                 errorlbl.setVisible(true);
                 errorlbl.setText("Please enter a valid city and/or state");
             }
-            if(l.getLocation() == null) {
+            if (l.getLocation() == null) {
                 errorlbl.setVisible(true);
                 errorlbl.setText("Please enter a valid city and/or state");
             } else {
@@ -124,21 +124,21 @@ public class MainController {
     void showFavorites(ActionEvent event) {
 
     }
+
     public void initTextArea(Location cl) {
         locations.setText("");
         Hikes[] h = cl.getNearbyLocations(cl.getLocation());
         String[] getter = cl.getLocation().split(",");
         locations.appendText("Local Hikes Near:   " + getter[0] + " , " + getter[1] + "\n");
-        for(int i = 0;i < h.length;i++) {
+        for (int i = 0; i < h.length; i++) {
             locations.appendText("\n");
             locations.appendText(h[i].getName() + "\n" + h[i].getState() + "\n" + h[i].getCity() + "\n" + h[i].getDescription());
             locations.appendText("\n");
         }
 
     }
+
     public void initWelcome(String u) {
         welcomeLbl.setText(u);
     }
-
 }
-
