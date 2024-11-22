@@ -9,6 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
@@ -18,10 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ActivityFeedController {
-
+    @FXML
+    private VBox postContainer;
+    @FXML
+    private ScrollPane scrollPane;
     @FXML
     private Button newBTN;
     @FXML
@@ -30,6 +37,66 @@ public class ActivityFeedController {
     private Button friendsBTN;
     @FXML
     private Button logBTN;
+
+    @FXML
+    public void initialize() {
+        ObservableList<Post> posts = getPosts();
+
+        for (Post post : posts) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/item_post.fxml"));
+                //AnchorPane root = fxmlLoader.load();
+                Parent root = fxmlLoader.load();
+
+                ItemPostController itemPostController = fxmlLoader.getController();
+                itemPostController.setPost(post);
+
+                postContainer.getChildren().add(root);
+            } catch (IOException e){
+                e.printStackTrace();
+
+            }
+        }
+    }
+
+    // List of Post
+    private ObservableList<Post> getPosts() {
+        ObservableList<Post> posts = FXCollections.observableArrayList();
+
+        posts.add(new Post(
+                "Tony Hawkz",
+                "I wonder if I could ollie over this stream?",
+                Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost6.jpg")).toExternalForm()
+        ));
+        posts.add(new Post(
+                "Teddy Duncan",
+                "Guess who's enjoying their hike?!",
+                Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost7.jpg")).toExternalForm()
+        ));
+        posts.add(new Post(
+                "Carly Shay",
+                "Shout to my big brother for an awesome day!",
+                Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost5.jpg")).toExternalForm()
+        ));
+        posts.add(new Post(
+                "Tina Belcher",
+                "Wow, you know I was actually really worried about this but I did it. I'm sitting on top of a mountain : p #sisterfamilytimebonding",
+                Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost1.jpg")).toExternalForm()
+        ));
+        posts.add(new Post(
+                "Fred",
+                "I do like to be quiet...sometimes.",
+                Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost2.jpg")).toExternalForm()
+        ));
+        posts.add(new Post(
+                "Kyrie Irving",
+                "Arizona is a MUST! visit",
+                Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost3.jpg")).toExternalForm()
+        ));
+
+        return posts;
+    }
+
 
     @FXML
     void mainScreen(ActionEvent event) {

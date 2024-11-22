@@ -48,7 +48,7 @@
         </Button>
       <ScrollPane fx:id="scrollPane" layoutY="135.0" prefHeight="415.0" prefWidth="951.0">
          <content>
-            <VBox fx:id="vboxContainer" prefHeight="417.0" prefWidth="936.0" spacing="10.0" />
+            <VBox fx:id="postContainer" prefHeight="417.0" prefWidth="936.0" spacing="10.0" />
          </content>
       </ScrollPane>
     </children>

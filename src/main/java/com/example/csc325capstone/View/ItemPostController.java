@@ -25,6 +25,7 @@ public class ItemPostController implements Initializable {
 
     }
 
+    // Set post data
     public void setPost(Post post) {
         if (post.getImageURL() != null) {
             postImage.setImage(new Image(post.getImageURL()));
