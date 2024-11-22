@@ -57,7 +57,7 @@
                   </Button>
                   <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../logo.png" />
+                        <Image url="@../../../images/logo.png" />
                      </image>
                   </ImageView>
                   <TextField fx:id="queryCity" layoutX="264.0" layoutY="209.0" prefHeight="41.0" prefWidth="152.0" promptText="Enter City" />
