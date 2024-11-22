@@ -1,139 +1,165 @@
 package com.example.csc325capstone.Model;
 
-
+import com.google.cloud.firestore.DocumentSnapshot;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 public class User extends Person {
-
-    private String userID; //Username
-    private String password; //User's Encrypted Password (SEE LOGIN)
-    private String record; //Best travel
-    private ArrayList<User> followersList;  //List of followers
-    private ArrayList<User> followingList; //List of following
-    private Hikes[] favorites; //List of Favorite Locations  |  MAX 5
-    private Journey[] journies; //Last 10 hikes
-    private boolean favoritevisibility;
+    private String userID;
+    private String password;
+    private String record;
+    private List<String> followersList;
+    private List<String> followingList;
+    private List<Journey> journies;    // Changed to List<Journey>
     private String securityAnswer1;
     private String securityAnswer2;
 
-    public User(String userID, String password, String record, ArrayList<User> followersList, ArrayList<User> followingList, Hikes[] favorites, Journey[] journies, boolean favoritevisibility, String securityAnswer1, String securityAnswer2) {
-        super(userID, record, favorites, favoritevisibility);
+    // Default constructor for Firestore
+    public User() {
+        super(null, null);
+        this.followersList = new ArrayList<>();
+        this.followingList = new ArrayList<>();
+        this.journies = new ArrayList<>();
+    }
+
+    // Constructor with parameters
+    public User(String userID, String password, String record,
+                String securityAnswer1, String securityAnswer2) {
+        super(userID, record);
         this.userID = userID;
         this.password = password;
         this.record = record;
-        this.followersList = followersList;
-        this.followingList = followingList;
-        this.favorites = favorites;
-        this.journies = journies;
-        this.favoritevisibility = favoritevisibility;
+        this.followersList = new ArrayList<>();
+        this.followingList = new ArrayList<>();
+        this.journies = new ArrayList<>();
         this.securityAnswer1 = securityAnswer1;
         this.securityAnswer2 = securityAnswer2;
     }
 
-    @Override
-    public String getUserID() {
-        return userID;
+    // Static factory method to create User from Firestore document
+    public static User fromDocument(DocumentSnapshot document) {
+        if (document == null || !document.exists()) {
+            return null;
+        }
+
+        User user = new User();
+        user.userID = document.getString("userID");
+        user.password = document.getString("password");
+        user.record = document.getString("record");
+        user.securityAnswer1 = document.getString("securityans1");
+        user.securityAnswer2 = document.getString("securityans2");
+
+        // Convert Lists from Firestore
+        List<String> followers = (List<String>) document.get("followers");
+        List<String> following = (List<String>) document.get("following");
+        List<Map<String, Object>> journeyMaps = (List<Map<String, Object>>) document.get("journies");
+
+        user.followersList = followers != null ? followers : new ArrayList<>();
+        user.followingList = following != null ? following : new ArrayList<>();
+
+        // Convert journey maps to Journey objects
+        user.journies = new ArrayList<>();
+        if (journeyMaps != null) {
+            for (Map<String, Object> journeyMap : journeyMaps) {
+                Journey journey = Journey.fromMap(journeyMap);
+                if (journey != null) {
+                    user.journies.add(journey);
+                }
+            }
+        }
+
+        return user;
     }
 
-    @Override
-    public void setUserID(String userID) {
-        this.userID = userID;
+    // Convert User to Map for Firestore
+    public Map<String, Object> toMap() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("userID", userID);
+        data.put("password", password);
+        data.put("record", record);
+        data.put("followers", followersList);
+        data.put("following", followingList);
+
+        // Convert Journey objects to maps
+        List<Map<String, Object>> journeyMaps = new ArrayList<>();
+        for (Journey journey : journies) {
+            journeyMaps.add(journey.toMap());
+        }
+        data.put("journies", journeyMaps);
+        data.put("securityans1", securityAnswer1);
+        data.put("securityans2", securityAnswer2);
+        return data;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String getRecord() {
-        return record;
-    }
-
-    @Override
-    public void setRecord(String record) {
-        this.record = record;
-    }
-
-    public ArrayList<User> getFollowersList() {
-        return followersList;
-    }
-
-    public void setFollowers(ArrayList<User> followersList) { this.followersList = followersList; }
-
-    public ArrayList<User> getFollowingList() { return followingList; }
-
-    public void setFollowing(ArrayList<User> followingList) { this.followingList = followingList; }
-
-    public void follow(User user) {
-        if (!followingList.contains(user)) {
-            followingList.add(user);
-            user.addFollower(this); // Adds this user as a follower of the other user
+    // Modified follow/unfollow methods to work with IDs instead of whole User objects
+    public void follow(String userId) {
+        if (!followingList.contains(userId)) {
+            followingList.add(userId);
         }
     }
 
-    // Method to add a follower
-    private void addFollower(User user) {
-        if (!followersList.contains(user)) {
-            followersList.add(user);
+    public void unfollow(String userId) {
+        followingList.remove(userId);
+    }
+
+    public void addFollower(String userId) {
+        if (!followersList.contains(userId)) {
+            followersList.add(userId);
         }
     }
 
-    // Method to unfollow a user
-    public void unfollow(User user) {
-        if (followingList.contains(user)) {
-            followingList.remove(user);
-            user.removeFollower(this); // Removes this user from the other user's followers
+    public void removeFollower(String userId) {
+        followersList.remove(userId);
+    }
+
+    public void addJourney(Journey journey) {
+        if (!journies.contains(journey)) {
+            journies.add(journey);
         }
     }
 
-    // Method to remove a follower
-    private void removeFollower(User user) {
-        followersList.remove(user);
+    public void removeJourney(Journey journey) {
+        journies.remove(journey);
     }
+
+    // Getters and setters
+    @Override
+    public String getUserID() { return userID; }
 
     @Override
-    public Hikes[] getFavorites() {
-        return favorites;
-    }
+    public void setUserID(String userID) { this.userID = userID; }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     @Override
-    public void setFavorites(Hikes[] favorites) {
-        this.favorites = favorites;
-    }
-
-    public Journey[] getJournies() {
-        return journies;
-    }
-
-    public void setJournies(Journey[] journies) {
-        this.journies = journies;
-    }
+    public String getRecord() { return record; }
 
     @Override
-    public boolean isFavoritevisibility() {
-        return favoritevisibility;
-    }
+    public void setRecord(String record) { this.record = record; }
 
-    @Override
-    public void setFavoritevisibility(boolean favoritevisibility) {
-        this.favoritevisibility = favoritevisibility;
-    }
+    public List<String> getFollowersList() { return followersList; }
 
-    public String getSecurityAnswer1() {
-        return securityAnswer1;
-    }
+    public void setFollowersList(List<String> followersList) { this.followersList = followersList; }
+
+    public List<String> getFollowingList() { return followingList; }
+
+    public void setFollowingList(List<String> followingList) { this.followingList = followingList; }
+
+    public List<Journey> getJournies() { return journies; }
+
+    public void setJournies(List<Journey> journies) { this.journies = journies; }
+
+    public String getSecurityAnswer1() { return securityAnswer1; }
 
     public void setSecurityAnswer1(String securityAnswer1) {
         this.securityAnswer1 = securityAnswer1;
     }
 
-    public String getSecurityAnswer2() {
-        return securityAnswer2;
-    }
+    public String getSecurityAnswer2() { return securityAnswer2; }
 
     public void setSecurityAnswer2(String securityAnswer2) {
         this.securityAnswer2 = securityAnswer2;

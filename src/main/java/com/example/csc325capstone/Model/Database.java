@@ -31,23 +31,12 @@ public class Database {
         return qs.get().isEmpty();
     }
 
-    public  boolean addUser(User user) {
+    public boolean addUser(User user) {
         DocumentReference docRef = Main.fstore.collection("User").document(UUID.randomUUID().toString());
-
-        Map<String,Object> data = new HashMap<>();
-        data.put("userID",user.getUserID());
-        data.put("password",user.getPassword());
-        data.put("record",user.getRecord());
-        data.put("followers",user.getFollowersList());
-        data.put("following",user.getFollowingList());
-        data.put("favorites",user.getFavorites());
-        data.put("journies",user.getJournies());
-        data.put("favoritevisibility",user.isFavoritevisibility());
-        data.put("securityans1",user.getSecurityAnswer1());
-        data.put("securityans2",user.getSecurityAnswer2());
-        docRef.set(data);
+        docRef.set(user.toMap());
         return true;
     }
+
     public boolean verifyPassword(Firestore db, String name,String pass) throws ExecutionException, InterruptedException {
         DocumentReference doc = db.collection ("User").document(getDocID(db,name));
         ApiFuture<DocumentSnapshot> ds = doc.get();

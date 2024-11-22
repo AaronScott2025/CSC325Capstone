@@ -125,27 +125,69 @@ public class LoginController {
     @FXML
     private Label createerrorlbl;
 
+
+//    void CAPressed(ActionEvent event) {
+//        Database db = new Database();
+//        fstore = contxtFirebase.firebase();
+//        fstore.collection("User");
+//        try {
+//            if(db.isUnique(fstore,CreateUser.getText())) {
+//                String pass = passEncrypt(CreatePass.getText());
+//                User u = new User(CreateUser.getText(),pass,null,null,null,null,null,false,Prompt1.getText(),Prompt2.getText());
+//                db.addUser(u);
+//            } else {
+//                createerrorlbl.setText("Error: Username already exists");
+//                createerrorlbl.setVisible(true);
+//            }
+//        } catch (ExecutionException e) {
+//            throw new RuntimeException(e);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     @FXML
-    void CAPressed(ActionEvent event) {
+    void CAPressed(ActionEvent event) throws IOException {
         Database db = new Database();
         fstore = contxtFirebase.firebase();
         fstore.collection("User");
+
         try {
-            if(db.isUnique(fstore,CreateUser.getText())) {
-                String pass = passEncrypt(CreatePass.getText());
-                User u = new User(CreateUser.getText(),pass,null,null,null,null,null,false,Prompt1.getText(),Prompt2.getText());
-                db.addUser(u);
+            String username = CreateUser.getText();
+            if(db.isUnique(fstore, username)) {
+                // Encrypt password
+                String encryptedPassword = passEncrypt(CreatePass.getText());
+
+                // Create new user with minimal required information
+                // The constructor now takes only the essential parameters
+                User newUser = new User(
+                        username,                // userID
+                        encryptedPassword,       // encrypted password
+                        "",                     // empty record to start
+                        Prompt1.getText(),      // security answer 1
+                        Prompt2.getText()       // security answer 2
+                );
+
+                // The lists (followers, following, journeys) are automatically initialized
+                // as empty ArrayLists in the User constructor
+
+                if(db.addUser(newUser)) {
+                    // Optional: Add success handling here
+                    createerrorlbl.setVisible(false);
+                    // You might want to add a success message or redirect to login
+                } else {
+                    createerrorlbl.setText("Error: Failed to create account");
+                    createerrorlbl.setVisible(true);
+                }
             } else {
                 createerrorlbl.setText("Error: Username already exists");
                 createerrorlbl.setVisible(true);
             }
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        } catch (ExecutionException | InterruptedException e) {
+            createerrorlbl.setText("Error: Unable to create account");
+            createerrorlbl.setVisible(true);
+            e.printStackTrace(); // For debugging purposes
         }
     }
-
 
     private String passEncrypt(String password) {
         StringBuilder encrypted = new StringBuilder();

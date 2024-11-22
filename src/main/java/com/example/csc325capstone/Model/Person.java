@@ -6,7 +6,7 @@ public class Person {
     private Hikes[] favorites; //Favorite Location
     private boolean favoritevisibility; //Can user's friends see favorite?
 
-    public Person(String userID, String record, Hikes[] favorites, boolean favoritevisibility) {
+    public Person(String userID, String record) {
         this.userID = userID;
         this.record = record;
         this.favorites = favorites;
