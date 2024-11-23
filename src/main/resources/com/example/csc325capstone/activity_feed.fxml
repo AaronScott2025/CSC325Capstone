@@ -9,49 +9,47 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
+<AnchorPane prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
     <children>
         <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../images/logo.png" />
             </image>
         </ImageView>
-        <Button fx:id="newBTN" layoutX="498.0" layoutY="30.0" mnemonicParsing="false" onAction="#newPostScreen" prefHeight="20.0" prefWidth="100.0" text="New">
+        <Button fx:id="newBTN" layoutX="504.0" layoutY="34.0" mnemonicParsing="false" onAction="#newPostScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="New">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
-        <Label layoutX="100.0" layoutY="27.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textFill="#150a2f">
+        <Label layoutX="91.0" layoutY="28.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textFill="#171246">
             <font>
                 <Font name="Berlin Sans FB Demi Bold" size="34.0" />
             </font>
         </Label>
-        <Label layoutX="361.0" layoutY="80.0" prefHeight="43.0" prefWidth="229.0" text="My Activity Feed" textAlignment="CENTER">
+        <Label layoutX="337.0" layoutY="92.0" prefHeight="43.0" prefWidth="278.0" text="My Activity Feed" textAlignment="CENTER" textFill="#0f0c39">
             <font>
-                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                <Font name="Berlin Sans FB Demi Bold" size="34.0" />
             </font>
         </Label>
-        <Button fx:id="mainBTN" layoutX="834.0" layoutY="30.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="20.0" prefWidth="100.0" text="Main">
+        <Button fx:id="mainBTN" layoutX="834.0" layoutY="34.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Main">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="logBTN" layoutX="722.0" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Log">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
+        <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="610.0" layoutY="30.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" text="Friends">
+        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Friends">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
       <ScrollPane fx:id="scrollPane" layoutY="135.0" prefHeight="415.0" prefWidth="951.0">
          <content>
-            <VBox fx:id="postContainer" prefHeight="417.0" prefWidth="936.0" spacing="10.0" />
+            <VBox fx:id="postContainer" prefHeight="417.0" prefWidth="936.0" spacing="10.0" stylesheets="@../../../style.css" />
          </content>
       </ScrollPane>
     </children>
 </AnchorPane>
-
-

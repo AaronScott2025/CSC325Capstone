@@ -8,11 +8,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ItemPostController implements Initializable {
-
+    @FXML
+    private Pane itemContainer;
+    @FXML
+    private AnchorPane itemPane;
     @FXML
     private ImageView postImage;
     @FXML

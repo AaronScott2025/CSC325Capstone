@@ -5,6 +5,10 @@
     -fx-font-size: 19px;
 }*/
 
+#search {
+    -fx-background-color: #23B72A;
+}
+
 #favoritesBTN {
     -fx-background-color: #FFFB8F;
     -fx-font-weight: BOLD;
@@ -18,12 +22,12 @@
 }
 
 #loginPane{
-    -fx-background-color: rgba(128, 128, 128, 0.3);
+    -fx-background-color: rgba(128, 128, 128, 0.4);
     -fx-background-radius: 10;
 }
 
 #createPane{
-    -fx-background-color: rgba(128, 128, 128, 0.6);
+    -fx-background-color: rgba(128, 128, 128, 0.8);
     -fx-background-radius: 10;
 }
 
@@ -35,10 +39,29 @@
 }
 
 #postPane{
-    -fx-background-color: rgba(128, 128, 128, 0.1);
+    -fx-background-color: rgba(166, 166, 166, 0.7);
     -fx-background-radius: 10;
 }
 
 #postAnchor{
-    -fx-background-image: url('images/greenhills.jpg');
+    -fx-background-image: url('images/orangepink.jpg');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+#itemPane{
+    -fx-background-color: #F2F2F2;
+}
+
+#itemContainer{
+    -fx-background-color: rgba(255, 255, 255);
+    -fx-background-radius: 10;
+}
+
+#scrollPane{
+    -fx-background-color: #F2F2F2;
+}
+
+.button-style {
+    -fx-background-color: #E2DCD2;
 }

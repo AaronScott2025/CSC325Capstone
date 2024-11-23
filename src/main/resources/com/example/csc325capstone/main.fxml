@@ -23,47 +23,47 @@
                         <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Button fx:id="friendsBTN" layoutX="610.0" layoutY="30.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
+                  <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="activityBTN" layoutX="498.0" layoutY="30.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
+                  <Button fx:id="activityBTN" layoutX="504.0" layoutY="34.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logBTN" layoutX="722.0" layoutY="30.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                  <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="exitBTN" layoutX="834.0" layoutY="30.0" mnemonicParsing="false" onAction="#exit" prefHeight="20.0" prefWidth="100.0" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
+                  <Button fx:id="exitBTN" layoutX="834.0" layoutY="34.0" mnemonicParsing="false" onAction="#exit" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../images/logo.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="queryCity" layoutX="264.0" layoutY="209.0" prefHeight="41.0" prefWidth="152.0" promptText="Enter City" />
-                  <Button fx:id="search" layoutX="602.0" layoutY="209.0" mnemonicParsing="false" onAction="#queryLocations" prefHeight="41.0" prefWidth="77.0" text="Search" textAlignment="CENTER">
+                  <TextField fx:id="queryCity" layoutX="266.0" layoutY="209.0" prefHeight="35.0" prefWidth="152.0" promptText="Enter City" />
+                  <Button fx:id="search" layoutX="598.0" layoutY="209.0" mnemonicParsing="false" onAction="#queryLocations" prefHeight="35.0" prefWidth="75.0" text="Search" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
                   <Label alignment="CENTER" layoutX="306.0" layoutY="152.0" prefHeight="57.0" prefWidth="278.0" text="Search For Trails" textAlignment="CENTER" textFill="#ed9200" textOverrun="CLIP" wrapText="true">
@@ -71,10 +71,10 @@
                         <Font name="Berlin Sans FB" size="36.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="queryState" layoutX="432.0" layoutY="209.0" prefHeight="41.0" prefWidth="152.0" promptText="Enter State" />
-                  <Label alignment="CENTER" layoutX="100.0" layoutY="27.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textAlignment="CENTER" textFill="#eb9200">
+                  <TextField fx:id="queryState" layoutX="432.0" layoutY="209.0" prefHeight="35.0" prefWidth="152.0" promptText="Enter State" />
+                  <Label alignment="CENTER" layoutX="85.0" layoutY="28.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textAlignment="CENTER" textFill="#eb9200">
                      <font>
-                        <Font name="Berlin Sans FB Bold" size="34.0" />
+                        <Font name="Berlin Sans FB Demi Bold" size="34.0" />
                      </font>
                   </Label>
                   <Label fx:id="errorlbl" alignment="CENTER" layoutX="310.0" layoutY="250.0" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
