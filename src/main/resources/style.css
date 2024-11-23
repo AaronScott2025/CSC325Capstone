@@ -32,7 +32,7 @@
 }
 
 #topAnchor{
-    -fx-background-image: url('images/bluemoutain.png');
+    -fx-background-image: url('images/background/bluemoutain.png');
     -fx-background-size: 100% 400px;
     -fx-background-repeat: no-repeat;
     -fx-background-color: #0a2d28;
@@ -44,7 +44,7 @@
 }
 
 #postAnchor{
-    -fx-background-image: url('images/orangepink.jpg');
+    -fx-background-image: url('images/background/pinkhike.jpg');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }
