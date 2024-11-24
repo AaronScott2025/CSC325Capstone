@@ -11,6 +11,20 @@ import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class Database {
+    private Firestore fstore; //Hiking log
+
+    public Database(Firestore fstore){ //hiking log store
+        this.fstore = fstore;
+    }
+    public void saveHikingLog(User user) throws ExecutionException, InterruptedException {
+        DocumentReference userRef = fstore.collection("User").document(user.getUserID());
+        userRef.update("hikingLog", user.getHikingLog()).get(); // Save hiking log for user
+    }
+
+    public List<Hike> getHikingLog(String userID) throws ExecutionException, InterruptedException {
+        DocumentReference userRef = fstore.collection("User").document(userID);
+        return (List<Hike>) userRef.get().get().get("hikingLog"); // Retrieve hiking log for user
+    }
 
     public String getDocID(Firestore db, String user) throws ExecutionException, InterruptedException {
         CollectionReference users = db.collection ("User");

@@ -16,6 +16,21 @@ import java.io.UnsupportedEncodingException;
 
 public class MainController {
     @FXML
+
+    private Button logHikeBtn;  //log a hike
+
+    @FXML
+    private TextField hikeNameField;  //enter the name of the hike
+
+    @FXML
+    private TextField locationField;  //enter the location
+
+    @FXML
+    private TextArea descriptionField;  //enter a description
+
+    @FXML
+    private Label logErrorLbl;  //for showing error messages
+
     private AnchorPane bottomAnchor;
 
     @FXML
@@ -23,6 +38,7 @@ public class MainController {
 
     @FXML
     private SplitPane splitPane;
+
 
     @FXML
     private Button activityBTN;
@@ -57,6 +73,8 @@ public class MainController {
     @FXML
     private Label welcomeLbl;
 
+    private User currentUser;
+    private Database database;
     @FXML
     void activityScreen(ActionEvent event) {
         try {
@@ -91,7 +109,35 @@ public class MainController {
     void logScreen(ActionEvent event) {
 
     }
+    public MainController(User user, Firestore firestore) {
+        this.currentUser = user;
+        this.database = new Database(firestore);
+    }
 
+    @FXML
+    void logHike(ActionEvent event) {
+        String hikeName = hikeNameField.getText();
+        String location = locationField.getText();
+        String description = descriptionField.getText();
+
+        if (hikeName.isEmpty() || location.isEmpty() || description.isEmpty()) {
+            logErrorLbl.setVisible(true);
+            logErrorLbl.setText("Please fill in all fields");
+        } else {
+            Hike newHike = new Hike(hikeName, location, description, new Date());
+            currentUser.addHike(newHike);  // Add hike to current user's log
+
+            // Save the updated hiking log to the database
+            try {
+                database.saveHikingLog(currentUser);
+                logErrorLbl.setVisible(false);  // Hide error message
+            } catch (Exception e) {
+                logErrorLbl.setVisible(true);
+                logErrorLbl.setText("Error saving hike. Please try again.");
+            }
+        }
+    }
+}
     @FXML
     void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
         if (queryState.getText().equals("") || queryCity.getText().equals("")) {
