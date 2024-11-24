@@ -32,9 +32,9 @@ public class User extends Person {
     public void addHike(Hike hike){
         this.hikinglog.add(hike);
     }
-    public List<Hike> getHikingLog(){
-        return this.hikinglogList;
-    }
+//    public List<Hike> getHikingLog(){
+//        return this.hikinglogList;
+//    }
     @Override
     public String getUserID() {
         return userID;

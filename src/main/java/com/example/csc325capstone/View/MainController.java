@@ -1,7 +1,7 @@
 package com.example.csc325capstone.View;
 
-import com.example.csc325capstone.Model.Hikes;
-import com.example.csc325capstone.Model.Location;
+import com.example.csc325capstone.Model.*;
+import com.google.cloud.firestore.Firestore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 public class MainController {
     @FXML
@@ -75,6 +76,11 @@ public class MainController {
 
     private User currentUser;
     private Database database;
+
+    public MainController() {
+
+    }
+
     @FXML
     void activityScreen(ActionEvent event) {
         try {
@@ -109,6 +115,7 @@ public class MainController {
     void logScreen(ActionEvent event) {
 
     }
+
     public MainController(User user, Firestore firestore) {
         this.currentUser = user;
         this.database = new Database(firestore);
@@ -116,28 +123,27 @@ public class MainController {
 
     @FXML
     void logHike(ActionEvent event) {
-        String hikeName = hikeNameField.getText();
-        String location = locationField.getText();
-        String description = descriptionField.getText();
-
-        if (hikeName.isEmpty() || location.isEmpty() || description.isEmpty()) {
-            logErrorLbl.setVisible(true);
-            logErrorLbl.setText("Please fill in all fields");
-        } else {
-            Hike newHike = new Hike(hikeName, location, description, new Date());
-            currentUser.addHike(newHike);  // Add hike to current user's log
-
-            // Save the updated hiking log to the database
-            try {
-                database.saveHikingLog(currentUser);
-                logErrorLbl.setVisible(false);  // Hide error message
-            } catch (Exception e) {
-                logErrorLbl.setVisible(true);
-                logErrorLbl.setText("Error saving hike. Please try again.");
-            }
-        }
+//        String hikeName = hikeNameField.getText();
+//        String location = locationField.getText();
+//        String description = descriptionField.getText();
+//
+//        if (hikeName.isEmpty() || location.isEmpty() || description.isEmpty()) {
+//            logErrorLbl.setVisible(true);
+//            logErrorLbl.setText("Please fill in all fields");
+//        } else {
+//            Hike newHike = new Hike(hikeName, location, description, new Date());
+//            currentUser.addHike(newHike);  // Add hike to current user's log
+//
+//            // Save the updated hiking log to the database
+//            try {
+//                database.saveHikingLog(currentUser);
+//                logErrorLbl.setVisible(false);  // Hide error message
+//            } catch (Exception e) {
+//                logErrorLbl.setVisible(true);
+//                logErrorLbl.setText("Error saving hike. Please try again.");
+//            }
+//        }
     }
-}
     @FXML
     void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
         if (queryState.getText().equals("") || queryCity.getText().equals("")) {
@@ -188,3 +194,5 @@ public class MainController {
         welcomeLbl.setText(u);
     }
 }
+
+

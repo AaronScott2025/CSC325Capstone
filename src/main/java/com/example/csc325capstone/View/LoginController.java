@@ -70,9 +70,9 @@ public class LoginController {
     @FXML
     void loginPressed(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
         String pass = passEncrypt(PassField.getText());
-        Database db = new Database();
         fstore = contxtFirebase.firebase();
         fstore.collection("User");
+        Database db = new Database(fstore);
         if(db.verifyPassword(fstore,UserField.getText(),pass)) {
             //Get user pass from DB and Compare
             System.out.println("Testing: Login Button Pressed");
@@ -133,9 +133,9 @@ public class LoginController {
 
     @FXML
     void CAPressed(ActionEvent event) {
-        Database db = new Database();
         fstore = contxtFirebase.firebase();
         fstore.collection("User");
+        Database db = new Database(fstore);
         try {
             if(db.isUnique(fstore,CreateUser.getText())) {
                 String pass = passEncrypt(CreatePass.getText());
