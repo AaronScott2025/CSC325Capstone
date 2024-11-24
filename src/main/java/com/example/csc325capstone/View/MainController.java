@@ -4,15 +4,19 @@ import com.example.csc325capstone.Model.Hikes;
 import com.example.csc325capstone.Model.Location;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 public class MainController {
     @FXML
+
     private Button logHikeBtn;  //log a hike
 
     @FXML
@@ -27,6 +31,15 @@ public class MainController {
     @FXML
     private Label logErrorLbl;  //for showing error messages
 
+    private AnchorPane bottomAnchor;
+
+    @FXML
+    private AnchorPane topAnchor;
+
+    @FXML
+    private SplitPane splitPane;
+
+
     @FXML
     private Button activityBTN;
 
@@ -35,6 +48,9 @@ public class MainController {
 
     @FXML
     private Button exitBTN;
+
+    @FXML
+    private Button favoritesBTN;
 
     @FXML
     private Button friendsBTN;
@@ -61,7 +77,22 @@ public class MainController {
     private Database database;
     @FXML
     void activityScreen(ActionEvent event) {
+        try {
+            // Load Activity Feed fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/activity_feed.fxml"));
+            Parent root = loader.load();
 
+            // Gets current stage
+            Stage stage = (Stage) activityBTN.getScene().getWindow();
+
+            // Sets new scene with same dimensions as current
+            Scene activityScene = new Scene(root);
+            stage.setScene(activityScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            errorlbl.setText("Error loading activity screen." + e.getMessage());
+        }
     }
 
     @FXML
@@ -109,10 +140,10 @@ public class MainController {
 }
     @FXML
     void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
-        if(queryState.getText().equals("") || queryCity.getText().equals("")) {
+        if (queryState.getText().equals("") || queryCity.getText().equals("")) {
             errorlbl.setVisible(true);
             errorlbl.setText("Please enter a valid city and/or state");
-        } else if(queryState.getText().length() != 2) {
+        } else if (queryState.getText().length() != 2) {
             errorlbl.setVisible(true);
             errorlbl.setText("State must use the 2 letter format. EG: 'NY'");
         } else {
@@ -124,7 +155,7 @@ public class MainController {
                 errorlbl.setVisible(true);
                 errorlbl.setText("Please enter a valid city and/or state");
             }
-            if(l.getLocation() == null) {
+            if (l.getLocation() == null) {
                 errorlbl.setVisible(true);
                 errorlbl.setText("Please enter a valid city and/or state");
             } else {
@@ -139,20 +170,21 @@ public class MainController {
     void showFavorites(ActionEvent event) {
 
     }
+
     public void initTextArea(Location cl) {
         locations.setText("");
         Hikes[] h = cl.getNearbyLocations(cl.getLocation());
         String[] getter = cl.getLocation().split(",");
         locations.appendText("Local Hikes Near:   " + getter[0] + " , " + getter[1] + "\n");
-        for(int i = 0;i < h.length;i++) {
+        for (int i = 0; i < h.length; i++) {
             locations.appendText("\n");
             locations.appendText(h[i].getName() + "\n" + h[i].getState() + "\n" + h[i].getCity() + "\n" + h[i].getDescription());
             locations.appendText("\n");
         }
 
     }
+
     public void initWelcome(String u) {
         welcomeLbl.setText(u);
     }
-
 }
