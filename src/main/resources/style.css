@@ -65,3 +65,8 @@
 .button-style {
     -fx-background-color: #E2DCD2;
 }
+
+#haveButton{
+    -fx-background-color: none;
+    -fx-underline: true;
+}

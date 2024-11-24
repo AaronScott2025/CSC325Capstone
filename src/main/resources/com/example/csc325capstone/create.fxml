@@ -17,13 +17,13 @@
             <Image url="@../../../images/background/bluehike.png" />
          </image>
       </ImageView>
-      <Pane fx:id="createPane" layoutX="283.0" layoutY="57.0" prefHeight="437.0" prefWidth="415.0" stylesheets="@../../../style.css">
+      <Pane fx:id="createPane" layoutX="283.0" layoutY="49.0" prefHeight="454.0" prefWidth="415.0" stylesheets="@../../../style.css">
          <children>
             <TextField fx:id="CreateUser" layoutX="127.0" layoutY="116.0" prefHeight="25.0" prefWidth="160.0" promptText="Username" />
             <PasswordField fx:id="CreatePass" layoutX="127.0" layoutY="186.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
             <TextField fx:id="Prompt1" layoutX="127.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" promptText="Prompt1" />
             <TextField fx:id="Prompt2" layoutX="127.0" layoutY="318.0" prefHeight="25.0" prefWidth="160.0" promptText="Prompt2" />
-            <Button fx:id="CreateAnAccount" layoutX="154.0" layoutY="376.0" mnemonicParsing="false" onAction="#CAPressed" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #3932FF;" stylesheets="@../../../style.css" text="Create Account" textFill="WHITE">
+            <Button fx:id="CreateAnAccount" layoutX="154.0" layoutY="367.0" mnemonicParsing="false" onAction="#CAPressed" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #3932FF;" stylesheets="@../../../style.css" text="Create Account" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -56,6 +56,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <Button fx:id="haveButton" onAction="#closeCreate" layoutX="151.0" layoutY="401.0" mnemonicParsing="false" stylesheets="@../../../style.css" text="Have An Account?" textFill="#f59d32">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
