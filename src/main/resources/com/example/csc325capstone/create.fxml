@@ -10,35 +10,53 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LoginController">
    <children>
-      <ImageView fitHeight="557.0" fitWidth="707.0">
+      <ImageView fitHeight="557.0" fitWidth="995.0" layoutX="-7.0" layoutY="-3.0">
          <image>
-            <Image url="@../../../greenhills.jpg" />
+            <Image url="@../../../images/background/bluehike.png" />
          </image>
       </ImageView>
-      <Button fx:id="CreateAnAccount" layoutX="271.0" layoutY="466.0" mnemonicParsing="false" onAction="#CAPressed" stylesheets="@../../../style.css" text="Create Account">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <PasswordField fx:id="CreatePass" layoutX="279.0" layoutY="210.0" promptText="Password" />
-      <TextField fx:id="CreateUser" layoutX="279.0" layoutY="164.0" promptText="Username" />
-      <Label alignment="CENTER" layoutX="174.0" layoutY="26.0" prefHeight="144.0" prefWidth="359.0" text="Create an account" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="37.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="204.0" layoutY="248.0" prefHeight="61.0" prefWidth="299.0" text="What was the name of your first pet?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="204.0" layoutY="334.0" prefHeight="61.0" prefWidth="299.0" text="What is the name of the street you grew up on?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="Prompt1" layoutX="279.0" layoutY="309.0" promptText="Prompt1" />
-      <TextField fx:id="Prompt2" layoutX="279.0" layoutY="395.0" promptText="Prompt2" />
+      <Pane fx:id="createPane" layoutX="283.0" layoutY="57.0" prefHeight="437.0" prefWidth="415.0" stylesheets="@../../../style.css">
+         <children>
+            <TextField fx:id="CreateUser" layoutX="127.0" layoutY="116.0" prefHeight="25.0" prefWidth="160.0" promptText="Username" />
+            <PasswordField fx:id="CreatePass" layoutX="127.0" layoutY="186.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" />
+            <TextField fx:id="Prompt1" layoutX="127.0" layoutY="250.0" prefHeight="25.0" prefWidth="160.0" promptText="Prompt1" />
+            <TextField fx:id="Prompt2" layoutX="127.0" layoutY="318.0" prefHeight="25.0" prefWidth="160.0" promptText="Prompt2" />
+            <Button fx:id="CreateAnAccount" layoutX="154.0" layoutY="376.0" mnemonicParsing="false" onAction="#CAPressed" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #3932FF;" stylesheets="@../../../style.css" text="Create Account" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="159.0" layoutY="91.0" prefHeight="25.0" prefWidth="97.0" text="Username" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="50.0" prefWidth="359.0" text="Create an account" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="37.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="30.0" layoutY="293.0" prefHeight="25.0" prefWidth="359.0" text="What is the name of the school you grew up on?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="89.0" layoutY="225.0" prefHeight="25.0" prefWidth="240.0" text="What was your school mascot?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="160.0" layoutY="161.0" prefHeight="25.0" prefWidth="97.0" text="Password" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

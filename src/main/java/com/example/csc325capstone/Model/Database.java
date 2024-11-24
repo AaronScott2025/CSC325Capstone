@@ -57,4 +57,33 @@ public class Database {
         }
         return false;
     }
+
+    // Saves post
+    public void addPost(Post post) {
+        CollectionReference postsCollection = Main.fstore.collection("Post");
+
+        // generate unique ID for new post
+        String postID = UUID.randomUUID().toString();
+
+        // HashMap to represent post's fields
+        Map<String,Object> postMap = new HashMap<>();
+        postMap.put("postID",postID);
+        postMap.put("postAuthor", post.getUser());
+        postMap.put("postDescription",post.getDescription());
+        postMap.put("postImage",post.getImageURL());
+        postMap.put("postDate",post.getPostDate());
+        // Save to Firestore
+        DocumentReference docRef = postsCollection.document(postID);
+        ApiFuture<WriteResult> writeResult = docRef.set(postMap);
+
+        // Error handling
+        try{
+            WriteResult result = writeResult.get();
+            System.out.println("Post added successfully");
+        } catch (InterruptedException | ExecutionException e) {
+            System.out.println("Post could not be added");
+        }
+    }
+
+
 }
