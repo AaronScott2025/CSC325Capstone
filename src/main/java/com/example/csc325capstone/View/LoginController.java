@@ -168,6 +168,7 @@ public class LoginController {
         return encrypted.toString();
     }
 
+    // The "Have An Account?" button navigates to the Login screen
     public void closeCreate(ActionEvent actionEvent) {
         Stage stage = (Stage) haveButton.getScene().getWindow();
         stage.close();

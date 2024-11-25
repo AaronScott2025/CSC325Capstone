@@ -40,21 +40,24 @@ public class ActivityFeedController {
 
     @FXML
     public void initialize() {
+        // list of post
         ObservableList<Post> posts = getPosts();
 
+        // Iterates through list of posts
         for (Post post : posts) {
             try {
+                // Set post template
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/item_post.fxml"));
-                //AnchorPane root = fxmlLoader.load();
                 Parent root = fxmlLoader.load();
 
+                // Set posy template controller
                 ItemPostController itemPostController = fxmlLoader.getController();
                 itemPostController.setPost(post);
 
+                // Set container for the post
                 postContainer.getChildren().add(root);
             } catch (IOException e){
                 e.printStackTrace();
-
             }
         }
     }
@@ -63,6 +66,7 @@ public class ActivityFeedController {
     private ObservableList<Post> getPosts() {
         ObservableList<Post> posts = FXCollections.observableArrayList();
 
+        // Sample list of post with author, description and image
         posts.add(new Post(
                 "Tony Hawkz",
                 "I wonder if I could ollie over this stream?",
@@ -94,10 +98,11 @@ public class ActivityFeedController {
                 Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost3.jpg")).toExternalForm()
         ));
 
+        // Returns list
         return posts;
     }
 
-
+    // The "Main" button ont the Activity Feed navigates to the Main Screen
     @FXML
     void mainScreen(ActionEvent event) {
         try {
@@ -117,6 +122,7 @@ public class ActivityFeedController {
         }
     }
 
+    // The "New" button navigates ot the new post screen
     @FXML
     void newPostScreen(ActionEvent event) {
         try {
@@ -126,10 +132,6 @@ public class ActivityFeedController {
 
             // Get current stage
             Stage stage = (Stage) newBTN.getScene().getWindow();
-
-            // Get the current dimensions of the stage
-            //double width = stage.getWidth();
-            //double height = stage.getHeight();
 
             // Set new scene with the same dimensions as current
             Scene mainScene = new Scene(root);

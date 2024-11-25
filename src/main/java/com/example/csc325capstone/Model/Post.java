@@ -4,12 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Post {
-    private String imageURL; // URL for the image, optional
-    private String description; // Post's description added by user's, required
-    private String author; // Author of the post
-    private Journey hikerLog; // Hiker log, optional
-    private Date postDate; //Date when the post was made
-    // User and HikerLog must be serializable
+    // URL for the image, optional
+    private String imageURL;
+    // Post's description added by user's, required
+    private String description;
+    // Author of the post
+    private String author;
+    // Hiker log, optional
+    private Journey hikerLog;
+    //Date when the post was made
+    private Date postDate;
 
     // No arg constructor, firestore requirement
     public Post(URL resource){}

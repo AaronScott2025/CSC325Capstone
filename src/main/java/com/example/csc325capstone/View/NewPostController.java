@@ -26,6 +26,7 @@ public class NewPostController {
     @FXML
     private Button mainBTN;
 
+    // The "Activity" button navigates to the Activity Feed
     @FXML
     void activityScreen(ActionEvent event) {
         try {
@@ -45,6 +46,7 @@ public class NewPostController {
         }
     }
 
+    // The "Main" button navigates to the Main screen
     @FXML
     void mainScreen(ActionEvent event) {
         try {
@@ -55,10 +57,6 @@ public class NewPostController {
             // Get current stage
             Stage stage = (Stage) mainBTN.getScene().getWindow();
 
-            // Get the current dimensions of the stage
-            //double width = stage.getWidth();
-            //double height = stage.getHeight();
-
             // Set new scene with the same dimensions as current
             Scene mainScene = new Scene(root);
             stage.setScene(mainScene);
@@ -67,5 +65,4 @@ public class NewPostController {
             e.printStackTrace();
         }
     }
-
 }
