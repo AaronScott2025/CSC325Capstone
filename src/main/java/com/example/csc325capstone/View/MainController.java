@@ -2,13 +2,19 @@ package com.example.csc325capstone.View;
 
 import com.example.csc325capstone.Model.Hikes;
 import com.example.csc325capstone.Model.Location;
+import com.example.csc325capstone.Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 public class MainController {
@@ -29,6 +35,9 @@ public class MainController {
     private Button friendsBTN;
 
     @FXML
+    private Button profileBTN;
+
+    @FXML
     private TextArea locations;
 
     @FXML
@@ -45,6 +54,8 @@ public class MainController {
 
     @FXML
     private Label welcomeLbl;
+
+    private UserController userController;
 
     @FXML
     void activityScreen(ActionEvent event) {
@@ -64,6 +75,25 @@ public class MainController {
     @FXML
     void logScreen(ActionEvent event) {
 
+    }
+
+    @FXML
+    void profileScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/userProfileScene.fxml"));
+            Parent root = loader.load();
+
+            ProfileController profileController = loader.getController();
+            profileController.setUserController(userController);
+            profileController.initializeProfile();
+
+            Stage stage = (Stage) profileBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -105,11 +135,16 @@ public class MainController {
         locations.appendText("Local Hikes Near:   " + getter[0] + " , " + getter[1] + "\n");
         for(int i = 0;i < h.length;i++) {
             locations.appendText("\n");
-            locations.appendText(h[i].getName() + "\n" + h[i].getState() + "\n" + h[i].getCity() + "\n" + h[i].getDescription());
+            locations.appendText(h[i].getName() + "\n" + h[i].getCity() + ", " + h[i].getState() + "\n" + h[i].getDescription());
             locations.appendText("\n");
         }
 
     }
+
+    public void setUserController(UserController userController) {
+        this.userController = userController;
+    }
+
     public void initWelcome(String u) {
         welcomeLbl.setText(u);
     }

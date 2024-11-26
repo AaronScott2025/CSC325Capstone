@@ -4,6 +4,7 @@ import com.example.csc325capstone.Model.Database;
 import com.example.csc325capstone.Model.FirestoreContext;
 import com.example.csc325capstone.Model.User;
 import com.example.csc325capstone.ViewModel.Main;
+import com.example.csc325capstone.Controller.UserController;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import javafx.event.ActionEvent;
@@ -16,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
+
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -67,7 +70,7 @@ public class LoginController {
         Database db = new Database();
         fstore = contxtFirebase.firebase();
         fstore.collection("User");
-        if(db.verifyPassword(fstore,UserField.getText(),pass)) {
+        if (db.verifyPassword(fstore, UserField.getText(), pass)) {
             //Get user pass from DB and Compare
             System.out.println("Testing: Login Button Pressed");
             try {
@@ -81,18 +84,32 @@ public class LoginController {
             Stage stage = Main.getPrimaryStage();
             stage.setTitle("TrailQuest");
             FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
-            Scene s = new Scene(fx.load());
+            Parent root = fx.load();
             MainController mainController = fx.getController();
+            if (mainController == null) {
+                System.err.println("Error: MainController is null");
+                return;
+            }
+
+            UserController userController = new UserController(fstore);
+            mainController.setUserController(userController);
+
+            // Load the user profile
+            String userId = UserField.getText();
+            userController.loadUserProfile(userId);
+
             mainController.initTextArea(cl);
-            mainController.initWelcome("Welcome back, " + UserField.getText());
-            stage.setScene(s);
+            mainController.initWelcome("Welcome back, " + userId);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } else {
             errorHandler();
             System.out.println("Error: Incorrect Password");
         }
-
-
     }
+
 
     @FXML
     public void errorHandler() {

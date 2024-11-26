@@ -162,6 +162,16 @@ public class UserController {
         return currentUser != null ? currentUser.getFollowingList() : new ArrayList<>();
     }
 
+    // Get user's followers count
+    public int getFollowersCount() {
+        return currentUser != null ? currentUser.getFollowersList().size() : 0;
+    }
+
+    // Get user's following count
+    public int getFollowingCount() {
+        return currentUser != null ? currentUser.getFollowingList().size() : 0;
+    }
+
     // Update user's personal best
     public boolean updatePersonalBest(String newRecord) {
         try {

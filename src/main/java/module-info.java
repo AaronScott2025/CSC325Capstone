@@ -9,6 +9,7 @@ module com.example.csc325capstone {
     requires google.cloud.firestore;
     requires firebase.admin;
     requires com.google.api.apicommon;
+    requires org.apache.httpcomponents.httpclient;
 
 
     opens com.example.csc325capstone to javafx.fxml;
