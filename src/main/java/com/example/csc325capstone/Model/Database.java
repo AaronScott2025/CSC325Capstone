@@ -17,10 +17,10 @@ public class Database {
 
         this.fstore = fstore;
     }
-//    public void saveHikingLog(User user) throws ExecutionException, InterruptedException {
-//        DocumentReference userRef = fstore.collection("User").document(user.getUserID());
-//        userRef.update("hikingLog", user.getHikingLog()).get(); // Save hiking log for user
-//    }
+    public void saveHikingLog(User user) throws ExecutionException, InterruptedException {
+        DocumentReference userRef = fstore.collection("User").document(user.getUserID());
+        userRef.update("hikingLog", user.getHikingLog()).get(); // Save hiking log for user
+    }
 
     public List<Hike> getHikingLog(String userID) throws ExecutionException, InterruptedException {
         DocumentReference userRef = fstore.collection("User").document(userID);

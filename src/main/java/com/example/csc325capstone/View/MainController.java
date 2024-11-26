@@ -122,26 +122,26 @@ public class MainController {
 
     @FXML
     void logHike(ActionEvent event) {
-//        String hikeName = hikeNameField.getText();
-//        String location = locationField.getText();
-//        String description = descriptionField.getText();
-//
-//        if (hikeName.isEmpty() || location.isEmpty() || description.isEmpty()) {
-//            logErrorLbl.setVisible(true);
-//            logErrorLbl.setText("Please fill in all fields");
-//        } else {
-//            Hike newHike = new Hike(hikeName, location, description, new Date());
-//            currentUser.addHike(newHike);  // Add hike to current user's log
-//
-//            // Save the updated hiking log to the database
-//            try {
-//                database.saveHikingLog(currentUser);
-//                logErrorLbl.setVisible(false);  // Hide error message
-//            } catch (Exception e) {
-//                logErrorLbl.setVisible(true);
-//                logErrorLbl.setText("Error saving hike. Please try again.");
-//            }
-//        }
+        String hikeName = hikeNameField.getText();
+        String location = locationField.getText();
+        String description = descriptionField.getText();
+
+        if (hikeName.isEmpty() || location.isEmpty() || description.isEmpty()) {
+            logErrorLbl.setVisible(true);
+            logErrorLbl.setText("Please fill in all fields");
+        } else {
+            Hike newHike = new Hike(hikeName, location, description, new Date());
+            currentUser.addHike(newHike);  // Add hike to current user's log
+
+            // Save the updated hiking log to the database
+            try {
+                database.saveHikingLog(currentUser);
+                logErrorLbl.setVisible(false);  // Hide error message
+            } catch (Exception e) {
+                logErrorLbl.setVisible(true);
+                logErrorLbl.setText("Error saving hike. Please try again.");
+            }
+        }
     }
     @FXML
     void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
