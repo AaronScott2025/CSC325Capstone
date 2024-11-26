@@ -26,7 +26,7 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Friends">
+        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>

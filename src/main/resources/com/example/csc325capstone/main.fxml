@@ -23,7 +23,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Friends" textAlignment="CENTER">
+                  <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Profile" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
