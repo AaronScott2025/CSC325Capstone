@@ -40,7 +40,6 @@ public class MainController {
     @FXML
     private SplitPane splitPane;
 
-
     @FXML
     private Button activityBTN;
 

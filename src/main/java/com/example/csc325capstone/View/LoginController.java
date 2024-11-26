@@ -114,6 +114,10 @@ public class LoginController {
     /**
      * Create Account Methods
      */
+
+    @FXML
+    private Button haveButton;
+
     @FXML
     private Button CreateAnAccount;
 
@@ -130,6 +134,8 @@ public class LoginController {
     private TextField Prompt2;
     @FXML
     private Label createerrorlbl;
+
+
 
     @FXML
     void CAPressed(ActionEvent event) {
@@ -160,5 +166,11 @@ public class LoginController {
             encrypted.append(letter);
         }
         return encrypted.toString();
+    }
+
+    // The "Have An Account?" button navigates to the Login screen
+    public void closeCreate(ActionEvent actionEvent) {
+        Stage stage = (Stage) haveButton.getScene().getWindow();
+        stage.close();
     }
 }

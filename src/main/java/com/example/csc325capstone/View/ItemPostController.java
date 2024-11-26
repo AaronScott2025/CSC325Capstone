@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ItemPostController implements Initializable {
+public class ItemPostController {
     @FXML
     private Pane itemContainer;
     @FXML
@@ -26,12 +26,7 @@ public class ItemPostController implements Initializable {
     @FXML
     private TextArea postDescription;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resources) {
-
-    }
-
-    // Set post data
+    // Set post data image, author, description
     public void setPost(Post post) {
         if (post.getImageURL() != null) {
             postImage.setImage(new Image(post.getImageURL()));
@@ -39,5 +34,4 @@ public class ItemPostController implements Initializable {
         postAuthor.setText(post.getUser());
         postDescription.setText(post.getDescription());
     }
-
 }
