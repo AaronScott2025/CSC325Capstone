@@ -14,8 +14,8 @@ public class User extends Person {
     private Journey[] journies; //Last 10 hikes //incorrect spelling?
     private String securityAnswer1;
     private String securityAnswer2;
-
     private List<Hike> hikinglog; //Field for Hiking Log
+
     public User(String userID, String password, String record, ArrayList<User> followersList, ArrayList<User> followingList, Journey[] journies, String securityAnswer1, String securityAnswer2) {
         super(userID, record);
         this.userID = userID;
@@ -32,9 +32,9 @@ public class User extends Person {
     public void addHike(Hike hike){
         this.hikinglog.add(hike);
     }
-//    public List<Hike> getHikingLog(){
-//        return this.hikinglogList;
-//    }
+    public List<Hike> getHikingLog(){
+        return this.hikinglog;
+    }
     @Override
     public String getUserID() {
         return userID;
