@@ -1,4 +1,5 @@
 package com.example.csc325capstone.View;
+
 import com.example.csc325capstone.Model.Location;
 import com.example.csc325capstone.Model.Database;
 import com.example.csc325capstone.Model.FirestoreContext;
@@ -94,7 +95,7 @@ public class LoginController {
             fx2.load();
             ProfileController profileController = fx2.getController();
             UserController userController = new UserController(fstore);
-            mainController.setUserController(userController);
+            AppState.getInstance().setUserController(userController);
 
             // Load the user profile
             String userId = UserField.getText();
@@ -103,6 +104,7 @@ public class LoginController {
             // Set the current user in AppState
             AppState.getInstance().setCurrentUser(user);
 
+            mainController.setUserController(userController);
             mainController.initTextArea(cl);
             mainController.initWelcome("Welcome back, " + userId);
             profileController.initWelcome(userId);
