@@ -15,6 +15,7 @@ public class User extends Person {
     private List<Journey> journies;    // Changed to List<Journey>
     private String securityAnswer1;
     private String securityAnswer2;
+    private List<Hike> hikinglog; //Field for Hiking Log
 
     // Default constructor for Firestore
     public User() {
@@ -36,6 +37,7 @@ public class User extends Person {
         this.journies = new ArrayList<>();
         this.securityAnswer1 = securityAnswer1;
         this.securityAnswer2 = securityAnswer2;
+        this.hikinglog = new ArrayList<>();
     }
 
     // Static factory method to create User from Firestore document
@@ -55,6 +57,7 @@ public class User extends Person {
         List<String> followers = (List<String>) document.get("followers");
         List<String> following = (List<String>) document.get("following");
         List<Map<String, Object>> journeyMaps = (List<Map<String, Object>>) document.get("journies");
+        List<Hike> hikinglog = (List<Hike>) document.get("hikinglog");
 
         user.followersList = followers != null ? followers : new ArrayList<>();
         user.followingList = following != null ? following : new ArrayList<>();
@@ -81,12 +84,12 @@ public class User extends Person {
         data.put("record", record);
         data.put("followers", followersList);
         data.put("following", followingList);
-
         // Convert Journey objects to maps
         List<Map<String, Object>> journeyMaps = new ArrayList<>();
         for (Journey journey : journies) {
             journeyMaps.add(journey.toMap());
         }
+
         data.put("journies", journeyMaps);
         data.put("securityans1", securityAnswer1);
         data.put("securityans2", securityAnswer2);
@@ -125,6 +128,12 @@ public class User extends Person {
     }
 
     // Getters and setters
+    public void addHike(Hike hike){
+        this.hikinglog.add(hike);
+    }
+    public List<Hike> getHikingLog(){
+        return this.hikinglog;
+    }
     @Override
     public String getUserID() { return userID; }
 

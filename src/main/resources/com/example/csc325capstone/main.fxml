@@ -3,151 +3,98 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="745.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
    <children>
-      <ImageView fitHeight="745.0" fitWidth="1173.0">
-         <image>
-            <Image url="@../../../greenhills.jpg" />
-         </image>
-      </ImageView>
-      <ImageView blendMode="MULTIPLY" fitHeight="359.0" fitWidth="362.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../forest.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="-0.12" />
-         </effect>
-      </ImageView>
-      <ImageView blendMode="MULTIPLY" fitHeight="359.0" fitWidth="362.0" layoutX="149.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../forest.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="0.49" contrast="-0.05" hue="-0.68" />
-         </effect>
-      </ImageView>
-      <ImageView blendMode="MULTIPLY" fitHeight="359.0" fitWidth="362.0" layoutX="666.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../forest.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="0.49" contrast="-0.05" hue="-0.68" />
-         </effect>
-      </ImageView>
-      <ImageView blendMode="MULTIPLY" fitHeight="359.0" fitWidth="362.0" layoutX="782.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../forest.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="-0.12" />
-         </effect>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="58.0" layoutY="10.0" prefHeight="75.0" prefWidth="284.0" text="TrailQuest" textAlignment="CENTER" textFill="#bec626">
-         <font>
-            <Font name="System Bold" size="42.0" />
-         </font>
-      </Label>
-      <TextField fx:id="queryState" layoutX="400.0" layoutY="214.0" prefHeight="41.0" prefWidth="117.0" promptText="Enter State">
-         <font>
-            <Font size="20.0" />
-         </font></TextField>
-      <Label alignment="CENTER" layoutX="362.0" layoutY="111.0" prefHeight="110.0" prefWidth="402.0" text="Find Your Trail" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="System Bold" size="55.0" />
-         </font>
-      </Label>
-      <Label fx:id="errorlbl" alignment="CENTER" layoutX="313.0" layoutY="456.0" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
-         <font>
-            <Font name="Arial" size="11.0" />
-         </font>
-      </Label>
-      <Pane layoutX="1.0" layoutY="419.0" prefHeight="329.0" prefWidth="1173.0">
-         <children>
-            <TextArea fx:id="locations" editable="false" layoutX="-2.0" prefHeight="329.0" prefWidth="1174.0" text="Local Hikes Near &lt;LOCATION&gt;&#10;&#10;&lt;Hike Name&gt;&#10;&lt;City&gt;&#10;&lt;State&gt;&#10;&lt;Description&gt;" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </TextArea>
-         </children>
-      </Pane>
-      <Line endX="1064.0" layoutX="122.0" layoutY="100.0" startX="-153.5" stroke="WHITE" />
-      <Button fx:id="friendsBTN" layoutX="650.0" layoutY="19.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="57.0" prefWidth="105.0" style="-fx-background-color: #00A313;" text="Friends" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="activityBTN" layoutX="775.0" layoutY="19.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="57.0" prefWidth="105.0" style="-fx-background-color: #00A313;" text="Activity" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="logBTN" layoutX="900.0" layoutY="19.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="57.0" prefWidth="105.0" style="-fx-background-color: #00A313;" text="Log" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="21.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="exitBTN" layoutX="1025.0" layoutY="19.0" mnemonicParsing="false" onAction="#exit" prefHeight="57.0" prefWidth="105.0" style="-fx-background-color: #00A313;" text="Exit" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="favoritesBTN" layoutX="1004.0" layoutY="109.0" mnemonicParsing="false" onAction="#showFavorites" prefHeight="41.0" prefWidth="147.0" stylesheets="@../CSC325CapstoneMerged/src/main/resources/style.css" text="Favorites" textAlignment="CENTER">
-         <font>
-            <Font size="19.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label fx:id="welcomeLbl" alignment="CENTER" layoutX="2.0" layoutY="346.0" prefHeight="57.0" prefWidth="1173.0" text="Welcome back, &lt;USERNAME&gt;" textAlignment="CENTER" textFill="#59ff00" textOverrun="CLIP" wrapText="true">
-         <font>
-            <Font name="System Bold" size="35.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="121.0" fitWidth="112.0" layoutX="-1.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../logo.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="search" layoutX="663.0" layoutY="214.0" mnemonicParsing="false" onAction="#queryLocations" prefHeight="41.0" prefWidth="117.0" text="Search" textAlignment="CENTER" textFill="#390000">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <TextField fx:id="queryCity" layoutX="531.0" layoutY="214.0" prefHeight="41.0" prefWidth="117.0" promptText="Enter City">
-         <font>
-            <Font size="21.0" />
-         </font></TextField>
-      <Label fx:id="errorlbl" alignment="CENTER" layoutX="395.0" layoutY="262.0" prefHeight="17.0" prefWidth="370.0" text="error" textAlignment="CENTER" textFill="RED" visible="false" />
-      <Button fx:id="friendsBTN1" layoutX="505.0" layoutY="19.0" mnemonicParsing="false" onAction="#profileScreen" prefHeight="57.0" prefWidth="125.0" style="-fx-background-color: #00A313;" text="Profile" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
+      <SplitPane fx:id="splitPane" dividerPositions="0.5" orientation="VERTICAL" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+         <items>
+            <AnchorPane fx:id="topAnchor" layoutX="5.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="948.0" styleClass="topAnchor" stylesheets="@../../../style.css">
+               <children>
+                  <Label fx:id="welcomeLbl" alignment="CENTER" layoutX="-1.0" layoutY="107.0" prefHeight="57.0" prefWidth="950.0" text="Welcome back, &lt;USERNAME&gt;" textAlignment="CENTER" textFill="#eb9200" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="profileBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#profileScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Profile" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="activityBTN" layoutX="504.0" layoutY="34.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Activity" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="exitBTN" layoutX="834.0" layoutY="34.0" mnemonicParsing="false" onAction="#exit" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Exit" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="queryCity" layoutX="266.0" layoutY="209.0" prefHeight="35.0" prefWidth="152.0" promptText="Enter City" />
+                  <Button fx:id="search" layoutX="598.0" layoutY="209.0" mnemonicParsing="false" onAction="#queryLocations" prefHeight="35.0" prefWidth="75.0" text="Search" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" layoutX="306.0" layoutY="152.0" prefHeight="57.0" prefWidth="278.0" text="Search For Trails" textAlignment="CENTER" textFill="#ed9200" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Berlin Sans FB" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="queryState" layoutX="432.0" layoutY="209.0" prefHeight="35.0" prefWidth="152.0" promptText="Enter State" />
+                  <Label alignment="CENTER" layoutX="85.0" layoutY="28.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textAlignment="CENTER" textFill="#eb9200">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="errorlbl" alignment="CENTER" layoutX="310.0" layoutY="250.0" prefHeight="25.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="errorlbl" alignment="CENTER" layoutX="285.0" layoutY="250.0" prefHeight="17.0" prefWidth="370.0" text="error" textAlignment="CENTER" textFill="RED" visible="false" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="bottomAnchor" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../../../style.css">
+               <children>
+                  <TextArea fx:id="locations" editable="false" prefHeight="271.0" prefWidth="950.0" text="Local Hikes Near &lt;LOCATION&gt;&#10;&#10;&lt;Hike Name&gt;&#10;&lt;City&gt;&#10;&lt;State&gt;&#10;&lt;Description&gt;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
    </children>
 </Pane>
-

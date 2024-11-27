@@ -1,7 +1,6 @@
 package com.example.csc325capstone.View;
 
-import com.example.csc325capstone.Model.Hikes;
-import com.example.csc325capstone.Model.Location;
+import com.example.csc325capstone.Model.*;
 import com.example.csc325capstone.Controller.UserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +15,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 
 public class MainController {
+
+    @FXML
+    private Button logHikeBtn;
+
+    @FXML
+    private TextField hikeNameField;
+
+    @FXML
+    private TextField locationField;
+
+    @FXML
+    private TextArea descriptionField;
+
+    @FXML
+    private Label logErrorLbl;
 
     @FXML
     private Button activityBTN;
@@ -55,11 +70,62 @@ public class MainController {
     @FXML
     private Label welcomeLbl;
 
+    private Database database;
     private UserController userController;
+    private User currentUser;
+
+    public void initialize() {
+        User currentUser = AppState.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            initWelcome("Welcome back, " + currentUser.getUserID());
+
+        }
+        // Initialize the text area with the user's current location
+        Location cl = new Location(null);
+        try {
+            cl.setLocation(cl.getcurrentLocation());
+            initTextArea(cl);
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorlbl.setText("Error getting current location: " + e.getMessage());
+        }
+    }
+
+    public void initTextArea(Location cl) {
+        if (cl == null || cl.getLocation() == null) {
+            errorlbl.setText("Error: Location is null");
+            return;
+        }
+
+        locations.clear();
+        Hikes[] h = cl.getNearbyLocations(cl.getLocation());
+        String[] getter = cl.getLocation().split(",");
+        if (getter.length < 2) {
+            errorlbl.setText("Error: Invalid location format");
+            return;
+        }
+
+        locations.appendText("Local Hikes Near: " + getter[0] + " , " + getter[1] + "\n\n");
+        for (Hikes hike : h) {
+            if (hike != null) {
+                locations.appendText(hike.getName() + "\n" + hike.getCity() + ", " + hike.getState() + "\n" + hike.getDescription() + "\n\n");
+            }
+        }
+    }
 
     @FXML
     void activityScreen(ActionEvent event) {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/activity_feed.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) activityBTN.getScene().getWindow();
+            Scene activityScene = new Scene(root);
+            stage.setScene(activityScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            errorlbl.setText("Error loading activity screen: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -77,6 +143,7 @@ public class MainController {
 
     }
 
+
     @FXML
     void profileScreen(ActionEvent event) {
         try {
@@ -85,7 +152,8 @@ public class MainController {
 
             ProfileController profileController = loader.getController();
             profileController.setUserController(userController);
-            profileController.initializeProfile();
+            User currentUser = AppState.getInstance().getCurrentUser();
+            profileController.initializeProfile(currentUser);
 
             Stage stage = (Stage) profileBTN.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -93,6 +161,30 @@ public class MainController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void logHike(ActionEvent event) {
+        String hikeName = hikeNameField.getText();
+        String location = locationField.getText();
+        String description = descriptionField.getText();
+
+        if (hikeName.isEmpty() || location.isEmpty() || description.isEmpty()) {
+            logErrorLbl.setVisible(true);
+            logErrorLbl.setText("Please fill in all fields");
+        } else {
+            Hike newHike = new Hike(hikeName, location, description, new Date());
+            currentUser.addHike(newHike);  // Add hike to current user's log
+
+            // Save the updated hiking log to the database
+            try {
+                database.saveHikingLog(currentUser);
+                logErrorLbl.setVisible(false);  // Hide error message
+            } catch (Exception e) {
+                logErrorLbl.setVisible(true);
+                logErrorLbl.setText("Error saving hike. Please try again.");
+            }
         }
     }
 
@@ -124,22 +216,6 @@ public class MainController {
         }
     }
 
-    @FXML
-    void showFavorites(ActionEvent event) {
-
-    }
-    public void initTextArea(Location cl) {
-        locations.setText("");
-        Hikes[] h = cl.getNearbyLocations(cl.getLocation());
-        String[] getter = cl.getLocation().split(",");
-        locations.appendText("Local Hikes Near:   " + getter[0] + " , " + getter[1] + "\n");
-        for(int i = 0;i < h.length;i++) {
-            locations.appendText("\n");
-            locations.appendText(h[i].getName() + "\n" + h[i].getCity() + ", " + h[i].getState() + "\n" + h[i].getDescription());
-            locations.appendText("\n");
-        }
-
-    }
 
     public void setUserController(UserController userController) {
         this.userController = userController;
@@ -147,6 +223,7 @@ public class MainController {
 
     public void initWelcome(String u) {
         welcomeLbl.setText(u);
+
     }
 
 }

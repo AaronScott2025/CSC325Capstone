@@ -7,12 +7,27 @@ import com.example.csc325capstone.ViewModel.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class UserController {
+    @FXML
+    private Button activityBTN;
+
+    @FXML
+    private Label errorlbl;
+
     //UserController, click a button to go to your profile.
     //Will be able to click on your followers and following and see the list
     //   Displayed will be their userID
@@ -185,16 +200,23 @@ public class UserController {
         }
     }
 
-    // Toggle favorites visibility
-    public boolean toggleFavoritesVisibility() {
+    @FXML
+    void activityScreen(ActionEvent event) {
         try {
-            if (currentUser == null) return false;
+            // Load Activity Feed fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/activity_feed.fxml"));
+            Parent root = loader.load();
 
-            currentUser.setFavoritevisibility(!currentUser.isFavoritevisibility());
-            return updateUserProfile(currentUser);
-        } catch (Exception e) {
+            // Gets current stage
+            Stage stage = (Stage) activityBTN.getScene().getWindow();
+
+            // Sets new scene with same dimensions as current
+            Scene activityScene = new Scene(root);
+            stage.setScene(activityScene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            errorlbl.setText("Error loading activity screen." + e.getMessage());
         }
     }
 
@@ -216,6 +238,10 @@ public class UserController {
     // Check if user exists
     public boolean userExists(String userId) throws ExecutionException, InterruptedException {
         return database.getDocID(firestore, userId) != null;
+    }
+
+    public Firestore getFirestore() {
+        return this.firestore;
     }
 
     // Update security answers

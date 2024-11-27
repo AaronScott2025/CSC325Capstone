@@ -1,5 +1,7 @@
 package com.example.csc325capstone.View;
 
+import com.example.csc325capstone.Model.Location;
+import com.example.csc325capstone.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,14 +52,29 @@ public class NewPostController {
     @FXML
     void mainScreen(ActionEvent event) {
         try {
-            // Load Main fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
             Parent root = loader.load();
 
-            // Get current stage
-            Stage stage = (Stage) mainBTN.getScene().getWindow();
+            MainController mainController = loader.getController();
 
-            // Set new scene with the same dimensions as current
+            User currentUser = AppState.getInstance().getCurrentUser();
+            com.example.csc325capstone.Controller.UserController userController = AppState.getInstance().getUserController();
+
+            if (currentUser != null && userController != null) {
+                mainController.initWelcome("Welcome back, " + currentUser.getUserID());
+                mainController.setUserController(userController);
+
+                Location cl = new Location(null);
+                try {
+                    cl.setLocation(cl.getcurrentLocation());
+                    mainController.initTextArea(cl);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Handle the error, maybe show it in the UI
+                }
+            }
+
+            Stage stage = (Stage) mainBTN.getScene().getWindow();
             Scene mainScene = new Scene(root);
             stage.setScene(mainScene);
             stage.show();

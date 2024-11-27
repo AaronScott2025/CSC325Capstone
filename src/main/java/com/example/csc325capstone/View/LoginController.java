@@ -90,16 +90,22 @@ public class LoginController {
                 System.err.println("Error: MainController is null");
                 return;
             }
-
+            FXMLLoader fx2 = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/userProfileScene.fxml"));
+            fx2.load();
+            ProfileController profileController = fx2.getController();
             UserController userController = new UserController(fstore);
             mainController.setUserController(userController);
 
             // Load the user profile
             String userId = UserField.getText();
-            userController.loadUserProfile(userId);
+            User user = userController.loadUserProfile(userId);
+
+            // Set the current user in AppState
+            AppState.getInstance().setCurrentUser(user);
 
             mainController.initTextArea(cl);
             mainController.initWelcome("Welcome back, " + userId);
+            profileController.initWelcome(userId);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -110,6 +116,9 @@ public class LoginController {
         }
     }
 
+    public String getUserField() {
+        return UserField.getText();
+    }
 
     @FXML
     public void errorHandler() {
@@ -125,6 +134,10 @@ public class LoginController {
     /**
      * Create Account Methods
      */
+
+    @FXML
+    private Button haveButton;
+
     @FXML
     private Button CreateAnAccount;
 
@@ -143,25 +156,6 @@ public class LoginController {
     private Label createerrorlbl;
 
 
-//    void CAPressed(ActionEvent event) {
-//        Database db = new Database();
-//        fstore = contxtFirebase.firebase();
-//        fstore.collection("User");
-//        try {
-//            if(db.isUnique(fstore,CreateUser.getText())) {
-//                String pass = passEncrypt(CreatePass.getText());
-//                User u = new User(CreateUser.getText(),pass,null,null,null,null,null,false,Prompt1.getText(),Prompt2.getText());
-//                db.addUser(u);
-//            } else {
-//                createerrorlbl.setText("Error: Username already exists");
-//                createerrorlbl.setVisible(true);
-//            }
-//        } catch (ExecutionException e) {
-//            throw new RuntimeException(e);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
     @FXML
     void CAPressed(ActionEvent event) throws IOException {
         Database db = new Database();
@@ -216,4 +210,12 @@ public class LoginController {
         }
         return encrypted.toString();
     }
+
+    // The "Have An Account?" button navigates to the Login screen
+    public void closeCreate(ActionEvent actionEvent) {
+        Stage stage = (Stage) haveButton.getScene().getWindow();
+        stage.close();
+    }
+
+
 }

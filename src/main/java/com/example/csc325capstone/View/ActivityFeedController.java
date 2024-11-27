@@ -1,7 +1,10 @@
 package com.example.csc325capstone.View;
 
 import com.example.csc325capstone.Model.Post;
-import javafx.beans.Observable;
+import com.example.csc325capstone.Model.User;
+import com.example.csc325capstone.Model.Location;
+import com.example.csc325capstone.View.AppState;
+import com.example.csc325capstone.Controller.UserController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,19 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.net.URL;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class ActivityFeedController {
     @FXML
@@ -37,6 +32,10 @@ public class ActivityFeedController {
     private Button friendsBTN;
     @FXML
     private Button logBTN;
+    @FXML
+    private Button profileBTN;
+
+    private UserController userController;
 
     @FXML
     public void initialize() {
@@ -62,11 +61,9 @@ public class ActivityFeedController {
         }
     }
 
-    // List of Post
     private ObservableList<Post> getPosts() {
         ObservableList<Post> posts = FXCollections.observableArrayList();
 
-        // Sample list of post with author, description and image
         posts.add(new Post(
                 "Tony Hawkz",
                 "I wonder if I could ollie over this stream?",
@@ -98,22 +95,33 @@ public class ActivityFeedController {
                 Objects.requireNonNull(getClass().getResource("/images/posts/hikerpost3.jpg")).toExternalForm()
         ));
 
-        // Returns list
         return posts;
     }
 
-    // The "Main" button ont the Activity Feed navigates to the Main Screen
     @FXML
     void mainScreen(ActionEvent event) {
         try {
-            // Load Main fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
             Parent root = loader.load();
 
-            // Get current stage
-            Stage stage = (Stage) mainBTN.getScene().getWindow();
+            MainController mainController = loader.getController();
 
-            // Set new scene with the same dimensions as current
+            User currentUser = AppState.getInstance().getCurrentUser();
+            UserController userController = AppState.getInstance().getUserController();
+
+            if (currentUser != null && userController != null) {
+                mainController.initWelcome("Welcome back, " + currentUser.getUserID());
+                mainController.setUserController(userController);
+
+                Location cl = new Location(null);
+                try {
+                    cl.setLocation(cl.getcurrentLocation());
+                    mainController.initTextArea(cl);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            Stage stage = (Stage) mainBTN.getScene().getWindow();
             Scene mainScene = new Scene(root);
             stage.setScene(mainScene);
             stage.show();
@@ -122,22 +130,42 @@ public class ActivityFeedController {
         }
     }
 
-    // The "New" button navigates ot the new post screen
     @FXML
     void newPostScreen(ActionEvent event) {
         try {
-            // Load new Post fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/new_post.fxml"));
             Parent root = loader.load();
 
-            // Get current stage
             Stage stage = (Stage) newBTN.getScene().getWindow();
 
-            // Set new scene with the same dimensions as current
             Scene mainScene = new Scene(root);
             stage.setScene(mainScene);
             stage.show();
         } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void profileScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/userProfileScene.fxml"));
+            Parent root = loader.load();
+
+            ProfileController profileController = loader.getController();
+            User currentUser = AppState.getInstance().getCurrentUser();
+            UserController userController = AppState.getInstance().getUserController();
+
+            if (currentUser != null && userController != null) {
+                profileController.setUserController(userController);
+                profileController.initializeProfile(currentUser);
+            }
+
+            Stage stage = (Stage) profileBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
