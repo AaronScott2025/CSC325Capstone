@@ -65,7 +65,16 @@ public class UserController {
             if (docId == null) return false;
 
             DocumentReference docRef = firestore.collection("User").document(docId);
-            docRef.set(user.toMap());
+
+            // Update the document with the new user data
+            ApiFuture<WriteResult> future = docRef.set(user.toMap());
+
+            // Wait for the update to complete
+            future.get();
+
+            // Update the current user in memory
+            this.currentUser = user;
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -256,5 +265,20 @@ public class UserController {
             e.printStackTrace();
             return false;
         }
+    }
+
+    // New method to get user by ID (without setting currentUser)
+    public User getUserById(String userId) throws ExecutionException, InterruptedException {
+        String docId = database.getDocID(firestore, userId);
+        if (docId == null) return null;
+
+        DocumentReference docRef = firestore.collection("User").document(docId);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+
+        if (document.exists()) {
+            return User.fromDocument(document);
+        }
+        return null;
     }
 }

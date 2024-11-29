@@ -18,7 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -30,10 +29,8 @@ public class LoginController {
     private Stage stage;
     @FXML
     private Button CreateAccount;
-
     @FXML
     private Button LoginButton;
-
     @FXML
     private PasswordField PassField;
     @FXML
@@ -72,7 +69,6 @@ public class LoginController {
         fstore = contxtFirebase.firebase();
         fstore.collection("User");
         if (db.verifyPassword(fstore, UserField.getText(), pass)) {
-            //Get user pass from DB and Compare
             System.out.println("Testing: Login Button Pressed");
             try {
                 fstore = contxtFirebase.firebase();
@@ -80,38 +76,12 @@ public class LoginController {
             } catch (Exception e) {
                 errorlbl.setText("Error: Could not connect to backend. Please try again.");
             }
-            Location cl = new Location(null);
-            cl.setLocation(cl.getcurrentLocation());
-            Stage stage = Main.getPrimaryStage();
-            stage.setTitle("TrailQuest");
-            FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
-            Parent root = fx.load();
-            MainController mainController = fx.getController();
-            if (mainController == null) {
-                System.err.println("Error: MainController is null");
-                return;
-            }
-            FXMLLoader fx2 = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/userProfileScene.fxml"));
-            fx2.load();
-            ProfileController profileController = fx2.getController();
+
+            // Initialize UserController and set it in AppState
             UserController userController = new UserController(fstore);
             AppState.getInstance().setUserController(userController);
 
-            // Load the user profile
-            String userId = UserField.getText();
-            User user = userController.loadUserProfile(userId);
-
-            // Set the current user in AppState
-            AppState.getInstance().setCurrentUser(user);
-
-            mainController.setUserController(userController);
-            mainController.initTextArea(cl);
-            mainController.initWelcome("Welcome back, " + userId);
-            profileController.initWelcome(userId);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            navigateToMainScene(UserField.getText());
         } else {
             errorHandler();
             System.out.println("Error: Incorrect Password");
@@ -159,7 +129,7 @@ public class LoginController {
 
 
     @FXML
-    void CAPressed(ActionEvent event) throws IOException {
+    void CAPressed(ActionEvent event) {
         Database db = new Database();
         fstore = contxtFirebase.firebase();
         fstore.collection("User");
@@ -167,26 +137,23 @@ public class LoginController {
         try {
             String username = CreateUser.getText();
             if(db.isUnique(fstore, username)) {
-                // Encrypt password
                 String encryptedPassword = passEncrypt(CreatePass.getText());
 
-                // Create new user with minimal required information
-                // The constructor now takes only the essential parameters
                 User newUser = new User(
-                        username,                // userID
-                        encryptedPassword,       // encrypted password
-                        "",                     // empty record to start
-                        Prompt1.getText(),      // security answer 1
-                        Prompt2.getText()       // security answer 2
+                        username,
+                        encryptedPassword,
+                        "",
+                        Prompt1.getText(),
+                        Prompt2.getText()
                 );
 
-                // The lists (followers, following, journeys) are automatically initialized
-                // as empty ArrayLists in the User constructor
-
                 if(db.addUser(newUser)) {
-                    // Optional: Add success handling here
                     createerrorlbl.setVisible(false);
-                    // You might want to add a success message or redirect to login
+
+                    UserController userController = new UserController(fstore);
+                    AppState.getInstance().setUserController(userController);
+
+                    navigateToMainScene(newUser.getUserID());
                 } else {
                     createerrorlbl.setText("Error: Failed to create account");
                     createerrorlbl.setVisible(true);
@@ -195,10 +162,56 @@ public class LoginController {
                 createerrorlbl.setText("Error: Username already exists");
                 createerrorlbl.setVisible(true);
             }
-        } catch (ExecutionException | InterruptedException e) {
+        } catch (Exception e) {
             createerrorlbl.setText("Error: Unable to create account");
             createerrorlbl.setVisible(true);
-            e.printStackTrace(); // For debugging purposes
+            e.printStackTrace();
+        }
+        closeCreate(event);
+    }
+
+    private void navigateToMainScene(String username) {
+        try {
+            Stage stage = Main.getPrimaryStage();
+            stage.setTitle("TrailQuest");
+            FXMLLoader fx = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/main.fxml"));
+            Parent root = fx.load();
+            MainController mainController = fx.getController();
+
+            UserController userController = AppState.getInstance().getUserController();
+
+            if (mainController == null) {
+                System.err.println("Error: MainController is null");
+                return;
+            }
+
+            if (userController == null) {
+                System.err.println("Error: UserController is null");
+                return;
+            }
+
+            mainController.setUserController(userController);
+
+            User user = userController.loadUserProfile(username);
+            AppState.getInstance().setCurrentUser(user);
+
+            Location cl = new Location(null);
+            cl.setLocation(cl.getcurrentLocation());
+
+            mainController.initTextArea(cl);
+            mainController.initWelcome("Welcome, " + username);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            // Close the create account window if it's open
+            if (this.stage != null) {
+                this.stage.close();
+            }
+        } catch (Exception e) {
+            System.err.println("Error navigating to main scene: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -212,6 +225,7 @@ public class LoginController {
         }
         return encrypted.toString();
     }
+
 
     // The "Have An Account?" button navigates to the Login screen
     public void closeCreate(ActionEvent actionEvent) {

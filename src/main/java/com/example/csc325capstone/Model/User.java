@@ -72,6 +72,11 @@ public class User extends Person {
                 }
             }
         }
+        if (hikinglog != null) {
+            user.hikinglog = hikinglog;
+        } else {
+            user.hikinglog = new ArrayList<>();
+        }
 
         return user;
     }
@@ -93,6 +98,7 @@ public class User extends Person {
         data.put("journies", journeyMaps);
         data.put("securityans1", securityAnswer1);
         data.put("securityans2", securityAnswer2);
+        data.put("hikinglog", hikinglog);
         return data;
     }
 

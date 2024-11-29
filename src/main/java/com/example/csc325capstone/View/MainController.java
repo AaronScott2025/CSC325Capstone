@@ -151,9 +151,16 @@ public class MainController {
             Parent root = loader.load();
 
             ProfileController profileController = loader.getController();
-            profileController.setUserController(userController);
+
             User currentUser = AppState.getInstance().getCurrentUser();
-            profileController.initializeProfile(currentUser);
+            UserController userController = AppState.getInstance().getUserController();
+
+            if (currentUser != null && userController != null) {
+                profileController.setUserController(userController);
+                profileController.initializeProfile(currentUser);
+            } else {
+                System.err.println("Error: Current user or UserController is null");
+            }
 
             Stage stage = (Stage) profileBTN.getScene().getWindow();
             Scene scene = new Scene(root);
@@ -161,6 +168,7 @@ public class MainController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            errorlbl.setText("Error loading profile screen: " + e.getMessage());
         }
     }
 

@@ -57,15 +57,28 @@ public class ProfileController {
         this.userController = userController;
     }
 
-    public void initializeProfile(User  currentUser) {
-
+    public void initializeProfile(User currentUser) {
         if (currentUser != null) {
             userIdLabel.setText("User ID: " + currentUser.getUserID());
             userIdTextField.setText(currentUser.getUserID());
-            followersBTN.setText("Followers: " + userController.getFollowersCount());
-            followingBTN.setText("Following: " + userController.getFollowingCount());
-            List<Journey> journeys = userController.getUserJourneys();
+            updateFollowCounts();
+
+            List<Journey> journeys = currentUser.getJournies();
+            journeyListView.getItems().clear();
             journeyListView.getItems().addAll(journeys);
+        }
+    }
+
+    private void updateFollowCounts() {
+        if (userController != null) {
+            int followersCount = userController.getFollowersCount();
+            int followingCount = userController.getFollowingCount();
+            followersBTN.setText("Followers: " + followersCount);
+            followingBTN.setText("Following: " + followingCount);
+        } else {
+            followersBTN.setText("Followers: N/A");
+            followingBTN.setText("Following: N/A");
+            System.err.println("Warning: UserController is null in ProfileController");
         }
     }
 
@@ -170,25 +183,34 @@ public class ProfileController {
             Database db = new Database();
             boolean isUnique = db.isUnique(userController.getFirestore(), newUsername);
             if (isUnique) {
-                // Update the username in the User object if username in userIdTextField is unique
+                // Update the username in the User object
                 currentUser.setUserID(newUsername);
 
                 // Update the user profile in the database
                 boolean updateSuccess = userController.updateUserProfile(currentUser);
 
-                if (updateSuccess) { //"Success" label changes depending on success
+                if (updateSuccess) {
                     userIdLabel.setText("User ID: " + newUsername);
                     errorlbl.setText("Username updated successfully.");
+                    System.out.println("Username updated successfully.");
+
+                    // Update the AppState with the new user information
+                    AppState.getInstance().setCurrentUser(currentUser);
+
+                    // Update follow counts
+                    updateFollowCounts();
                 } else {
                     errorlbl.setText("Error: Failed to update username in the database.");
+                    System.out.println("Error: Failed to update username in the database.");
                 }
             } else {
                 //in case the user tries submitting a username that exists already in the database
                 errorlbl.setText("Error: Username already exists.");
+                System.out.println("Error: Username already exists.");
             }
         } catch (ExecutionException | InterruptedException e) {
             errorlbl.setText("Error updating username: " + e.getMessage());
+            System.out.println("Error updating username: " + e.getMessage());
         }
     }
-
 }
