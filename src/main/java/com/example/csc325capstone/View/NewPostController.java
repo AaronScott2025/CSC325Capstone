@@ -82,4 +82,28 @@ public class NewPostController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void profileScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/userProfileScene.fxml"));
+            Parent root = loader.load();
+
+            ProfileController profileController = loader.getController();
+            User currentUser = AppState.getInstance().getCurrentUser();
+            com.example.csc325capstone.Controller.UserController userController = AppState.getInstance().getUserController();
+
+            if (currentUser != null && userController != null) {
+                profileController.setUserController(userController);
+                profileController.initializeProfile(currentUser);
+            }
+
+            Stage stage = (Stage) friendsBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

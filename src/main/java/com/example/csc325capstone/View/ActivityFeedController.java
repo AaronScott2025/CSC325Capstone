@@ -161,7 +161,7 @@ public class ActivityFeedController {
                 profileController.initializeProfile(currentUser);
             }
 
-            Stage stage = (Stage) profileBTN.getScene().getWindow();
+            Stage stage = (Stage) friendsBTN.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

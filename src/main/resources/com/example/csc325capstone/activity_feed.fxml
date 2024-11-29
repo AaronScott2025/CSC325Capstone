@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
+<AnchorPane prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ActivityFeedController">
     <children>
         <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -41,7 +41,7 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Friends">
+        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#profileScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>
