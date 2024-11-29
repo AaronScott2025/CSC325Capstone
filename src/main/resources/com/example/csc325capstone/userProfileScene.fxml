@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="postAnchor" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ProfileController">
@@ -70,17 +71,32 @@
                       <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                   </font>
               </Label>
-            <Button fx:id="followersBTN" layoutX="310.0" layoutY="18.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" styleClass="button-style" text="&lt;followerCount&gt; followers">
+            <Button fx:id="followersBTN" layoutX="310.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleFollowersButton" prefHeight="48.0" prefWidth="200.0" styleClass="button-style" text="&lt;followerCount&gt; followers">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="followingBTN" layoutX="540.0" layoutY="18.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="200.0" styleClass="button-style" text="&lt;followingCount&gt; following">
+            <Button fx:id="followingBTN" layoutX="540.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleFollowingButton" prefHeight="48.0" prefWidth="200.0" styleClass="button-style" text="&lt;followingCount&gt; following">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Button>
             <ListView fx:id="journeyListView" layoutX="47.0" layoutY="95.0" prefHeight="200.0" prefWidth="783.0" />
+            <VBox fx:id="followListContainer" layoutX="86.0" layoutY="-52.0" prefHeight="419.0" prefWidth="708.0" visible="false">
+               <children>
+                  <Label fx:id="followListTitle" prefHeight="48.0" prefWidth="695.0" text="&lt;follow&gt;">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="followListView" prefHeight="333.0" prefWidth="708.0" />
+                  <Button fx:id="closeFollowListBTN" mnemonicParsing="false" onAction="#closeFollowList" prefHeight="37.0" prefWidth="75.0" text="CLOSE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
             </children>
         </Pane>
     </children>

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 public class MainController {
 
@@ -33,6 +34,27 @@ public class MainController {
 
     @FXML
     private Label logErrorLbl;
+
+    @FXML
+    private Label searchForTrailsLabel;
+
+    @FXML
+    private Label searchFriendsLabel;
+
+    @FXML
+    private TextField usernameTextField;
+
+    @FXML
+    private Button searchFriendBTN;
+
+    @FXML
+    private Button searchForFriendsBTN;
+
+    @FXML
+    private Button searchForTrailsBTN;
+
+    @FXML
+    private Button followBTN;
 
     @FXML
     private Button activityBTN;
@@ -111,6 +133,115 @@ public class MainController {
                 locations.appendText(hike.getName() + "\n" + hike.getCity() + ", " + hike.getState() + "\n" + hike.getDescription() + "\n\n");
             }
         }
+    }
+
+
+    @FXML
+    void searchForFriends(ActionEvent event) {
+        // Hide search for trails elements
+        searchForTrailsLabel.setVisible(false);
+        queryCity.setVisible(false);
+        queryState.setVisible(false);
+        search.setVisible(false);
+        searchForFriendsBTN.setVisible(false);
+
+        // Show search for friends elements
+        searchFriendsLabel.setVisible(true);
+        usernameTextField.setVisible(true);
+        searchFriendBTN.setVisible(true);
+        searchForTrailsBTN.setVisible(true);
+    }
+
+    @FXML
+    void searchFriend(ActionEvent event) {
+        String username = usernameTextField.getText().trim();
+
+        if (username.isEmpty()) {
+            errorlbl.setText("Please enter a username to search.");
+            errorlbl.setVisible(true);
+            followBTN.setVisible(false);
+            return;
+        }
+
+        try {
+            if (userController.userExists(username)) {
+                errorlbl.setText("User found: " + username);
+                errorlbl.setVisible(true);
+                followBTN.setVisible(true);
+            } else {
+                errorlbl.setText("User not found: " + username);
+                errorlbl.setVisible(true);
+                followBTN.setVisible(false);
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            errorlbl.setText("Error searching for user: " + e.getMessage());
+            errorlbl.setVisible(true);
+            followBTN.setVisible(false);
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void followUser(ActionEvent event) {
+        String usernameToFollow = usernameTextField.getText().trim();
+
+        if (usernameToFollow.isEmpty()) {
+            errorlbl.setText("Please enter a username to follow.");
+            errorlbl.setVisible(true);
+            return;
+        }
+
+        if (userController == null) {
+            errorlbl.setText("Error: UserController is not initialized.");
+            errorlbl.setVisible(true);
+            return;
+        }
+
+        currentUser = AppState.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            errorlbl.setText("Error: Current user is not logged in.");
+            errorlbl.setVisible(true);
+            return;
+        }
+
+        if (usernameToFollow.equals(currentUser.getUserID())) {
+            errorlbl.setText("You cannot follow yourself.");
+            errorlbl.setVisible(true);
+            return;
+        }
+
+        try {
+            boolean followSuccess = userController.followUser(usernameToFollow);
+            if (followSuccess) {
+                errorlbl.setText("Successfully followed " + usernameToFollow);
+                errorlbl.setVisible(true);
+                followBTN.setDisable(true);
+                followBTN.setText("Following");
+            } else {
+                errorlbl.setText("Failed to follow " + usernameToFollow + ". User might not exist or you're already following them.");
+                errorlbl.setVisible(true);
+            }
+        } catch (Exception e) {
+            errorlbl.setText("Error following user: " + e.getMessage());
+            errorlbl.setVisible(true);
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void searchForTrails(ActionEvent event) {
+        // Show search for trails elements
+        searchForTrailsLabel.setVisible(true);
+        queryCity.setVisible(true);
+        queryState.setVisible(true);
+        search.setVisible(true);
+        searchForFriendsBTN.setVisible(true);
+
+        // Hide search for friends elements
+        searchFriendsLabel.setVisible(false);
+        usernameTextField.setVisible(false);
+        searchFriendBTN.setVisible(false);
+        searchForTrailsBTN.setVisible(false);
     }
 
     @FXML

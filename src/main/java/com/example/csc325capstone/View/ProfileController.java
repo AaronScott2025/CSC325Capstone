@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,6 +36,15 @@ public class ProfileController {
 
     @FXML
     private ListView<Journey> journeyListView;
+
+    @FXML
+    private VBox followListContainer;
+
+    @FXML
+    private Label followListTitle;
+
+    @FXML
+    private ListView<String> followListView;
 
     @FXML
     private Button mainBTN;
@@ -81,6 +91,35 @@ public class ProfileController {
             System.err.println("Warning: UserController is null in ProfileController");
         }
     }
+
+    @FXML
+    void handleFollowersButton(ActionEvent event) {
+        showFollowList("Followers", userController.getUserFollowers());
+    }
+
+    @FXML
+    void handleFollowingButton(ActionEvent event) {
+        showFollowList("Following", userController.getUserFollowing());
+    }
+
+    private void showFollowList(String title, List<String> users) {
+        followListView.getItems().clear();
+        followListView.getItems().addAll(users);
+        followListContainer.setVisible(true);
+        followListContainer.setManaged(true);
+        followListTitle.setText(title);
+        journeyListView.setVisible(false);
+        journeyListView.setManaged(false);
+    }
+
+    @FXML
+    void closeFollowList(ActionEvent event) {
+        followListContainer.setVisible(false);
+        followListContainer.setManaged(false);
+        journeyListView.setVisible(true);
+        journeyListView.setManaged(true);
+    }
+
 
     @FXML
     void exit(ActionEvent event) {
@@ -212,5 +251,15 @@ public class ProfileController {
             errorlbl.setText("Error updating username: " + e.getMessage());
             System.out.println("Error updating username: " + e.getMessage());
         }
+    }
+
+
+    @FXML
+    void toggleJourneyList(ActionEvent event) {
+        followListView.setVisible(false);
+        followListView.setManaged(false);
+        journeyListView.setVisible(true);
+        journeyListView.setManaged(true);
+        errorlbl.setText("Journey List");
     }
 }
