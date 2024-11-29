@@ -30,16 +30,6 @@ public class Journey {
 
         Journey journey = new Journey();
 
-//         Convert location string back to Hikes enum
-//        String locationStr = (String) map.get("location");
-//        if (locationStr != null) {
-//            try {
-//                journey.location = Hikes.valueOf(locationStr);
-//            } catch (IllegalArgumentException e) {
-//                journey.location = null; // or set a default value
-//            }
-//        }
-
         journey.starttime = (String) map.get("starttime");
         journey.endtime = (String) map.get("endtime");
 
@@ -68,20 +58,6 @@ public class Journey {
         return map;
     }
 
-    // Equals method for proper comparison in collections
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Journey journey = (Journey) o;
-//
-//        if (personalbest != journey.personalbest) return false;
-//        if (Double.compare(journey.miles, miles) != 0) return false;
-//        if (location != journey.location) return false;
-//        if (starttime != null ? !starttime.equals(journey.starttime) : journey.starttime != null) return false;
-//        return endtime != null ? endtime.equals(journey.endtime) : journey.endtime == null;
-//    }
 
     // HashCode method for proper use in collections
     @Override

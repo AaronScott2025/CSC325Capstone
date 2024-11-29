@@ -1,10 +1,8 @@
 package com.example.csc325capstone.Model;
 
 import com.google.cloud.firestore.DocumentSnapshot;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
+
+import java.util.*;
 
 public class User extends Person {
     private String userID;
@@ -12,10 +10,10 @@ public class User extends Person {
     private String record;
     private List<String> followersList;
     private List<String> followingList;
-    private List<Journey> journies;    // Changed to List<Journey>
+    private List<Journey> journies;
+    private List<Hike> hikingLog;
     private String securityAnswer1;
     private String securityAnswer2;
-    private List<Hike> hikinglog; //Field for Hiking Log
 
     // Default constructor for Firestore
     public User() {
@@ -26,8 +24,7 @@ public class User extends Person {
     }
 
     // Constructor with parameters
-    public User(String userID, String password, String record,
-                String securityAnswer1, String securityAnswer2) {
+    public User(String userID, String password, String record, String securityAnswer1, String securityAnswer2) {
         super(userID, record);
         this.userID = userID;
         this.password = password;
@@ -35,71 +32,82 @@ public class User extends Person {
         this.followersList = new ArrayList<>();
         this.followingList = new ArrayList<>();
         this.journies = new ArrayList<>();
+        this.hikingLog = new ArrayList<>();
         this.securityAnswer1 = securityAnswer1;
         this.securityAnswer2 = securityAnswer2;
-        this.hikinglog = new ArrayList<>();
     }
 
-    // Static factory method to create User from Firestore document
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userID", userID);
+        map.put("password", password);
+        map.put("record", record);
+        map.put("followers", followersList);
+        map.put("following", followingList);
+        map.put("journies", journies);
+        map.put("hikeLog", hikeLogToMap());
+        map.put("securityAnswer1", securityAnswer1);
+        map.put("securityAnswer2", securityAnswer2);
+        return map;
+    }
+
+    private List<Map<String, Object>> hikeLogToMap() {
+        List<Map<String, Object>> hikeMaps = new ArrayList<>();
+        for (Hike hike : hikingLog) {
+            Map<String, Object> hikeMap = new HashMap<>();
+            hikeMap.put("hikeName", hike.getHikeName());
+            hikeMap.put("location", hike.getLocation());
+            hikeMap.put("description", hike.getDescription());
+            hikeMap.put("date", hike.getDate());
+            hikeMaps.add(hikeMap);
+        }
+        return hikeMaps;
+    }
+
     public static User fromDocument(DocumentSnapshot document) {
         if (document == null || !document.exists()) {
             return null;
         }
 
-        User user = new User();
-        user.userID = document.getString("userID");
-        user.password = document.getString("password");
-        user.record = document.getString("record");
-        user.securityAnswer1 = document.getString("securityans1");
-        user.securityAnswer2 = document.getString("securityans2");
+        String userID = document.getString("userID");
+        String password = document.getString("password");
+        String record = document.getString("record");
+        String securityAnswer1 = document.getString("securityAnswer1");
+        String securityAnswer2 = document.getString("securityAnswer2");
 
-        // Convert Lists from Firestore
+        User user = new User(userID, password, record, securityAnswer1, securityAnswer2);
+
         List<String> followers = (List<String>) document.get("followers");
+        if (followers != null) {
+            user.followersList.addAll(followers);
+        }
+
         List<String> following = (List<String>) document.get("following");
+        if (following != null) {
+            user.followingList.addAll(following);
+        }
+
         List<Map<String, Object>> journeyMaps = (List<Map<String, Object>>) document.get("journies");
-        List<Hike> hikinglog = (List<Hike>) document.get("hikinglog");
-
-        user.followersList = followers != null ? followers : new ArrayList<>();
-        user.followingList = following != null ? following : new ArrayList<>();
-
-        // Convert journey maps to Journey objects
-        user.journies = new ArrayList<>();
         if (journeyMaps != null) {
             for (Map<String, Object> journeyMap : journeyMaps) {
-                Journey journey = Journey.fromMap(journeyMap);
-                if (journey != null) {
-                    user.journies.add(journey);
-                }
+                user.journies.add(Journey.fromMap(journeyMap));
             }
         }
-        if (hikinglog != null) {
-            user.hikinglog = hikinglog;
-        } else {
-            user.hikinglog = new ArrayList<>();
+
+        List<Map<String, Object>> hikeMaps = (List<Map<String, Object>>) document.get("hikingLog");
+        if (hikeMaps != null) {
+            for (Map<String, Object> hikeMap : hikeMaps) {
+                Hike hike = new Hike(
+                        (String) hikeMap.get("hikeName"),
+                        (String) hikeMap.get("location"),
+                        (String) hikeMap.get("description"),
+                        hikeMap.get("date") instanceof Date ? (Date) hikeMap.get("date") : new Date()
+                );
+                user.hikingLog.add(hike);
+            }
         }
 
         return user;
-    }
-
-    // Convert User to Map for Firestore
-    public Map<String, Object> toMap() {
-        Map<String, Object> data = new HashMap<>();
-        data.put("userID", userID);
-        data.put("password", password);
-        data.put("record", record);
-        data.put("followers", followersList);
-        data.put("following", followingList);
-        // Convert Journey objects to maps
-        List<Map<String, Object>> journeyMaps = new ArrayList<>();
-        for (Journey journey : journies) {
-            journeyMaps.add(journey.toMap());
-        }
-
-        data.put("journies", journeyMaps);
-        data.put("securityans1", securityAnswer1);
-        data.put("securityans2", securityAnswer2);
-        data.put("hikinglog", hikinglog);
-        return data;
     }
 
     // Modified follow/unfollow methods to work with IDs instead of whole User objects
@@ -134,12 +142,14 @@ public class User extends Person {
     }
 
     // Getters and setters
-    public void addHike(Hike hike){
-        this.hikinglog.add(hike);
+    public List<Hike> getHikingLog() {
+        return hikingLog;
     }
-    public List<Hike> getHikingLog(){
-        return this.hikinglog;
+
+    public void addHike(Hike hike) {
+        hikingLog.add(hike);
     }
+
     @Override
     public String getUserID() { return userID; }
 

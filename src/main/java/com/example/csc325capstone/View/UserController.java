@@ -1,6 +1,7 @@
 package com.example.csc325capstone.Controller;
 
 import com.example.csc325capstone.Model.Database;
+import com.example.csc325capstone.Model.Hike;
 import com.example.csc325capstone.Model.Journey;
 import com.example.csc325capstone.Model.User;
 import com.example.csc325capstone.ViewModel.Main;
@@ -280,5 +281,21 @@ public class UserController {
             return User.fromDocument(document);
         }
         return null;
+    }
+
+    public boolean addHike(Hike hike) {
+        try {
+            if (currentUser == null) return false;
+
+            currentUser.addHike(hike);
+            return updateUserProfile(currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Hike> getUserHikes() {
+        return currentUser != null ? currentUser.getHikingLog() : new ArrayList<>();
     }
 }
