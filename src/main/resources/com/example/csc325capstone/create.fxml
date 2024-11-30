@@ -41,7 +41,7 @@
                   <Font name="Berlin Sans FB Demi Bold" size="37.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="30.0" layoutY="293.0" prefHeight="25.0" prefWidth="359.0" text="What is the name of the school you grew up on?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+            <Label alignment="CENTER" layoutX="30.0" layoutY="293.0" prefHeight="25.0" prefWidth="359.0" text="What is the name of the street you grew up on?" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
