@@ -43,6 +43,13 @@ public class LogHikeController {
 
     private UserController userController;
 
+    public void initialize() {
+        // This method is called after the FXML file has been loaded
+        if (userController != null) {
+            loadHikes();
+        }
+    }
+
     public void setUserController(UserController userController) {
         this.userController = userController;
         loadHikes();
@@ -53,13 +60,13 @@ public class LogHikeController {
             hikeListView.getItems().clear();
             List<Hike> hikes = userController.getUserHikes();
             for (Hike hike : hikes) {
-                hikeListView.getItems().add(hike.getHikeName() + " - " + hike.getLocation());
+                hikeListView.getItems().add(hike.getHikeName() + " - " + hike.getLocation() + " (" + hike.getDate() + ")");
             }
         }
     }
 
     @FXML
-    void addHike(ActionEvent event) throws InterruptedException {
+    void addHike(ActionEvent event) {
         String hikeName = hikeNameField.getText().trim();
         String location = locationField.getText().trim();
         String description = descriptionField.getText().trim();
@@ -99,6 +106,7 @@ public class LogHikeController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            messageLabel.setText("Error returning to profile: " + e.getMessage());
         }
     }
 
@@ -110,12 +118,12 @@ public class LogHikeController {
 
             MainController mainController = loader.getController();
 
-            User currentUser = AppState.getInstance().getCurrentUser();
-            UserController userController = AppState.getInstance().getUserController();
+            User currentUser = userController.getCurrentUser();
 
-            if (currentUser != null && userController != null) {
+            if (currentUser != null) {
                 mainController.initWelcome("Welcome back, " + currentUser.getUserID());
                 mainController.setUserController(userController);
+                mainController.setCurrentUser(currentUser);
 
                 Location cl = new Location(null);
                 try {
@@ -125,12 +133,14 @@ public class LogHikeController {
                     e.printStackTrace();
                 }
             }
+
             Stage stage = (Stage) discardBTN.getScene().getWindow();
             Scene mainScene = new Scene(root);
             stage.setScene(mainScene);
             stage.show();
         } catch (IOException e){
             e.printStackTrace();
+            messageLabel.setText("Error returning to main screen: " + e.getMessage());
         }
     }
 
