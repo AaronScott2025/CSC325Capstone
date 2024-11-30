@@ -1,10 +1,7 @@
 package com.example.csc325capstone.View;
 
 import com.example.csc325capstone.Controller.UserController;
-import com.example.csc325capstone.Model.Database;
-import com.example.csc325capstone.Model.Journey;
-import com.example.csc325capstone.Model.Location;
-import com.example.csc325capstone.Model.User;
+import com.example.csc325capstone.Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,10 +58,65 @@ public class ProfileController {
     @FXML
     private Button submitBTN;
 
+    @FXML
+    private Button hikeLogButton;
+
+    @FXML
+    private Button logHikeBTN;
+
+    @FXML
+    private ListView<String> hikeLogListView;
+
     private UserController userController;
 
     public void setUserController(UserController userController) {
         this.userController = userController;
+    }
+
+    @FXML
+    void openHikeLog(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/hikeLog.fxml"));
+            Parent root = loader.load();
+
+            LogHikeController hikeLogController = loader.getController();
+            hikeLogController.setUserController(userController);
+
+            Stage stage = (Stage) hikeLogButton.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            errorlbl.setText("Error loading hike log: " + e.getMessage());
+        }
+    }
+
+    private void updateHikeLogDisplay() {
+        hikeLogListView.getItems().clear();
+        List<Hike> hikes = userController.getUserHikes();
+        for (Hike hike : hikes) {
+            hikeLogListView.getItems().add(hike.getHikeName() + " - " + hike.getLocation() + " (" + hike.getDate() + ")");
+        }
+    }
+
+    @FXML
+    void logNewHike(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/logHike.fxml"));
+            Parent root = loader.load();
+
+            LogHikeController logHikeController = loader.getController();
+            logHikeController.setUserController(userController);
+
+            Stage stage = (Stage) logHikeBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            errorlbl.setText("Error loading hike logging screen: " + e.getMessage());
+        }
     }
 
     public void initializeProfile(User currentUser) {
@@ -76,6 +128,8 @@ public class ProfileController {
             List<Journey> journeys = currentUser.getJournies();
             journeyListView.getItems().clear();
             journeyListView.getItems().addAll(journeys);
+
+            updateHikeLogDisplay();
         }
     }
 

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
    <children>
       <SplitPane fx:id="splitPane" dividerPositions="0.5" orientation="VERTICAL" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
          <items>
@@ -39,7 +33,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                  <Button fx:id="logHikeBtn" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>

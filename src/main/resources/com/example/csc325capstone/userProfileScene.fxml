@@ -45,9 +45,9 @@
         </Button>
         <Pane fx:id="postPane" layoutX="47.0" layoutY="103.0" prefHeight="403.0" prefWidth="873.0" stylesheets="@../../../style.css">
             <children>
-                <Label layoutX="44.0" layoutY="57.0" text="Your Journies">
+                <Label layoutX="47.0" layoutY="73.0" text="Your Journies">
                     <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="17.0" />
                     </font>
                 </Label>
                 <Label layoutX="44.0" layoutY="297.0" prefHeight="30.0" prefWidth="175.0" text="Change Username">
@@ -81,7 +81,7 @@
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Button>
-            <ListView fx:id="journeyListView" layoutX="47.0" layoutY="95.0" prefHeight="200.0" prefWidth="783.0" />
+            <ListView fx:id="journeyListView" layoutX="47.0" layoutY="95.0" prefHeight="200.0" prefWidth="363.0" />
             <VBox fx:id="followListContainer" layoutX="86.0" layoutY="-52.0" prefHeight="419.0" prefWidth="708.0" visible="false">
                <children>
                   <Label fx:id="followListTitle" prefHeight="48.0" prefWidth="695.0" text="&lt;follow&gt;">
@@ -97,6 +97,12 @@
                   </Button>
                </children>
             </VBox>
+            <Label layoutX="466.0" layoutY="73.0" text="Your Logs">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <ListView fx:id="hikeLogListView" layoutX="466.0" layoutY="95.0" prefHeight="200.0" prefWidth="363.0" />
             </children>
         </Pane>
     </children>
