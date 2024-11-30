@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.MainController">
    <children>
       <SplitPane fx:id="splitPane" dividerPositions="0.5" orientation="VERTICAL" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-        <items>
-          <AnchorPane fx:id="topAnchor" layoutX="5.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="948.0" styleClass="topAnchor" stylesheets="@../../../style.css">
+         <items>
+            <AnchorPane fx:id="topAnchor" layoutX="5.0" layoutY="5.0" minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="948.0" styleClass="topAnchor" stylesheets="@../../../style.css">
                <children>
                   <Label fx:id="welcomeLbl" alignment="CENTER" layoutX="-1.0" layoutY="107.0" prefHeight="57.0" prefWidth="950.0" text="Welcome back, &lt;USERNAME&gt;" textAlignment="CENTER" textFill="#eb9200" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                      </font>
                   </Label>
-                  <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#friendsScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Profile" textAlignment="CENTER">
+                  <Button fx:id="profileBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#profileScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Profile" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -39,7 +33,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
+                  <Button fx:id="logHikeBtn" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" stylesheets="@../../../style.css" text="Log" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -66,7 +60,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="306.0" layoutY="152.0" prefHeight="57.0" prefWidth="278.0" text="Search For Trails" textAlignment="CENTER" textFill="#ed9200" textOverrun="CLIP" wrapText="true">
+                  <Label fx:id="searchForTrailsLabel" alignment="CENTER" layoutX="306.0" layoutY="152.0" prefHeight="57.0" prefWidth="278.0" text="Search For Trails" textAlignment="CENTER" textFill="#ed9200" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font name="Berlin Sans FB" size="36.0" />
                      </font>
@@ -83,9 +77,41 @@
                      </font>
                   </Label>
                   <Label fx:id="errorlbl" alignment="CENTER" layoutX="285.0" layoutY="250.0" prefHeight="17.0" prefWidth="370.0" text="error" textAlignment="CENTER" textFill="RED" visible="false" />
+                  <Button fx:id="searchForFriendsBTN" layoutX="346.0" layoutY="34.0" mnemonicParsing="false" onAction="#searchForFriends" prefHeight="20.0" prefWidth="145.0" styleClass="button-style" stylesheets="@../../../style.css" text="Search for Friends" textAlignment="CENTER">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Label fx:id="searchFriendsLabel" alignment="CENTER" layoutX="316.0" layoutY="152.0" prefHeight="57.0" prefWidth="286.0" text="Search For Friends" textAlignment="CENTER" textFill="#ed9200" textOverrun="CLIP" visible="false" wrapText="true">
+                     <font>
+                        <Font name="Berlin Sans FB" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameTextField" layoutX="266.0" layoutY="209.0" prefHeight="35.0" prefWidth="317.0" promptText="Username" visible="false" />
+                  <Button fx:id="searchFriendBTN" layoutX="598.0" layoutY="209.0" mnemonicParsing="false" onAction="#searchFriend" prefHeight="35.0" prefWidth="75.0" text="Search" textAlignment="CENTER" visible="false">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="followBTN" layoutX="597.0" layoutY="209.0" mnemonicParsing="false" onAction="#followUser" prefHeight="35.0" prefWidth="75.0" text="Follow" textAlignment="CENTER" visible="false">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="searchForTrailsBTN" layoutX="346.0" layoutY="34.0" mnemonicParsing="false" onAction="#searchForTrails" prefHeight="20.0" prefWidth="145.0" styleClass="button-style" stylesheets="@../../../style.css" text="Search for Trails" textAlignment="CENTER" visible="false">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="bottomAnchor" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../../../style.css">
+            <AnchorPane fx:id="bottomAnchor" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" stylesheets="@../../../style.css">
                <children>
                   <TextArea fx:id="locations" editable="false" prefHeight="271.0" prefWidth="950.0" text="Local Hikes Near &lt;LOCATION&gt;&#10;&#10;&lt;Hike Name&gt;&#10;&lt;City&gt;&#10;&lt;State&gt;&#10;&lt;Description&gt;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
@@ -94,7 +120,7 @@
                   </TextArea>
                </children>
             </AnchorPane>
-        </items>
+         </items>
       </SplitPane>
    </children>
 </Pane>

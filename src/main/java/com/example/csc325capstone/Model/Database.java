@@ -13,8 +13,7 @@ import java.util.concurrent.ExecutionException;
 public class Database {
     private Firestore fstore; //Hiking log
 
-    public Database(Firestore fstore){ //hiking log store
-
+    public Database(){ //hiking log store
         this.fstore = fstore;
     }
     public void saveHikingLog(User user) throws ExecutionException, InterruptedException {

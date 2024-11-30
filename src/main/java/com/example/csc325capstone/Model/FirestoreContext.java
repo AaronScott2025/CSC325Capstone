@@ -31,6 +31,7 @@ public class FirestoreContext {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
         return fs;
     }
 }
