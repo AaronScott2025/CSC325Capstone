@@ -4,6 +4,7 @@ import com.example.csc325capstone.Controller.UserController;
 import com.example.csc325capstone.Model.Hike;
 import com.example.csc325capstone.Model.Location;
 import com.example.csc325capstone.Model.User;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,8 +75,9 @@ public class LogHikeController {
             messageLabel.setText("Hike logged successfully!");
             clearFields();
             loadHikes();
-            Thread.sleep(300);
-            mainScreen(event);
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(e -> backToProfile(event));
+            pause.play();
         } else {
             messageLabel.setText("Failed to log hike. Please try again.");
         }

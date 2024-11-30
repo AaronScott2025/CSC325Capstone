@@ -31,7 +31,7 @@ public class ActivityFeedController {
     @FXML
     private Button friendsBTN;
     @FXML
-    private Button logBTN;
+    private Button logHikeBtn;
     @FXML
     private Button profileBTN;
 
@@ -98,6 +98,10 @@ public class ActivityFeedController {
         return posts;
     }
 
+    public void setUserController(UserController userController) {
+        this.userController = userController;
+    }
+
     @FXML
     void mainScreen(ActionEvent event) {
         try {
@@ -162,6 +166,31 @@ public class ActivityFeedController {
             }
 
             Stage stage = (Stage) friendsBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void logScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/logHike.fxml"));
+            Parent root = loader.load();
+
+            LogHikeController logHikeController = loader.getController();
+
+            // Use the UserController from AppState instead of the class field
+            UserController userController = AppState.getInstance().getUserController();
+            if (userController == null) {
+                System.err.println("Error: UserController is null in ActivityFeedController");
+                return;
+            }
+            logHikeController.setUserController(userController);
+
+            Stage stage = (Stage) logHikeBtn.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

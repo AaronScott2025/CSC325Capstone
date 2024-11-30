@@ -36,7 +36,7 @@
                 <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
+        <Button fx:id="logHikeBtn" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>

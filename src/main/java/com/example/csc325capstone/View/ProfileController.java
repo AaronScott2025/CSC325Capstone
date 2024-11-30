@@ -62,6 +62,9 @@ public class ProfileController {
     private Button hikeLogButton;
 
     @FXML
+    private Button logHikeBtn;
+
+    @FXML
     private Button logHikeBTN;
 
     @FXML
@@ -187,7 +190,21 @@ public class ProfileController {
 
     @FXML
     void logScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/logHike.fxml"));
+            Parent root = loader.load();
 
+            LogHikeController logHikeController = loader.getController();
+            logHikeController.setUserController(userController);
+
+            Stage stage = (Stage) logHikeBtn.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            errorlbl.setText("Error loading hike logging screen: " + e.getMessage());
+        }
     }
 
     @FXML

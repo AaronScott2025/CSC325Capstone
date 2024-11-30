@@ -247,6 +247,13 @@ public class MainController {
     @FXML
     void activityScreen(ActionEvent event) {
         try {
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/userProfileScene.fxml"));
+            Parent root2 = loader2.load();
+
+            ProfileController profileController = loader2.getController();
+
+            User currentUser = AppState.getInstance().getCurrentUser();
+            UserController userController = AppState.getInstance().getUserController();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/activity_feed.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) activityBTN.getScene().getWindow();

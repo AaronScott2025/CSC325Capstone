@@ -11,9 +11,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LogHikeController">
    <children>
-      <ImageView fitHeight="557.0" fitWidth="961.0" layoutX="-7.0" layoutY="-3.0">
+      <ImageView fitHeight="555.0" fitWidth="958.0" layoutX="-7.0" layoutY="-3.0">
          <image>
-            <Image url="@../../../images/background/bluehike.png" />
+            <Image url="@../../../images/background/cyan.jpg" />
          </image>
       </ImageView>
       <Pane fx:id="createPane" layoutX="104.0" layoutY="49.0" prefHeight="454.0" prefWidth="735.0" stylesheets="@../../../style.css">
