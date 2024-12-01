@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="postAnchor" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.ProfileController">
+    <children>
+        <ImageView fitHeight="559.0" fitWidth="959.0" layoutX="-7.0" layoutY="-3.0">
+            <image>
+                <Image url="@../../../images/background/purple_orange.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../images/logo.png" />
+            </image>
+        </ImageView>
+
+        <Label layoutX="91.0" layoutY="28.0" prefHeight="48.0" prefWidth="175.0" text="TrailQuest" textFill="#2f112d">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="34.0" />
+            </font>
+        </Label>
+        <Button fx:id="activityBTN" layoutX="504.0" layoutY="34.0" mnemonicParsing="false" onAction="#activityScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Activity">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+        </Button>
+        <Button fx:id="profileBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
+            <font>
+                <Font name="Calibri Bold" size="16.0" />
+            </font>
+        </Button>
+        <Button fx:id="logHikeBtn" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
+            <font>
+                <Font name="Calibri Bold" size="16.0" />
+            </font>
+        </Button>
+        <Button fx:id="mainBTN" layoutX="834.0" layoutY="34.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Main">
+            <font>
+                <Font name="Calibri Bold" size="16.0" />
+            </font>
+        </Button>
+        <Pane fx:id="postPane" layoutX="47.0" layoutY="103.0" prefHeight="403.0" prefWidth="873.0" stylesheets="@../../../style.css">
+            <children>
+            <Label layoutX="466.0" layoutY="73.0" text="Your Logs">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <ListView fx:id="hikeLogListView" layoutX="466.0" layoutY="95.0" prefHeight="200.0" prefWidth="363.0" />
+                <Label layoutX="47.0" layoutY="73.0" text="Your Journies">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Label>
+                <Label layoutX="44.0" layoutY="297.0" prefHeight="30.0" prefWidth="175.0" text="Change Username">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="userIdTextField" layoutX="44.0" layoutY="331.0" prefHeight="27.0" prefWidth="189.0" text="&lt;Username&gt;" />
+              <Button fx:id="submitBTN" layoutX="742.0" layoutY="329.0" mnemonicParsing="false" onAction="#updateProfile" prefHeight="30.0" prefWidth="85.0" styleClass="button-style" text="Submit">
+                  <font>
+                      <Font name="System Bold" size="15.0" />
+                  </font>
+              </Button>
+              <Button fx:id="discardBTN" layoutX="637.0" layoutY="329.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="30.0" prefWidth="85.0" styleClass="button-style" text="Discard">
+                  <font>
+                      <Font name="System Bold" size="15.0" />
+                  </font>
+              </Button>
+              <Label fx:id="userIdLabel" layoutX="15.0" layoutY="14.0" prefHeight="43.0" prefWidth="285.0" text="&lt;Username&gt;" textAlignment="CENTER">
+                  <font>
+                      <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+                  </font>
+              </Label>
+            <Button fx:id="followersBTN" layoutX="310.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleFollowersButton" prefHeight="48.0" prefWidth="200.0" styleClass="button-style" text="&lt;followerCount&gt; followers">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="followingBTN" layoutX="540.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleFollowingButton" prefHeight="48.0" prefWidth="200.0" styleClass="button-style" text="&lt;followingCount&gt; following">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <ListView fx:id="journeyListView" layoutX="47.0" layoutY="95.0" prefHeight="200.0" prefWidth="363.0" />
+            <VBox fx:id="followListContainer" layoutX="86.0" layoutY="-52.0" prefHeight="419.0" prefWidth="708.0" visible="false">
+               <children>
+                  <Label fx:id="followListTitle" prefHeight="48.0" prefWidth="695.0" text="&lt;follow&gt;">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="followListView" prefHeight="333.0" prefWidth="708.0" />
+                  <Button fx:id="closeFollowListBTN" mnemonicParsing="false" onAction="#closeFollowList" prefHeight="37.0" prefWidth="75.0" text="CLOSE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

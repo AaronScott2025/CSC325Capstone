@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LogHikeController">
+   <children>
+      <ImageView fitHeight="555.0" fitWidth="958.0" layoutX="-7.0" layoutY="-3.0">
+         <image>
+            <Image url="@../../../images/background/cyan.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="createPane" layoutX="104.0" layoutY="49.0" prefHeight="454.0" prefWidth="735.0" stylesheets="@../../../style.css">
+         <children>
+            <TextField fx:id="hikeNameField" layoutX="141.0" layoutY="112.0" prefHeight="43.0" prefWidth="296.0" promptText="Hike Name" />
+            <Button fx:id="submitBTN" layoutX="554.0" layoutY="331.0" mnemonicParsing="false" onAction="#addHike" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #3932FF;" stylesheets="@../../../style.css" text="Log Hike" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="128.0" layoutY="73.0" prefHeight="37.0" prefWidth="171.0" text="Hike Name" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="188.0" layoutY="19.0" prefHeight="50.0" prefWidth="359.0" text="Log a Hike" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="37.0" />
+               </font>
+            </Label>
+            <Button fx:id="discardBTN" layoutX="567.0" layoutY="384.0" mnemonicParsing="false" onAction="#mainScreen" prefHeight="32.0" prefWidth="96.0" stylesheets="@../../../style.css" text="Discard" textFill="#f59d32">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="126.0" layoutY="175.0" prefHeight="37.0" prefWidth="146.0" text="Location" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="locationField" layoutX="141.0" layoutY="216.0" prefHeight="43.0" prefWidth="298.0" promptText="Location" />
+            <TextField fx:id="descriptionField" layoutX="141.0" layoutY="320.0" prefHeight="104.0" prefWidth="299.0" promptText="Description" />
+            <Label alignment="CENTER" layoutX="131.0" layoutY="273.0" prefHeight="37.0" prefWidth="171.0" text="Description" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="messageLabel" layoutX="493.0" layoutY="300.0" prefHeight="20.0" prefWidth="228.0" textFill="RED">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="createerrorlbl" alignment="CENTER" layoutX="436.0" layoutY="509.0" prefHeight="25.0" prefWidth="97.0" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
