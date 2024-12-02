@@ -386,4 +386,8 @@ public class MainController {
 
     }
 
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
 }

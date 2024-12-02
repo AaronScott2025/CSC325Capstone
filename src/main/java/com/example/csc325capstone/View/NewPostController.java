@@ -1,6 +1,7 @@
 package com.example.csc325capstone.View;
 
 import com.example.csc325capstone.Model.Location;
+import com.example.csc325capstone.Model.Post;
 import com.example.csc325capstone.Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,13 +9,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 
 public class NewPostController {
+    @FXML
+    private TextField newImageUrlField;
+    @FXML
+    private TextField newPostDescription;
     @FXML
     private AnchorPane postAnchor;
     @FXML
@@ -27,6 +36,12 @@ public class NewPostController {
     private Button logBTN;
     @FXML
     private Button mainBTN;
+
+    private User currentUser = AppState.getInstance().getCurrentUser();
+
+    private ActivityFeedController activityFeedController;
+
+    FileChooser fileChooser = new FileChooser();
 
     // The "Activity" button navigates to the Activity Feed
     @FXML
@@ -104,6 +119,91 @@ public class NewPostController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void logScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/logHike.fxml"));
+            Parent root = loader.load();
+
+            LogHikeController logHikeController = loader.getController();
+
+            // Use the UserController from AppState instead of the class field
+            com.example.csc325capstone.Controller.UserController userController = AppState.getInstance().getUserController();
+            if (userController == null) {
+                System.err.println("Error: UserController is null in ActivityFeedController");
+                return;
+            }
+            logHikeController.setUserController(userController);
+
+            Stage stage = (Stage) logBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setActivityFeedController(ActivityFeedController activityFeedController) {
+        this.activityFeedController = activityFeedController;
+        System.out.println("Controller set successfully");
+    }
+
+    public void addPost(ActionEvent event) {
+
+        String newDescription = newPostDescription.getText();
+        String newImageUrl = newImageUrlField.getText();
+        String postAuthor = currentUser.getUserID();
+
+        // Validate the image URL and sets default url
+        if (newImageUrl == null || newImageUrl.isEmpty()) {
+            System.out.println("No image URL provided. Using default placeholder.");
+            newImageUrl = getClass().getResource("/images/gradient.png").toExternalForm();
+        }
+
+        // Print the URL
+        System.out.println("Image URL: " + newImageUrl);
+
+        try {
+            // Create the new post
+            Post newPost = new Post(newDescription, newImageUrl, postAuthor);
+
+            if (activityFeedController != null) {
+                activityFeedController.addPostToFeed(newPost);
+                activityFeedController.refreshFeed(); // Error refreshing the feed :(
+                                                    //   specifically: Error creating post: Invalid URL: Invalid URL or resource not found
+                                                    //   Note: the url is external not local to the project
+                System.out.println("Post added and feed refreshed.");
+            } else {
+                System.out.println("Controller not set");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error creating post: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    public void getNewImageUrl(javafx.scene.input.MouseEvent mouseEvent) {
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+        // Show the file chooser dialog
+        File file = fileChooser.showOpenDialog(new Stage());
+        // Create a FileChooser instance
+        if (file != null) {
+            // Get the file URL and set it in the Url text field
+            String fileUrl = file.toURI().toString();
+            newImageUrlField.setText(fileUrl);
+            //Image image = new Image(fileUrl);
+
+        } else {
+            System.out.println("No file selected");
         }
     }
 }

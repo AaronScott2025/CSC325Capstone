@@ -75,11 +75,22 @@ public class LoginController {
                 fauth = FirebaseAuth.getInstance();
             } catch (Exception e) {
                 errorlbl.setText("Error: Could not connect to backend. Please try again.");
+                return;
             }
 
             // Initialize UserController and set it in AppState
             UserController userController = new UserController(fstore);
             AppState.getInstance().setUserController(userController);
+
+            // Load user data, including hiking log
+            User user = userController.loadUserProfile(UserField.getText());
+            if (user == null) {
+                errorlbl.setText("Error: Failed to load user data.");
+                return;
+            }
+
+            // Set the loaded user in AppState
+            AppState.getInstance().setCurrentUser(user);
 
             navigateToMainScene(UserField.getText());
         } else {
@@ -179,6 +190,7 @@ public class LoginController {
             MainController mainController = fx.getController();
 
             UserController userController = AppState.getInstance().getUserController();
+            User user = AppState.getInstance().getCurrentUser();
 
             if (mainController == null) {
                 System.err.println("Error: MainController is null");
@@ -190,10 +202,13 @@ public class LoginController {
                 return;
             }
 
-            mainController.setUserController(userController);
+            if (user == null) {
+                System.err.println("Error: User is null");
+                return;
+            }
 
-            User user = userController.loadUserProfile(username);
-            AppState.getInstance().setCurrentUser(user);
+            mainController.setUserController(userController);
+            mainController.setCurrentUser(user);
 
             Location cl = new Location(null);
             cl.setLocation(cl.getcurrentLocation());
@@ -205,7 +220,7 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
 
-            // Close the create account window if it's open
+            // Close the login window if it's open
             if (this.stage != null) {
                 this.stage.close();
             }

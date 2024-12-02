@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="postAnchor" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.NewPostController">
+<AnchorPane fx:id="postAnchor" prefHeight="550.0" prefWidth="950.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.NewPostController">
     <children>
         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -26,12 +26,12 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
+        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" onAction="#profileScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
+        <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" onAction="#logScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>
@@ -43,30 +43,30 @@
         </Button>
         <Pane fx:id="postPane" layoutX="147.0" layoutY="115.0" prefHeight="391.0" prefWidth="668.0" stylesheets="@../../../style.css">
             <children>
-                <TextField layoutX="44.0" layoutY="87.0" prefHeight="104.0" prefWidth="581.0" />
+                <TextField fx:id="newPostDescription" layoutX="44.0" layoutY="87.0" prefHeight="104.0" prefWidth="581.0" />
                 <TextField layoutX="44.0" layoutY="221.0" prefHeight="27.0" prefWidth="581.0" />
                 <Label layoutX="44.0" layoutY="57.0" text="Description">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="47.0" layoutY="191.0" prefHeight="30.0" prefWidth="115.0" text="Upload Log">
+                <Label layoutX="47.0" layoutY="191.0" prefHeight="30.0" prefWidth="115.0" text="Hiker Log">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="47.0" layoutY="256.0" prefHeight="30.0" prefWidth="133.0" text="Upload Image">
+                <Label layoutX="47.0" layoutY="256.0" prefHeight="30.0" prefWidth="133.0" text="Image">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField layoutX="45.0" layoutY="286.0" prefHeight="27.0" prefWidth="581.0" />
-              <Button layoutX="545.0" layoutY="330.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="button-style" text="Post">
+                <TextField fx:id="newImageUrlField" layoutX="142.0" layoutY="286.0" prefHeight="27.0" prefWidth="484.0" />
+              <Button layoutX="545.0" layoutY="330.0" mnemonicParsing="false" onAction="#addPost" prefHeight="30.0" prefWidth="85.0" styleClass="button-style" text="Post" textFill="#1dcd26">
                   <font>
                       <Font name="System Bold" size="15.0" />
                   </font>
               </Button>
-              <Button layoutX="450.0" layoutY="330.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="button-style" text="Discard">
+              <Button layoutX="450.0" layoutY="330.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" onAction="#activityScreen" styleClass="button-style" text="Discard" textFill="#d36d28">
                   <font>
                       <Font name="System Bold" size="15.0" />
                   </font>
@@ -76,6 +76,11 @@
                       <Font name="Berlin Sans FB Demi Bold" size="30.0" />
                   </font>
               </Label>
+            <Button layoutX="44.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#getNewImageUrl" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: white;" styleClass="button-style" stylesheets="@../../../style.css" text="Upload" textFill="#1a7eff">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
             </children>
         </Pane>
     </children>

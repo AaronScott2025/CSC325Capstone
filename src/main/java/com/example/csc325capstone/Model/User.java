@@ -1,5 +1,6 @@
 package com.example.csc325capstone.Model;
 
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.DocumentSnapshot;
 
 import java.util.*;
@@ -21,6 +22,7 @@ public class User extends Person {
         this.followersList = new ArrayList<>();
         this.followingList = new ArrayList<>();
         this.journies = new ArrayList<>();
+        this.hikingLog = new ArrayList<>();
     }
 
     // Constructor with parameters
@@ -94,16 +96,21 @@ public class User extends Person {
             }
         }
 
-        List<Map<String, Object>> hikeMaps = (List<Map<String, Object>>) document.get("hikingLog");
+        List<Map<String, Object>> hikeMaps = (List<Map<String, Object>>) document.get("hikeLog");
         if (hikeMaps != null) {
             for (Map<String, Object> hikeMap : hikeMaps) {
-                Hike hike = new Hike(
-                        (String) hikeMap.get("hikeName"),
-                        (String) hikeMap.get("location"),
-                        (String) hikeMap.get("description"),
-                        hikeMap.get("date") instanceof Date ? (Date) hikeMap.get("date") : new Date()
-                );
-                user.hikingLog.add(hike);
+                try {
+                    String hikeName = (String) hikeMap.get("hikeName");
+                    String location = (String) hikeMap.get("location");
+                    String description = (String) hikeMap.get("description");
+                    Date date = hikeMap.get("date") instanceof Timestamp ? ((Timestamp) hikeMap.get("date")).toDate() : new Date();
+
+                    Hike hike = new Hike(hikeName, location, description, date);
+                    user.addHike(hike);
+                } catch (ClassCastException | NullPointerException e) {
+                    // Handle any casting or missing data issues
+                    System.err.println("Error parsing Hike object: " + e.getMessage());
+                }
             }
         }
 
@@ -147,6 +154,9 @@ public class User extends Person {
     }
 
     public void addHike(Hike hike) {
+        if (hikingLog == null) {
+            hikingLog = new ArrayList<>();
+        }
         hikingLog.add(hike);
     }
 

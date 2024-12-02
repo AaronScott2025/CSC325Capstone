@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.Cursor?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325capstone.View.LoginController">
    <children>
       <ImageView fitHeight="557.0" fitWidth="995.0" layoutX="-7.0" layoutY="-3.0">
@@ -21,7 +22,7 @@
             <Font name="Berlin Sans FB Bold" size="52.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="336.0" layoutY="121.0" prefHeight="75.0" prefWidth="324.0" text=" Discover Your Path, Embrace your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Label alignment="CENTER" layoutX="336.0" layoutY="121.0" prefHeight="75.0" prefWidth="324.0" text=" Discover Your Path, Embrace Your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="27.0" />
          </font>
@@ -41,7 +42,11 @@
             <Button fx:id="CreateAccount" layoutX="18.0" layoutY="43.0" mnemonicParsing="false" onAction="#createPressed" style="-fx-background-color: #3932FF;" text="Create An Account" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="loginPane" layoutX="391.0" layoutY="214.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../style.css">
@@ -51,7 +56,11 @@
             <Button fx:id="LoginButton" layoutX="73.0" layoutY="150.0" mnemonicParsing="false" onAction="#loginPressed" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #5FC636;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Label layoutX="25.0" layoutY="29.0" text="Login To Your Account" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />

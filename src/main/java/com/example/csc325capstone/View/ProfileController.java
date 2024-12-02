@@ -96,7 +96,7 @@ public class ProfileController {
     }
 
     private void updateHikeLogDisplay() {
-        hikeLogListView.getItems().clear();
+        hikeLogListView.getItems();
         List<Hike> hikes = userController.getUserHikes();
         for (Hike hike : hikes) {
             hikeLogListView.getItems().add(hike.getHikeName() + " - " + hike.getLocation() + " (" + hike.getDate() + ")");

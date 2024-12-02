@@ -4,7 +4,6 @@ import com.example.csc325capstone.Model.Database;
 import com.example.csc325capstone.Model.Hike;
 import com.example.csc325capstone.Model.Journey;
 import com.example.csc325capstone.Model.User;
-import com.example.csc325capstone.ViewModel.Main;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import javafx.concurrent.Task;
@@ -296,6 +295,7 @@ public class UserController {
     }
 
     public List<Hike> getUserHikes() {
-        return currentUser != null ? currentUser.getHikingLog() : new ArrayList<>();
+        //return currentUser != null ? currentUser.getHikingLog() : new ArrayList<>();
+        return currentUser.getHikingLog();
     }
 }
