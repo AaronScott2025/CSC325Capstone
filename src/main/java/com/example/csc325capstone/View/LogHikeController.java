@@ -19,6 +19,17 @@ import java.util.Date;
 import java.util.List;
 
 public class LogHikeController {
+    @FXML
+    private Button logBTN;
+
+    @FXML
+    private Button profileBTN;
+
+    @FXML
+    private Button activityBTN;
+
+    @FXML
+    private Button mainBTN;
 
     @FXML
     private TextField hikeNameField;
@@ -149,4 +160,25 @@ public class LogHikeController {
         locationField.clear();
         descriptionField.clear();
     }
+
+    @FXML
+    void activityScreen(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/csc325capstone/activity_feed.fxml"));
+            Parent root = loader.load();
+
+            ActivityFeedController activityController = loader.getController();
+            activityController.setUserController(userController);
+            activityController.initializeProfile(userController.getCurrentUser());
+
+            Stage stage = (Stage) activityBTN.getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            messageLabel.setText("Error navigating to Activity Feed" + e.getMessage());
+        }
+    }
+
 }

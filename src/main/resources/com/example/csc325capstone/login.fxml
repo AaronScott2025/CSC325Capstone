@@ -21,7 +21,7 @@
             <Font name="Berlin Sans FB Bold" size="52.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="336.0" layoutY="121.0" prefHeight="75.0" prefWidth="324.0" text=" Discover Your Path, Embrace your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+      <Label alignment="CENTER" layoutX="336.0" layoutY="121.0" prefHeight="75.0" prefWidth="324.0" text=" Discover Your Path, Embrace Your Adventure" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="27.0" />
          </font>

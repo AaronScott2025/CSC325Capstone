@@ -26,12 +26,12 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
         </Button>
-        <Button fx:id="friendsBTN" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
+        <Button fx:id="friendsBTN" onAction="#profileScreen" layoutX="614.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Profile">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="logBTN" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
+        <Button fx:id="logBTN" onAction="#logScreen" layoutX="724.0" layoutY="34.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="Log">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>

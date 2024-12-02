@@ -198,4 +198,7 @@ public class ActivityFeedController {
             e.printStackTrace();
         }
     }
+
+    public void initializeProfile(User currentUser) {
+    }
 }
