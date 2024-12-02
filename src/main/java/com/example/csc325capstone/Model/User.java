@@ -5,6 +5,11 @@ import com.google.cloud.firestore.DocumentSnapshot;
 
 import java.util.*;
 
+/**
+ * User Dataclass
+ * Extends Person, Contains all of the users data.
+ */
+
 public class User extends Person {
     private String userID;
     private String password;

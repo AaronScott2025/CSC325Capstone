@@ -3,6 +3,11 @@ package com.example.csc325capstone.Model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Journey Dataclass
+ * used to show the journey you took, and how well it went.
+ */
+
 public class Journey {
     private Hikes location;
     private String starttime;

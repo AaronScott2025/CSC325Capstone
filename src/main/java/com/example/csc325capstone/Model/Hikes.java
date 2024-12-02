@@ -1,5 +1,9 @@
 package com.example.csc325capstone.Model;
 
+/**
+ * Hikes
+ * Dataclass that is used in the Location class to contain information about hiking hot-spots.
+ */
 
 public class Hikes {
     private String city;

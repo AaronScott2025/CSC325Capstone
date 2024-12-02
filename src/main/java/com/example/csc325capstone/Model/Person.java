@@ -1,5 +1,9 @@
 package com.example.csc325capstone.Model;
 
+/**
+ * Dataclass for person
+ * contains relevant info about a user that isnt the main user (EG: followers)
+ */
 public class Person {
     private String userID; //Friend Username
     private String record; //Friend Record
