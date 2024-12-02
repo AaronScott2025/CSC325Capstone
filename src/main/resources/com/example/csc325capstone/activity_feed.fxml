@@ -16,7 +16,7 @@
                 <Image url="@../../../images/logo.png" />
             </image>
         </ImageView>
-        <Button fx:id="newBTN" layoutX="504.0" layoutY="34.0" mnemonicParsing="false" onAction="#newPostScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="New">
+        <Button fx:id="newBTN" layoutX="504.0" layoutY="34.0" mnemonicParsing="false" onAction="#openNewPostScreen" prefHeight="20.0" prefWidth="100.0" styleClass="button-style" text="New">
             <font>
                 <Font name="Calibri Bold" size="16.0" />
             </font>

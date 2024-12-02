@@ -7,6 +7,7 @@
 
 #search {
     -fx-background-color: #23B72A;
+    -fx-cursor: hand;
 }
 
 #favoritesBTN {
@@ -64,6 +65,7 @@
 
 .button-style {
     -fx-background-color: #E2DCD2;
+    -fx-cursor: hand;
 }
 
 #haveButton{
