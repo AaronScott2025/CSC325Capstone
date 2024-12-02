@@ -8,7 +8,9 @@ TrailQuest is an All-purpose Hiking Desktop Application, that serves to connect 
 System Requirements:
 
   -Low power or above computing power
+ 
   -JDK 20+
+  
   -A stable Inernet Connection
 
 How does it work?
