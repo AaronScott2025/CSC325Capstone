@@ -33,6 +33,6 @@
         <li>Sabrina Achille - Systems Analyst🧠📈 | Developer🤖 | Head UI Designer👩‍🎨</li>
         <li>Eduardo Escobar - Developer🤖 | UI Design🖌️</li>
         <li>Christian Paucar - Developer🤖</li>
-        <li>Isaiah Ojo - Develope🤖r</li>
+        <li>Isaiah Ojo - Developer🤖</li>
 </body>
 </html>
