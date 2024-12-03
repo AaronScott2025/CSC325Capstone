@@ -12,17 +12,17 @@
     <h2>How does it work?🤔</h2>
     <p>Upon opening the application, you create an account with 2 security questions, after which your password is encrypted and stored within the database. After this, the user can log in where they are greeted by the Main GUI.</p>
       <ul>
-      <li><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053023.png?raw=true"></li>
-      <li><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053044.png?raw=true"></li>
-      <li><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053113.png?raw=true"></li>
+      <p><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053023.png?raw=true"></p>
+      <p><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053044.png?raw=true"></p>
+      <p><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053113.png?raw=true"></p>
     <p>The Main GUI loads with the location of the user (via IP address), which is processed and used to show the user the nearest 25 locations to their location. If a user has a level of security where the IP cannot be resolved, then the default location is Los Angeles, California. The user can then opt to enter a different location in the query boxes to display hiking locations nearby to that location instead.</p>
     <h3>Features🌟</h3>
     <ul>
       <li><b>Activity Feed</b>: See posts from other users within the program.</li>
-      <li><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053207.png?raw=true"></li>
+      <p><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053207.png?raw=true"></p>
       <li><b>Hiking Log</b>: Track your hikes and log your progress.</li>
-      <li><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053214.png?raw=true"></li>
-      <li><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053243.png?raw=true"></li>
+      <p><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053214.png?raw=true"></p>
+      <p><img src = "https://github.com/AaronScott2025/CSC325Capstone/blob/master/Screenshot%202024-12-03%20053243.png?raw=true"></p>
     </ul>
     <p>TrailQuest aims to enhance your hiking experience by making it easy to discover new trails, connect with fellow hikers, and keep track of your adventures.</p>
     <h2>Happy hiking!🌄🏞️</h2>
