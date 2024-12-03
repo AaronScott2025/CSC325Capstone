@@ -29,10 +29,10 @@
     <p> </p>
     <h2>Credits😁😁😁😁😁</h2>
     <ul>
-        <li>Aaron Scott - Project Manager | Developer | Database Administrator | Software Architect</li>
-        <li>Sabrina - Systems Analyst | Developer | Head UI Designer</li>
-        <li>Eduardo - Developer | UI Design</li>
-        <li>Christian - Developer</li>
-        <li>Isaiah - Developer</li>
+        <li>Aaron Scott - Project Manager👨‍💼 | Developer🤖 | Database Administrator👨‍💻 | Software Architect👷</li>
+        <li>Sabrina Achille - Systems Analyst🧠📈 | Developer🤖 | Head UI Designer👩‍🎨</li>
+        <li>Eduardo Escobar - Developer🤖 | UI Design🖌️</li>
+        <li>Christian Paucar - Developer🤖</li>
+        <li>Isaiah Ojo - Develope🤖r</li>
 </body>
 </html>
