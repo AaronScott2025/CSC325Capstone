@@ -26,5 +26,13 @@
     </ul>
     <p>TrailQuest aims to enhance your hiking experience by making it easy to discover new trails, connect with fellow hikers, and keep track of your adventures.</p>
     <h2>Happy hiking!🌄🏞️</h2>
+    <p> </p>
+    <h2>Credits😁😁😁😁😁</h2>
+    <ul>
+        <li>Aaron Scott - Project Manager | Developer | Database Administrator | Software Architect</li>
+        <li>Sabrina - Systems Analyst | Developer | Head UI Designer</li>
+        <li>Eduardo - Developer | UI Design</li>
+        <li>Christian - Developer</li>
+        <li>Isaiah - Developer</li>
 </body>
 </html>
