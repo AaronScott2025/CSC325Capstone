@@ -11,6 +11,8 @@ module com.example.csc325capstone {
     requires com.google.api.apicommon;
     requires org.apache.httpcomponents.httpclient;
     requires java.desktop;
+    requires java.sql;
+    requires google.cloud.storage;
 
 
     opens com.example.csc325capstone to javafx.fxml;

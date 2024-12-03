@@ -1,8 +1,7 @@
 package com.example.csc325capstone.View;
 
-import com.example.csc325capstone.Model.Location;
-import com.example.csc325capstone.Model.Post;
-import com.example.csc325capstone.Model.User;
+import com.example.csc325capstone.Model.*;
+import com.google.cloud.firestore.Firestore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -37,11 +35,91 @@ public class NewPostController {
     @FXML
     private Button mainBTN;
 
+    //private Firestore firestore;
+
+    //private Database database;
+
     private User currentUser = AppState.getInstance().getCurrentUser();
 
     private ActivityFeedController activityFeedController;
 
     FileChooser fileChooser = new FileChooser();
+
+/*---------------------------------------------------------------------------------------------------*/
+
+    // set Activity Feed Controller
+    public void setActivityFeedController(ActivityFeedController activityFeedController) {
+        this.activityFeedController = activityFeedController;
+        System.out.println("Controller set successfully");
+    }
+
+    /*public NewPostController(FirestoreContext firestoreContext){
+        this.firestore = firestoreContext.firebase();
+    }*/
+
+    // The "Post" button create a new post to add to the activity feed
+    @FXML
+    public void addPost(ActionEvent event) {
+
+        String newDescription = newPostDescription.getText();
+        String newImageUrl = newImageUrlField.getText();
+        String postAuthor = currentUser.getUserID();
+
+        // Validate the image URL and sets default url
+        if (newImageUrl == null || newImageUrl.isEmpty()) {
+            System.out.println("No image URL provided. Using default placeholder.");
+            newImageUrl = getClass().getResource("/images/gradient.png").toExternalForm();
+        }
+
+        // Print the URL
+        System.out.println("Image URL: " + newImageUrl);
+
+        try {
+            // Create the new post
+            Post newPost = new Post(newDescription, newImageUrl, postAuthor);
+
+            if (activityFeedController != null) {
+                activityFeedController.addPostToFeed(newPost);
+                activityFeedController.refreshFeed(); // Error refreshing the feed :(
+                //   specifically: Error creating post: Invalid URL: Invalid URL or resource not found
+                //   Note: the url is external not local to the project
+                System.out.println("Post added and feed refreshed.");
+            } else {
+                System.out.println("Controller not set");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error creating post: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    // The "Upload" button, opens file window, set the text field to the selected file url
+    @FXML
+    public void getNewImageUrl(javafx.scene.input.MouseEvent mouseEvent) {
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+        // Show the file chooser dialog
+        File file = fileChooser.showOpenDialog(new Stage());
+        // Create a FileChooser instance
+        if (file != null) {
+            // Get the file URL and set it in the Url text field
+            String fileUrl = file.toURI().toString();
+            newImageUrlField.setText(fileUrl);
+            //Image image = new Image(fileUrl);
+
+        } else {
+            System.out.println("No file selected");
+        }
+    }
+
+    // getNewImageUrl will call this method to store the image url to firebase
+    public void uploadUrlToFirebase() {
+    }
+
+/*---------------------------------------------------------------------------------------------------*/
 
     // The "Activity" button navigates to the Activity Feed
     @FXML
@@ -98,6 +176,7 @@ public class NewPostController {
         }
     }
 
+    // The "Profile" button navigates to the Profile screen
     @FXML
     void profileScreen(ActionEvent event) {
         try {
@@ -122,6 +201,7 @@ public class NewPostController {
         }
     }
 
+    // The "Log" button navigates to the Log screen
     @FXML
     void logScreen(ActionEvent event) {
         try {
@@ -147,63 +227,4 @@ public class NewPostController {
         }
     }
 
-    public void setActivityFeedController(ActivityFeedController activityFeedController) {
-        this.activityFeedController = activityFeedController;
-        System.out.println("Controller set successfully");
-    }
-
-    public void addPost(ActionEvent event) {
-
-        String newDescription = newPostDescription.getText();
-        String newImageUrl = newImageUrlField.getText();
-        String postAuthor = currentUser.getUserID();
-
-        // Validate the image URL and sets default url
-        if (newImageUrl == null || newImageUrl.isEmpty()) {
-            System.out.println("No image URL provided. Using default placeholder.");
-            newImageUrl = getClass().getResource("/images/gradient.png").toExternalForm();
-        }
-
-        // Print the URL
-        System.out.println("Image URL: " + newImageUrl);
-
-        try {
-            // Create the new post
-            Post newPost = new Post(newDescription, newImageUrl, postAuthor);
-
-            if (activityFeedController != null) {
-                activityFeedController.addPostToFeed(newPost);
-                activityFeedController.refreshFeed(); // Error refreshing the feed :(
-                                                    //   specifically: Error creating post: Invalid URL: Invalid URL or resource not found
-                                                    //   Note: the url is external not local to the project
-                System.out.println("Post added and feed refreshed.");
-            } else {
-                System.out.println("Controller not set");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error creating post: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void getNewImageUrl(javafx.scene.input.MouseEvent mouseEvent) {
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
-        // Show the file chooser dialog
-        File file = fileChooser.showOpenDialog(new Stage());
-        // Create a FileChooser instance
-        if (file != null) {
-            // Get the file URL and set it in the Url text field
-            String fileUrl = file.toURI().toString();
-            newImageUrlField.setText(fileUrl);
-            //Image image = new Image(fileUrl);
-
-        } else {
-            System.out.println("No file selected");
-        }
-    }
 }
