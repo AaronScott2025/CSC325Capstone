@@ -24,7 +24,7 @@ import java.net.http.HttpResponse;
  *REFERENCES:
  *https://rapidapi.com/trailapi/api/trailapi | getNearbyLocations()
  *https://developer.android.com/reference/org/json/JSONObject | getNearbyLocations()
- *https://api.ipify.org?format=text | getLocation()
+ *https://api.ipify.org?format=text | getcurrentLocation()
  *https://www.ipify.org/ | getLocation()
  * https://nominatim.openstreetmap.org | getLocationsQuery()
  */
@@ -45,6 +45,18 @@ public class Location {
         this.location = location;
     }
 
+    /**
+     * getcurrentLocation()
+     * Takes in the users IP address through api.ipify API, then passes that through to a second call through ip-api.com, which returns
+     * a json. The json is passed through JSONObject, and parsed to find and return:
+     * lattitude
+     * longitude
+     * City
+     * State
+     * Into one line, and return the result. If the IP cannot be resolved for any reason, the default location is Los Angeles
+     * SEE API REFERENCES AT THE TOP
+     * @return
+     */
     public String getcurrentLocation() {
         try {
             //Connection 1
@@ -83,6 +95,16 @@ public class Location {
             return "California,Los Angeles,34.0,118.1"; //DEFAULT TO LOS ANGELES CALIFORNIA ON ERROR
         }
     }
+
+    /**
+     * getLocationsQuery()
+     * Sends a request to nominatim API, and retrieves a JSON object, which is then parsed for coordinates, and then is
+     * returned in the proper locations format (EG: New York,Farmingdale,40.4,73.2)
+     * @param city
+     * @param state
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     public String getLocationsQuery(String city, String state) throws UnsupportedEncodingException {
         String encodeC = URLEncoder.encode(city,"UTF-8");
         String encodeS = URLEncoder.encode(state,"UTF-8");
@@ -118,6 +140,16 @@ public class Location {
         }
         return null;
     }
+
+    /**
+     * getNearbyLocations()
+     * Utilizes the trailapi from rapidapi. Takes the location string, and splits into an array. The array is parsed to get the
+     * lattitude and longitude, and this is formatted and passed into the trailapi to return a JSON. The JSON is then
+     * parsed to retrieve the Hike name, city, state, and a short description. If the JSON section does not have all of the
+     * necessary parts, error is handled, and skips over it.
+     * @param location
+     * @return
+     */
     public Hikes[] getNearbyLocations(String location){
         Hikes[] locations = new Hikes[25];
         int i = 0;

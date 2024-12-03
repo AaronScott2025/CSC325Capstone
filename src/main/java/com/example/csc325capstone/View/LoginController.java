@@ -46,6 +46,13 @@ public class LoginController {
     /**
      * Login Methods
      */
+    /**
+     * createPressed()
+     * button handler for the "create account" button. loads the create account screen on a new stage.
+     * prints for testing purposes only
+     * @param event
+     * @throws IOException
+     */
 
     @FXML
     void createPressed(ActionEvent event) throws IOException {
@@ -62,6 +69,17 @@ public class LoginController {
         System.out.println("Testing: Create Account Button Pressed");
     }
 
+    /**
+     * loginPressed()
+     * The program first takes in the entered password, encrypts it, and tests the encrypted password to that of the
+     * password inside the DB. If these passwords match, the program proceeds, or else it decrements "attempts". Also
+     * throws an error if the backend has a connection issue. When the program proceeds, the main GUI is loaded with the
+     * username shown
+     * @param event
+     * @throws IOException
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     @FXML
     void loginPressed(ActionEvent event) throws IOException, ExecutionException, InterruptedException {
         String pass = passEncrypt(PassField.getText());
@@ -138,7 +156,12 @@ public class LoginController {
     @FXML
     private Label createerrorlbl;
 
-
+    /**
+     * CAPressed()
+     * Creates a new user instance in the Database, utilizing relevant info, and then closes the page. If the username
+     * is already found in the database, then the user is not created.
+     * @param event
+     */
     @FXML
     void CAPressed(ActionEvent event) {
         Database db = new Database();
@@ -181,6 +204,13 @@ public class LoginController {
         closeCreate(event);
     }
 
+    /**
+     * navigateToMainScene()
+     * Loads the main scene, and sets up the scene with loaded user information, and the users current location, which is
+     * utilized in the Location class. Nearby hiking locations and username are loaded to the main scene, then the scene
+     * is shown.
+     * @param username
+     */
     private void navigateToMainScene(String username) {
         try {
             Stage stage = Main.getPrimaryStage();
@@ -230,6 +260,12 @@ public class LoginController {
         }
     }
 
+    /**
+     * passEncrypt()
+     * Takes in the users entered password, encrypts it using ROT-13(rotation 13), and returns the encrypted password.
+     * @param password
+     * @return
+     */
     private String passEncrypt(String password) {
         StringBuilder encrypted = new StringBuilder();
         for (char ch: password.toCharArray()) {
@@ -242,7 +278,11 @@ public class LoginController {
     }
 
 
-    // The "Have An Account?" button navigates to the Login screen
+    /**
+     * closeCreate()
+     * closes stage
+     * @param actionEvent
+     */
     public void closeCreate(ActionEvent actionEvent) {
         Stage stage = (Stage) haveButton.getScene().getWindow();
         stage.close();

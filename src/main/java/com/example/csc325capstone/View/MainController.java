@@ -266,14 +266,14 @@ public class MainController {
         }
     }
 
+    /**
+     * exit()
+     * Simply exits the program when the exit button is pushed
+     * @param event
+     */
     @FXML
     void exit(ActionEvent event) {
         System.exit(0);
-    }
-
-    @FXML
-    void friendsScreen(ActionEvent event) {
-
     }
 
     @FXML
@@ -348,6 +348,14 @@ public class MainController {
         }
     }
 
+    /**
+     * queryLocations()
+     * Handles the location query. Takes in a City and State, and passes it to Location class, where this method creates
+     * a Location object from its parts. this location object is used in "inittextarea" to find locations nearby to the
+     * entered location
+     * @param event
+     * @throws UnsupportedEncodingException
+     */
     @FXML
     void queryLocations(ActionEvent event) throws UnsupportedEncodingException {
         if(queryState.getText().equals("") || queryCity.getText().equals("")) {
@@ -381,6 +389,11 @@ public class MainController {
         this.userController = userController;
     }
 
+    /**
+     * initWelcome()
+     * Sets the welcome text for the user
+     * @param u
+     */
     public void initWelcome(String u) {
         welcomeLbl.setText(u);
 

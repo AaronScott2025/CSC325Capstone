@@ -9,11 +9,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * FirestoreContext
+ * Initializes the firebase using 'key.json'.
+ */
 
 public class FirestoreContext {
 
     private static Firestore fs;
 
+    /**
+     * firebase()
+     * Called when the firebase instance is needed. Loaded if the first time, else returned if context is already had.
+     * @return
+     */
     public Firestore firebase() {
         try {
             InputStream serviceAccount = FirestoreContext.class.getResourceAsStream("/key.json");
